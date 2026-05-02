@@ -30,8 +30,8 @@ export function AppHeader() {
             <img src="/favicon-16x16.png" alt="App Logo" className="h-7 w-7 object-contain drop-shadow hidden dark:block" />
           </div>
           <div className="flex flex-col">
-            <span className="text-xl font-black tracking-tighter leading-none text-foreground dark:text-white">{teamName || 'PitchMan'}</span>
-            <span className="text-[7px] uppercase font-bold tracking-[0.3em] text-muted-foreground dark:text-white/30 mt-0.5">Tactical Manager</span>
+            <span className="text-xl font-black tracking-tighter leading-none text-foreground dark:text-white">{teamName || 'PitchMan 7'}</span>
+            <span className="text-[7px] uppercase font-bold tracking-[0.3em] text-muted-foreground dark:text-white/30 mt-0.5">Tactical Manager 7-a-side</span>
           </div>
         </Link>
 

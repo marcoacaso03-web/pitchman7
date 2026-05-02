@@ -1,7 +1,7 @@
-# ⚽ PitchMan — Studio
-### Il sistema operativo intelligente per la gestione tecnica calcistica
+# ⚽ PitchMan 7
+### Il sistema operativo intelligente per il Calcio a 7
 
-PitchMan è una piattaforma avanzata progettata per allenatori e staff tecnico, focalizzata sull'ottimizzazione della gestione della squadra, dell'analisi tattica e del monitoraggio delle performance tramite Intelligenza Artificiale.
+PitchMan 7 è una versione specializzata della piattaforma avanzata PitchMan, ottimizzata per il **Calcio a 7**. Progettata per allenatori e staff tecnico, si focalizza sull'ottimizzazione della gestione della squadra, dell'analisi tattica (con moduli specifici per il C7) e del monitoraggio delle performance tramite Intelligenza Artificiale.
 
 ---
 
