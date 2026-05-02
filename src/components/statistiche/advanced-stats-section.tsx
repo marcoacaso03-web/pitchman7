@@ -26,7 +26,7 @@ type RankingType = 'defense' | 'efficiency' | 'decisive' | 'amulet';
 
 export function AdvancedStatsSection() {
     const { advancedLeaderboard, playerLeaderboard, loading } = useStatsStore();
-    const [defenseType, setDefenseType] = useState<'4' | '3'>('4');
+    const [defenseType, setDefenseType] = useState<'2' | '3'>('2');
     const [selectedRanking, setSelectedRanking] = useState<RankingType | null>(null);
 
     if (loading && !advancedLeaderboard) {
@@ -50,14 +50,14 @@ export function AdvancedStatsSection() {
         return playerLeaderboard.find(p => p.playerId === id)?.name || id;
     };
 
-    const currentBestDefense = defenseType === '4' ? mainCbPair : mainCbTrio;
+    const currentBestDefense = defenseType === '2' ? mainCbPair : mainCbTrio;
 
     const renderRankingList = () => {
         if (!selectedRanking) return null;
 
         switch (selectedRanking) {
             case 'defense':
-                const defenseData = defenseType === '4' ? bestCbPair : bestCbTrio;
+                const defenseData = defenseType === '2' ? bestCbPair : bestCbTrio;
                 return (
                     <div className="space-y-2 mt-4">
                         {defenseData.map((item, idx) => (
@@ -180,15 +180,15 @@ export function AdvancedStatsSection() {
                         <div className="relative z-10" onClick={(e) => e.stopPropagation()}>
                             <Tabs 
                                 value={defenseType} 
-                                onValueChange={(v) => setDefenseType(v as '3' | '4')}
+                                onValueChange={(v) => setDefenseType(v as '3' | '2')}
                                 className="h-7"
                             >
                                 <TabsList className="bg-black/20 border border-white/5 h-7 p-0.5 rounded-lg">
                                     <TabsTrigger 
-                                        value="4" 
+                                        value="2" 
                                         className="text-[8px] font-black h-6 px-2 data-[state=active]:bg-brand-green data-[state=active]:text-black uppercase"
                                     >
-                                        DIF A 4
+                                        DIF A 2
                                     </TabsTrigger>
                                     <TabsTrigger 
                                         value="3" 
@@ -321,15 +321,15 @@ export function AdvancedStatsSection() {
                             <div className="mr-8">
                                 <Tabs 
                                     value={defenseType} 
-                                    onValueChange={(v) => setDefenseType(v as '3' | '4')}
+                                    onValueChange={(v) => setDefenseType(v as '3' | '2')}
                                     className="h-9"
                                 >
                                     <TabsList className="bg-muted/50 dark:bg-black/40 border border-divider dark:border-white/5 h-9 p-1 rounded-xl">
                                         <TabsTrigger 
-                                            value="4" 
+                                            value="2" 
                                             className="text-[10px] font-black h-7 px-3 data-[state=active]:bg-brand-green data-[state=active]:text-black uppercase tracking-widest"
                                         >
-                                            DIF A 4
+                                            DIF A 2
                                         </TabsTrigger>
                                         <TabsTrigger 
                                             value="3" 
@@ -342,6 +342,7 @@ export function AdvancedStatsSection() {
                             </div>
                         )}
                     </DialogHeader>
+
 
                     <div className="mt-4 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
                         {renderRankingList()}
