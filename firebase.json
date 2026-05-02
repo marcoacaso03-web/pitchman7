@@ -8,9 +8,10 @@
         "authorizedRedirectUris": [
           "http://localhost:3000",
           "http://localhost",
-          "https://pitchman.vercel.app"
+          "https://pitchman.vercel.app",
+          "https://pitchman7.vercel.app"
         ],
-        "oAuthBrandDisplayName": "Pitchman",
+        "oAuthBrandDisplayName": "PitchMan",
         "supportEmail": "marcoloiacono034@gmail.com"
       }
     }
