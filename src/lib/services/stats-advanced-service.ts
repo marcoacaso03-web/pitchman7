@@ -94,12 +94,12 @@ export function computeBestDefenseStats(
         let targetCbs: string[] = [];
         let type: 'pair' | 'trio' | 'none' = 'none';
 
-        if (formation.startsWith('4')) {
-            // Difesa a 4: i centrali sono agli indici 2 e 3
+        if (formation.startsWith('2')) {
+            // Difesa a 2: i centrali sono agli indici 1 e 2
+            const s1 = lineup.starters[1];
             const s2 = lineup.starters[2];
-            const s3 = lineup.starters[3];
-            const p1 = s2 ? (typeof s2 === 'string' ? s2 : s2.playerId) : null;
-            const p2 = s3 ? (typeof s3 === 'string' ? s3 : s3.playerId) : null;
+            const p1 = s1 ? (typeof s1 === 'string' ? s1 : s1.playerId) : null;
+            const p2 = s2 ? (typeof s2 === 'string' ? s2 : s2.playerId) : null;
             if (p1 && p2) {
                 targetCbs = [p1, p2];
                 type = 'pair';

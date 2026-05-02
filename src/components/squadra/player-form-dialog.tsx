@@ -59,10 +59,9 @@ interface PlayerFormDialogProps {
   onSave: (data: PlayerSaveData, playerId?: string) => Promise<void> | void;
   player?: Player | null;
   onAIImport?: () => void;
-  onTuttocampoImport?: () => void;
 }
 
-export function PlayerFormDialog({ open, onOpenChange, onSave, player, onAIImport, onTuttocampoImport }: PlayerFormDialogProps) {
+export function PlayerFormDialog({ open, onOpenChange, onSave, player, onAIImport }: PlayerFormDialogProps) {
   const [isSaving, setIsSaving] = React.useState(false);
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -140,16 +139,7 @@ export function PlayerFormDialog({ open, onOpenChange, onSave, player, onAIImpor
               >
                 <Sparkles className="h-5 w-5" />
               </Button>
-              <Button 
-                onClick={onTuttocampoImport}
-                variant="ghost"
-                size="icon"
-                disabled={isSaving}
-                className="h-10 w-10 rounded-full bg-primary/10 dark:bg-brand-green/10 text-primary dark:text-brand-green hover:bg-primary/20 dark:hover:bg-brand-green/20"
-                title="Importa da Tuttocampo"
-              >
-                <Globe className="h-5 w-5" />
-              </Button>
+
             </div>
           )}
         </DialogHeader>

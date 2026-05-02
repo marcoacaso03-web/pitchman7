@@ -11,13 +11,11 @@ import { cn, displayPlayerName } from "@/lib/utils";
 import { FORMATION_POSITIONS, getPositionAcronym } from "@/lib/lineup-mapping";
 
 const FORMATION_ROWS: Record<string, number[][]> = {
-  "4-4-2": [[9, 10], [5, 6, 7, 8], [1, 2, 3, 4], [0]],
-  "4-3-3": [[8, 9, 10], [5, 6, 7], [1, 2, 3, 4], [0]],
-  "3-5-2": [[9, 10], [4, 5, 6, 7, 8], [1, 2, 3], [0]],
-  "4-2-3-1": [[10], [7, 8, 9], [5, 6], [1, 2, 3, 4], [0]],
-  "3-4-2-1": [[10], [8, 9], [4, 5, 6, 7], [1, 2, 3], [0]],
-  "3-4-1-2": [[9, 10], [8], [4, 5, 6, 7], [1, 2, 3], [0]],
-  "4-3-1-2": [[9, 10], [8], [5, 6, 7], [1, 2, 3, 4], [0]]
+  "2-3-1": [[6], [3, 4, 5], [1, 2], [0]],
+  "3-2-1": [[6], [4, 5], [1, 2, 3], [0]],
+  "2-2-2": [[5, 6], [3, 4], [1, 2], [0]],
+  "3-1-2": [[5, 6], [4], [1, 2, 3], [0]],
+  "1-3-2": [[5, 6], [2, 3, 4], [1], [0]]
 };
 
 const formatPlayerName = (fullName: string) => {
@@ -66,19 +64,19 @@ export function SquadFormationView() {
           }
         });
 
-        const mostUsedFormation = Object.entries(formationCounts).sort((a, b) => b[1] - a[1])[0]?.[0] || "4-4-2";
+        const mostUsedFormation = Object.entries(formationCounts).sort((a, b) => b[1] - a[1])[0]?.[0] || "2-3-1";
         const formationApps = formationCounts[mostUsedFormation] || 0;
 
-        // 2. Per ogni posizione (0-10) del modulo, trova il giocatore più presente
+        // 2. Per ogni posizione (0-6) del modulo, trova il giocatore più presente
         const positionPlayerCounts: Record<number, Record<string, number>> = {};
-        for (let i = 0; i <= 10; i++) positionPlayerCounts[i] = {};
+        for (let i = 0; i <= 6; i++) positionPlayerCounts[i] = {};
 
         completedMatches.forEach(m => {
           const lineup = context.matchesDetails[m.id]?.lineup;
           if (lineup && lineup.formation === mostUsedFormation) {
             lineup.starters.forEach((p, idx) => {
               const pid = typeof p === 'string' ? p : p.playerId;
-              if (pid) {
+              if (pid && idx <= 6) {
                 positionPlayerCounts[idx][pid] = (positionPlayerCounts[idx][pid] || 0) + 1;
               }
             });
@@ -86,7 +84,7 @@ export function SquadFormationView() {
         });
 
         const starters: { playerId: string; name: string }[] = [];
-        for (let i = 0; i <= 10; i++) {
+        for (let i = 0; i <= 6; i++) {
           const topPlayerId = Object.entries(positionPlayerCounts[i]).sort((a, b) => b[1] - a[1])[0]?.[0];
           const player = players.find(p => p.id === topPlayerId);
           starters.push({
@@ -138,7 +136,7 @@ export function SquadFormationView() {
     );
   }
 
-  const rows = FORMATION_ROWS[bestLineup.formation] || FORMATION_ROWS["4-4-2"];
+  const rows = FORMATION_ROWS[bestLineup.formation] || FORMATION_ROWS["2-3-1"];
 
   return (
     <div className="space-y-4">

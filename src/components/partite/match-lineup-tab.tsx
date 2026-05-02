@@ -40,9 +40,9 @@ export function MatchLineupTab() {
   const { match } = useMatchDetailStore();
   const { toast } = useToast();
 
-  const [starters, setStarters] = useState<string[]>(Array(11).fill(""));
-  const [substitutes, setSubstitutes] = useState<string[]>(Array(9).fill(""));
-  const [modulo, setModulo] = useState("4-4-2");
+  const [starters, setStarters] = useState<string[]>(Array(7).fill(""));
+  const [substitutes, setSubstitutes] = useState<string[]>(Array(7).fill(""));
+  const [modulo, setModulo] = useState("2-3-1");
   const [isSmartOpen, setIsSmartOpen] = useState(false);
   const [editingSlot, setEditingSlot] = useState<number | null>(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -51,11 +51,11 @@ export function MatchLineupTab() {
   // Inizializza lo stato locale dal lineup dello store
   useEffect(() => {
     if (lineup) {
-      const s = [...Array(11)].map((_, i) => {
+      const s = [...Array(7)].map((_, i) => {
         const p = lineup.starters[i];
         return (typeof p === "string" ? p : p?.playerId) || "";
       });
-      const subs = [...Array(9)].map((_, i) => {
+      const subs = [...Array(7)].map((_, i) => {
         const p = lineup.substitutes[i];
         return (typeof p === "string" ? p : p?.playerId) || "";
       });
@@ -91,21 +91,21 @@ export function MatchLineupTab() {
 
   const handleReset = () => {
     if (lineup) {
-      const s = [...Array(11)].map((_, i) => {
+      const s = [...Array(7)].map((_, i) => {
         const p = lineup.starters[i];
         return (typeof p === "string" ? p : p?.playerId) || "";
       });
-      const subs = [...Array(9)].map((_, i) => {
+      const subs = [...Array(7)].map((_, i) => {
         const p = lineup.substitutes[i];
         return (typeof p === "string" ? p : p?.playerId) || "";
       });
       setStarters(s);
       setSubstitutes(subs);
-      setModulo(lineup.formation || "4-4-2");
+      setModulo(lineup.formation || "2-3-1");
     } else {
-      setStarters(Array(11).fill(""));
-      setSubstitutes(Array(9).fill(""));
-      setModulo("4-4-2");
+      setStarters(Array(7).fill(""));
+      setSubstitutes(Array(7).fill(""));
+      setModulo("2-3-1");
     }
     setIsDirty(false);
     setIsEditing(false);
@@ -195,7 +195,7 @@ export function MatchLineupTab() {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="bg-card dark:bg-black border-border dark:border-brand-green/50 text-foreground dark:text-white rounded-xl">
-                  {["4-4-2", "4-3-3", "3-5-2", "4-2-3-1", "3-4-2-1", "3-4-1-2", "4-3-1-2"].map(f => (
+                  {["2-3-1", "3-2-1", "2-2-2", "3-1-2", "1-3-2"].map(f => (
                     <SelectItem key={f} value={f} className="text-xs font-black uppercase">{f}</SelectItem>
                   ))}
                 </SelectContent>

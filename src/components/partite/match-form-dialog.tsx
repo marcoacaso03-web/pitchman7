@@ -59,6 +59,7 @@ const formSchema = z.object({
   duration: z.coerce.number().int().min(1, "Durata richiesta"),
   status: z.enum(['scheduled', 'completed', 'canceled']),
   round: z.coerce.number().int().optional().or(z.literal(0)),
+  tournamentName: z.string().optional(),
 });
 
 type MatchFormValues = z.infer<typeof formSchema>;
@@ -84,6 +85,7 @@ export function MatchFormDialog({ open, onOpenChange, onSave, match }: MatchForm
       duration: defaultDuration,
       status: 'completed',
       round: 0,
+      tournamentName: "",
     },
   });
 
@@ -98,6 +100,7 @@ export function MatchFormDialog({ open, onOpenChange, onSave, match }: MatchForm
         duration: match?.duration || defaultDuration,
         status: match?.status || 'completed',
         round: match?.round || 0,
+        tournamentName: match?.tournamentName || "",
       });
     }
   }, [open, match, form, defaultDuration]);
@@ -181,7 +184,23 @@ export function MatchFormDialog({ open, onOpenChange, onSave, match }: MatchForm
                     <FormMessage />
                     </FormItem>
                 )}
+              />
+
+              {form.watch("type") === "Torneo" && (
+                <FormField
+                  control={form.control}
+                  name="tournamentName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-[10px] font-black uppercase tracking-widest text-primary dark:text-brand-green">Nome Torneo</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Es: Torneo Estivo" {...field} className="h-11 rounded-xl font-bold uppercase text-xs bg-background dark:bg-black border border-primary/50 dark:border-brand-green/50 focus-visible:ring-1 focus-visible:ring-primary dark:focus-visible:ring-brand-green text-foreground dark:text-white" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
+              )}
             </div>
 
             <FormField
@@ -197,9 +216,9 @@ export function MatchFormDialog({ open, onOpenChange, onSave, match }: MatchForm
                             </SelectTrigger>
                         </FormControl>
                         <SelectContent className="bg-card border border-primary/30 dark:border-brand-green/30 text-foreground">
-                            <SelectItem value="70" className="text-xs font-bold uppercase">70 min</SelectItem>
-                            <SelectItem value="80" className="text-xs font-bold uppercase">80 min</SelectItem>
-                            <SelectItem value="90" className="text-xs font-bold uppercase">90 min</SelectItem>
+                            <SelectItem value="40" className="text-xs font-bold uppercase">40 min</SelectItem>
+                            <SelectItem value="50" className="text-xs font-bold uppercase">50 min</SelectItem>
+                            <SelectItem value="60" className="text-xs font-bold uppercase">60 min</SelectItem>
                         </SelectContent>
                     </Select>
                     <FormMessage />

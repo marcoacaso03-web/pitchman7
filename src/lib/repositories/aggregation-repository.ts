@@ -180,7 +180,7 @@ export const aggregationRepository = {
     getGoalsByIntervalFromContext(context: SeasonDataContext) {
         const completedMatches = context.matches.filter(m => m.status === 'completed');
         
-        let duration = 90;
+        let duration = 60;
         if (context.matches.length > 0) {
             const lastMatch = completedMatches[completedMatches.length - 1] || context.matches[context.matches.length - 1];
             if (lastMatch && lastMatch.duration) {
@@ -205,7 +205,7 @@ export const aggregationRepository = {
             const details = context.matchesDetails[match.id];
             if (!details) continue;
 
-            const matchDuration = match.duration || 90;
+            const matchDuration = match.duration || 60;
             const halfTime = Math.floor(matchDuration / 2);
 
             const isPitchManTeam = match.isHome ? 'home' : 'away';

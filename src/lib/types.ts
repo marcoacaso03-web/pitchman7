@@ -72,6 +72,7 @@ export type Match = {
   resultType?: 'W' | 'D' | 'L'; // Normalized
   status: MatchStatus;
   round?: number;
+  tournamentName?: string;
   notes?: string;
   createdAt?: string;
   updatedAt?: string;

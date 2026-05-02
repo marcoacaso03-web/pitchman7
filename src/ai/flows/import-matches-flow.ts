@@ -2,7 +2,7 @@
 /**
  * @fileOverview Flusso AI per l'importazione del calendario tramite Copia-Incolla.
  *
- * Utilizza l'AI per estrarre partite strutturate da testo grezzo copiato da Tuttocampo.
+ * Utilizza l'AI per estrarre partite strutturate da testo grezzo (es. calendari PDF o web).
  */
 
 import { ai } from '@/ai/genkit';

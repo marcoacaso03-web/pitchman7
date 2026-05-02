@@ -115,7 +115,7 @@ export const useMatchDetailStore = create<MatchDetailState>()(
         const user = useAuthStore.getState().user;
         if (!match || !matchId || !user) return;
 
-        const duration = match.duration || 90;
+        const duration = match.duration || 60;
         const halfTime = Math.floor(duration / 2);
         const pitchManTeam = match.isHome ? 'home' : 'away';
 

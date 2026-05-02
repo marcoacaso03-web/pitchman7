@@ -5,13 +5,12 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { PageHeader } from "@/components/layout/page-header";
 import { Button } from "@/components/ui/button";
-import { PlusCircle, Edit, Trash2, ChevronUp, ChevronDown, Sparkles, Search, Plus, ChevronRight, Globe, Hospital, Save } from "lucide-react";
+import { PlusCircle, Edit, Trash2, ChevronUp, ChevronDown, Sparkles, Search, Plus, ChevronRight, Hospital, Save } from "lucide-react";
 import type { Player, Role } from "@/lib/types";
 import dynamic from "next/dynamic";
 
 const PlayerFormDialog = dynamic(() => import("@/components/squadra/player-form-dialog").then(mod => mod.PlayerFormDialog), { ssr: false });
 const SmartPlayerDialog = dynamic(() => import("@/components/giocatori/smart-player-dialog").then(mod => mod.SmartPlayerDialog), { ssr: false });
-const ImportTuttocampoDialog = dynamic(() => import("@/components/squadra/import-tuttocampo-dialog").then(mod => mod.ImportTuttocampoDialog), { ssr: false });
 const InjuryFormDialog = dynamic(() => import("@/components/squadra/injury-form-dialog").then(mod => mod.InjuryFormDialog), { ssr: false });
 import { FaUserSecret } from "react-icons/fa";
 
@@ -48,7 +47,6 @@ export default function RosaPage() {
 
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isSmartFormOpen, setIsSmartFormOpen] = useState(false);
-  const [isImportTuttocampoOpen, setIsImportTuttocampoOpen] = useState(false);
   const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
   const [playerToDelete, setPlayerToDelete] = useState<Player | null>(null);
   const [isDeleteAllOpen, setIsDeleteAllOpen] = useState(false);
@@ -365,10 +363,6 @@ export default function RosaPage() {
           setIsFormOpen(false);
           setIsSmartFormOpen(true);
         }}
-        onTuttocampoImport={() => {
-          setIsFormOpen(false);
-          setIsImportTuttocampoOpen(true);
-        }}
       />
 
       <SmartPlayerDialog
@@ -377,11 +371,7 @@ export default function RosaPage() {
         onSave={handleSmartSavePlayers}
       />
 
-      <ImportTuttocampoDialog
-        open={isImportTuttocampoOpen}
-        onOpenChange={setIsImportTuttocampoOpen}
-        onSave={handleSmartSavePlayers}
-      />
+
 
       <AlertDialog open={!!playerToDelete} onOpenChange={(open) => !open && setPlayerToDelete(null)}>
         <AlertDialogContent className="max-w-[90vw] md:max-w-md rounded-3xl bg-card dark:bg-black border border-border dark:border-brand-green/30 text-foreground p-6 shadow-lg">

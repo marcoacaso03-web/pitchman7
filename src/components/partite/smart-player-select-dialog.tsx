@@ -27,10 +27,8 @@ interface SmartPlayerSelectDialogProps {
 
 const mapAcronymToRole = (acronym: string): Role => {
   if (acronym === 'POR') return 'Portiere';
-  if (['TS', 'DC', 'TD', 'DCD', 'DCS'].includes(acronym)) return 'Difensore';
+  if (['DC'].includes(acronym)) return 'Difensore';
   if (['ATT'].includes(acronym)) return 'Attaccante';
-  // Ala Sinistra/Destra (AS/AD) can be Centrocampista or Attaccante, but usually Centrocampista in 4-3-3 or Attaccante?
-  // Let's assume Centrocampista for all others.
   return 'Centrocampista';
 };
 

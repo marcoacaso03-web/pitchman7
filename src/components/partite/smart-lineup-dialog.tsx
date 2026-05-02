@@ -34,12 +34,14 @@ export function SmartLineupDialog({ open, onOpenChange }: SmartLineupDialogProps
   const [rawList, setRawList] = useState('');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const { allPlayers, saveLineup, lineup } = useMatchDetailStore();
-  const [modulo, setModulo] = useState('4-4-2');
+  const [modulo, setModulo] = useState('2-3-1');
   const { toast } = useToast();
 
   useEffect(() => {
     if (open && lineup?.formation) {
       setModulo(lineup.formation);
+    } else if (open) {
+      setModulo('2-3-1');
     }
   }, [open, lineup]);
 
@@ -103,13 +105,11 @@ export function SmartLineupDialog({ open, onOpenChange }: SmartLineupDialogProps
                 <SelectValue />
               </SelectTrigger>
               <SelectContent className="bg-card dark:bg-black border-border dark:border-brand-green/50 text-foreground dark:text-white">
-                <SelectItem value="4-4-2" className="text-[11px] font-black">4-4-2</SelectItem>
-                <SelectItem value="4-3-3" className="text-[11px] font-black">4-3-3</SelectItem>
-                <SelectItem value="3-5-2" className="text-[11px] font-black">3-5-2</SelectItem>
-                <SelectItem value="4-2-3-1" className="text-[11px] font-black">4-2-3-1</SelectItem>
-                <SelectItem value="3-4-2-1" className="text-[11px] font-black">3-4-2-1</SelectItem>
-                <SelectItem value="3-4-1-2" className="text-[11px] font-black">3-4-1-2</SelectItem>
-                <SelectItem value="4-3-1-2" className="text-[11px] font-black">4-3-1-2</SelectItem>
+                <SelectItem value="2-3-1" className="text-[11px] font-black">2-3-1</SelectItem>
+                <SelectItem value="3-2-1" className="text-[11px] font-black">3-2-1</SelectItem>
+                <SelectItem value="2-2-2" className="text-[11px] font-black">2-2-2</SelectItem>
+                <SelectItem value="3-1-2" className="text-[11px] font-black">3-1-2</SelectItem>
+                <SelectItem value="1-3-2" className="text-[11px] font-black">1-3-2</SelectItem>
               </SelectContent>
             </Select>
           </div>

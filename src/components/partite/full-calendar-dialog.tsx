@@ -18,8 +18,7 @@ import { useStatsStore } from "@/store/useStatsStore";
 import { useSeasonsStore } from "@/store/useSeasonsStore";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { ImportTuttocampoDialog } from "@/components/partite/import-tuttocampo-dialog";
-import { ImportCalendarioScraperDialog } from "@/components/partite/import-calendario-scraper-dialog";
+
 import { cn } from "@/lib/utils";
 import {
   AlertDialog,
@@ -58,8 +57,6 @@ export function FullCalendarDialog({ open, onOpenChange }: FullCalendarDialogPro
   }, [open]);
 
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const [isImportOpen, setIsImportOpen] = useState(false);
-  const [isScraperImportOpen, setIsScraperImportOpen] = useState(false);
   const [matchToDelete, setMatchToDelete] = useState<Match | null>(null);
   const [isDeleteAllOpen, setIsDeleteAllOpen] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -160,26 +157,7 @@ export function FullCalendarDialog({ open, onOpenChange }: FullCalendarDialogPro
               </div>
             </div>
             <div className="flex gap-1 md:gap-1.5 shrink-0 items-center">
-              <Button
-                variant="outline"
-                className="bg-muted dark:bg-black/80 border-border dark:border-brand-green/30 text-foreground dark:text-white hover:bg-muted/80 dark:hover:bg-black hover:scale-105 transition-all h-8 w-8 rounded-xl shadow-sm p-0"
-                size="icon"
-                onClick={() => setIsScraperImportOpen(true)}
-                disabled={isProcessing}
-                title="Sincronizza da URL (Scraping)"
-              >
-                <Globe className="h-4 w-4 text-primary dark:text-brand-green" />
-              </Button>
-              <Button
-                variant="outline"
-                className="bg-muted dark:bg-black/80 border-border dark:border-brand-green/30 text-foreground dark:text-white hover:bg-muted/80 dark:hover:bg-black hover:scale-105 transition-all h-8 w-8 rounded-xl shadow-sm p-0"
-                size="icon"
-                onClick={() => setIsImportOpen(true)}
-                disabled={isProcessing}
-                title="Importazione Smart (Copia e Incolla)"
-              >
-                <ClipboardCopy className="h-4 w-4 text-primary dark:text-brand-green" />
-              </Button>
+
               <Button
                 variant="outline"
                 className="bg-muted dark:bg-black/80 border-border dark:border-brand-green text-foreground dark:text-white hover:bg-muted/80 dark:hover:bg-black hover:scale-105 transition-all h-8 w-8 rounded-xl shadow-sm p-0"
@@ -247,7 +225,9 @@ export function FullCalendarDialog({ open, onOpenChange }: FullCalendarDialogPro
                                 <span className="text-sm font-black text-foreground uppercase tracking-tight truncate max-w-[120px] md:max-w-none">
                                   {match.opponent}
                                 </span>
-                                <span className="text-[10px] font-bold text-muted-foreground uppercase">{match.type}</span>
+                                <span className="text-[10px] font-bold text-muted-foreground uppercase">
+                                  {match.type === 'Torneo' && match.tournamentName ? `${match.tournamentName}` : match.type}
+                                </span>
                               </div>
                               <div className="flex items-center gap-3">
                                 <div className="bg-muted/50 dark:bg-primary/5 border border-border dark:border-primary/10 px-2 py-0.5 rounded-lg min-w-[40px] text-center shadow-sm dark:shadow-none">
@@ -323,19 +303,7 @@ export function FullCalendarDialog({ open, onOpenChange }: FullCalendarDialogPro
         />
       )}
 
-      {isImportOpen && (
-        <ImportTuttocampoDialog
-          open={isImportOpen}
-          onOpenChange={setIsImportOpen}
-        />
-      )}
 
-      {isScraperImportOpen && (
-        <ImportCalendarioScraperDialog
-          open={isScraperImportOpen}
-          onOpenChange={setIsScraperImportOpen}
-        />
-      )}
     </>
   );
 }

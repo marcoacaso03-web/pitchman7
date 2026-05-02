@@ -33,8 +33,7 @@ import { format, isAfter, parseISO, startOfDay } from "date-fns";
 import { it } from "date-fns/locale";
 import { cn } from '@/lib/utils';
 import { MatchFormDialog } from '@/components/partite/match-form-dialog';
-import { ImportTuttocampoDialog } from "@/components/partite/import-tuttocampo-dialog";
-import { ImportCalendarioScraperDialog } from "@/components/partite/import-calendario-scraper-dialog";
+
 import { useStatsStore } from "@/store/useStatsStore";
 import {
   AlertDialog,
@@ -62,8 +61,7 @@ export default function CalendarioPage() {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [isMatchFormOpen, setIsMatchFormOpen] = useState(false);
-  const [isScraperImportOpen, setIsScraperImportOpen] = useState(false);
-  const [isImportOpen, setIsImportOpen] = useState(false);
+
   const [isDeleteAllOpen, setIsDeleteAllOpen] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const [pendingDeletions, setPendingDeletions] = useState<string[]>([]);
@@ -202,24 +200,7 @@ export default function CalendarioPage() {
           }
         >
           <div className="flex gap-1 md:gap-1.5 shrink-0 items-center">
-            <Button
-              variant="outline"
-              className="bg-muted dark:bg-black/80 border-border dark:border-brand-green/30 text-foreground dark:text-white hover:bg-muted/80 dark:hover:bg-black hover:scale-105 transition-all h-8 w-8 sm:h-9 sm:w-9 rounded-xl shadow-sm p-0"
-              size="icon"
-              onClick={() => setIsScraperImportOpen(true)}
-              title="Sincronizza da URL (Scraping)"
-            >
-              <Globe className="h-4 w-4 text-primary dark:text-brand-green" />
-            </Button>
-            <Button
-              variant="outline"
-              className="bg-muted dark:bg-black/80 border-border dark:border-brand-green/30 text-foreground dark:text-white hover:bg-muted/80 dark:hover:bg-black hover:scale-105 transition-all h-8 w-8 sm:h-9 sm:w-9 rounded-xl shadow-sm p-0"
-              size="icon"
-              onClick={() => setIsImportOpen(true)}
-              title="Importazione Smart (Copia e Incolla)"
-            >
-              <ClipboardCopy className="h-4 w-4 text-primary dark:text-brand-green" />
-            </Button>
+
             <Button
               variant="outline"
               className="bg-primary dark:bg-black border border-primary dark:border-brand-green text-white dark:text-brand-green hover:opacity-90 dark:hover:bg-black/80 hover:scale-105 transition-all h-8 sm:h-9 px-2 sm:px-3 rounded-xl shadow-md dark:shadow-[0_0_15px_rgba(172,229,4,0.15)] hidden sm:flex items-center"
@@ -519,19 +500,7 @@ export default function CalendarioPage() {
         onSave={handleCreateMatch}
       />
 
-      {isImportOpen && (
-        <ImportTuttocampoDialog
-          open={isImportOpen}
-          onOpenChange={setIsImportOpen}
-        />
-      )}
 
-      {isScraperImportOpen && (
-        <ImportCalendarioScraperDialog
-          open={isScraperImportOpen}
-          onOpenChange={setIsScraperImportOpen}
-        />
-      )}
 
       <AlertDialog open={isDeleteAllOpen} onOpenChange={setIsDeleteAllOpen}>
         <AlertDialogContent className="max-w-[90vw] rounded-3xl border border-border dark:border-brand-green/20 shadow-2xl p-8 bg-card dark:bg-black">

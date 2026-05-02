@@ -124,7 +124,7 @@ function MatchDetailContent() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 w-full pt-5 border-t border-border dark:border-brand-green/20">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 w-full pt-5 border-t border-border dark:border-brand-green/20">
                 <div className="flex items-center gap-2 text-xs font-bold">
                   <div className="p-1.5 bg-muted dark:bg-black border border-border dark:border-brand-green/30 rounded-lg text-primary dark:text-brand-green">
                     <CalendarDays className="h-3.5 w-3.5" />
@@ -136,6 +136,14 @@ function MatchDetailContent() {
                     {match.isHome ? <Home className="h-3.5 w-3.5" /> : <Plane className="h-3.5 w-3.5" />}
                   </div>
                   <span className="truncate uppercase tracking-wider text-foreground dark:text-white">{match.isHome ? 'Casa' : 'Trasferta'}</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs font-bold col-span-2 md:col-span-1">
+                  <div className="p-1.5 bg-muted dark:bg-black border border-border dark:border-brand-green/30 rounded-lg text-primary dark:text-brand-green">
+                    <Zap className="h-3.5 w-3.5" />
+                  </div>
+                  <span className="truncate uppercase tracking-wider text-foreground dark:text-white">
+                    {match.type === 'Torneo' && match.tournamentName ? match.tournamentName : match.type}
+                  </span>
                 </div>
               </div>
 

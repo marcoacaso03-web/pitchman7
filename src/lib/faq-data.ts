@@ -19,7 +19,7 @@ export const FAQ_DATA: FAQItem[] = [
   {
     category: "Primo Avvio",
     question: "Come inserisco il calendario delle partite?",
-    answer: "Hai tre opzioni:\n\n• Import da TuttoCampo: Nella sezione \"Partite\", usa \"Importa da TuttoCampo\" per sincronizzare il calendario.\n• Import AI (Premium): Incolla il testo del calendario e l'AI lo trasformerà in partite strutturate.\n• Manuale: Premi \"NUOVA\" per aggiungere singole partite (amichevoli, recuperi, tornei)."
+    answer: "Hai due opzioni:\n\n• Import AI (Premium): Incolla il testo del calendario e l'AI lo trasformerà in partite strutturate.\n• Manuale: Premi \"NUOVA\" per aggiungere singole partite (amichevoli, recuperi, tornei)."
   },
   {
     category: "Primo Avvio",
