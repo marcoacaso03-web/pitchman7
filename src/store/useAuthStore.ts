@@ -62,7 +62,10 @@ export const useAuthStore = create<AuthState>()(
           if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
              message = "Utente non trovato o password errata.";
           }
-          return { success: false, error: message };
+          if (error.code === 'auth/too-many-requests') {
+             message = "Troppi tentativi falliti. Riprova più tardi.";
+          }
+          return { success: false, error: `${message} (${error.code})` };
         }
       },
       signUp: async (email, password, username) => {
@@ -73,27 +76,31 @@ export const useAuthStore = create<AuthState>()(
           if (username) {
             await updateProfile(userCredential.user, { displayName: username });
           }
-          await sendEmailVerification(userCredential.user);
+          try {
+            await sendEmailVerification(userCredential.user);
+          } catch (verificationError) {
+            console.error("Verification email error:", verificationError);
+            // Non blocchiamo la registrazione se l'invio dell'email fallisce
+          }
           await signOut(auth);
           return { success: true };
         } catch (error: any) {
           console.error("SignUp error:", error);
           let message = "Errore durante la registrazione.";
           if (error.code === 'auth/email-already-in-use') message = "Email o nome utente già registrato. Ti consigliamo di usare il Login.";
-          if (error.code === 'auth/weak-password') message = "La password è troppo debole.";
-          return { success: false, error: message };
+          if (error.code === 'auth/weak-password') message = "La password è troppo debole (almeno 6 caratteri).";
+          if (error.code === 'auth/operation-not-allowed') message = "Il metodo Email/Password non è abilitato nel Console Firebase.";
+          if (error.code === 'auth/invalid-email') message = "L'indirizzo email non è valido.";
+          return { success: false, error: `${message} (${error.code})` };
         }
       },
       loginWithGoogle: async () => {
         try {
           const auth = getAuth();
           const provider = new GoogleAuthProvider();
-          // Adding custom parameters can help with some popup issues
           provider.setCustomParameters({ prompt: 'select_account' });
           
           const result = await signInWithPopup(auth, provider);
-          
-          // Force immediate state update to prevent race conditions during navigation
           useAuthStore.getState().setAuth(result.user);
           
           return { success: true };
@@ -102,8 +109,9 @@ export const useAuthStore = create<AuthState>()(
           let message = "Errore durante l'accesso con Google.";
           if (error.code === 'auth/popup-closed-by-user') message = "Finestra di accesso chiusa prima del completamento.";
           if (error.code === 'auth/popup-blocked') message = "Popup bloccato dal browser. Abilita i popup per questo sito.";
-          if (error.code === 'auth/unauthorized-domain') message = "Dominio non autorizzato. Verifica la configurazione Firebase.";
-          return { success: false, error: message };
+          if (error.code === 'auth/unauthorized-domain') message = "Dominio non autorizzato. Aggiungi questo dominio (localhost o altro) nella Console Firebase -> Auth -> Settings.";
+          if (error.code === 'auth/operation-not-allowed') message = "L'accesso con Google non è abilitato nella Console Firebase.";
+          return { success: false, error: `${message} (${error.code})` };
         }
       },
       logout: async () => {
