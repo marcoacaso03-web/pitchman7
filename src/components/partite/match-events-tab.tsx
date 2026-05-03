@@ -27,11 +27,11 @@ export function MatchEventsTab() {
   const [selectedEventOptions, setSelectedEventOptions] = useState<MatchEvent | null>(null);
 
 
-  const timedEvents = events.filter(e => e.minute !== null).sort((a, b) => {
+  const timedEvents = events.filter(e => e.minute !== null && e.minute !== undefined).sort((a, b) => {
     if (PERIOD_ORDER[a.period] !== PERIOD_ORDER[b.period]) return PERIOD_ORDER[a.period] - PERIOD_ORDER[b.period];
     return (a.minute ?? 0) - (b.minute ?? 0);
   });
-  const unTimedEvents = events.filter(e => e.minute === null);
+  const unTimedEvents = events.filter(e => e.minute === null || e.minute === undefined);
 
   const handleEditEvent = (event: MatchEvent) => {
     setEventToEdit(event);
@@ -188,10 +188,17 @@ export function MatchEventsTab() {
 }
 
 function TimelineEvent({ event, match, getEventIcon, getEventLabel, isHome, onOptionsClick, formatMinute }: any) {
+  const isOurPlayer = event.team === (match?.isHome ? 'home' : 'away');
   const isPitchManTeam = match?.isHome ? isHome : !isHome;
   const mainName = event.playerName || (isPitchManTeam ? 'GIOCATORE' : (match?.opponent || 'AVVERSARIO'));
   const alignLeft = isHome;
   const isCard = event.type === 'yellow_card' || event.type === 'red_card';
+
+  const formatName = (name: string | undefined | null) => {
+    if (!name) return "";
+    if (isOurPlayer) return formatPlayerInitial(name);
+    return name;
+  };
 
   return (
     <div className={cn(
@@ -200,7 +207,7 @@ function TimelineEvent({ event, match, getEventIcon, getEventLabel, isHome, onOp
     )}>
       <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center z-10">
         {/* Minute tag (Side positioned) */}
-        {event.minute !== null && (
+        {(event.minute !== null && event.minute !== undefined) && (
           <div className={cn(
             "absolute whitespace-nowrap bg-muted/80 dark:bg-black/80 px-2.5 py-1 rounded-full border border-border dark:border-brand-green/10 text-[11px] font-black tabular-nums shadow-sm z-20",
             alignLeft ? "left-full ml-4" : "right-full mr-4"
@@ -235,13 +242,13 @@ function TimelineEvent({ event, match, getEventIcon, getEventLabel, isHome, onOp
               <div className={cn("flex items-center gap-2", alignLeft && "flex-row-reverse")}>
                 <ArrowUp className="h-3 w-3 text-emerald-500" />
                 <p className="font-black leading-tight uppercase text-xs sm:text-sm truncate max-w-[120px] sm:max-w-none">
-                  {formatPlayerInitial(event.playerName)}
+                  {formatName(event.playerName)}
                 </p>
               </div>
               <div className={cn("flex items-center gap-2 mt-0.5 opacity-60", alignLeft && "flex-row-reverse")}>
                 <ArrowDown className="h-3 w-3 text-rose-500" />
                 <p className="text-[10px] sm:text-[11px] font-bold leading-tight uppercase">
-                  {formatPlayerInitial(event.subOutPlayerName)}
+                  {formatName(event.subOutPlayerName)}
                 </p>
               </div>
             </div>
@@ -252,7 +259,7 @@ function TimelineEvent({ event, match, getEventIcon, getEventLabel, isHome, onOp
           ) : (
             <div className={cn("flex flex-col", alignLeft ? "items-end text-right" : "items-start text-left")}>
               <p className="font-black leading-tight uppercase text-xs sm:text-sm truncate max-w-[120px] sm:max-w-none">
-                {formatPlayerInitial(mainName)}
+                {formatName(mainName)}
               </p>
               <div className={cn("flex items-center gap-2 mt-1", alignLeft ? "flex-row-reverse" : "flex-row")}>
                 <p className="text-[9px] text-muted-foreground font-black tracking-widest leading-none">
@@ -261,7 +268,7 @@ function TimelineEvent({ event, match, getEventIcon, getEventLabel, isHome, onOp
               </div>
               {event.type === 'goal' && event.assistPlayerName && (
                 <div className={cn("flex items-center gap-1 mt-1 opacity-70", alignLeft ? "flex-row-reverse" : "flex-row")}>
-                  <p className="text-[9px] font-bold uppercase tracking-wider">Assist: {formatPlayerInitial(event.assistPlayerName)}</p>
+                  <p className="text-[9px] font-bold uppercase tracking-wider">Assist: {formatName(event.assistPlayerName)}</p>
                 </div>
               )}
             </div>

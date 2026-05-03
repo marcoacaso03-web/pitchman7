@@ -212,7 +212,7 @@ export const aggregationRepository = {
             const goals = details.events.filter(e => e.type === 'goal' && e.team === isPitchManTeam);
             
             goals.forEach(event => {
-                if (event.minute === null) {
+                if (event.minute === null || event.minute === undefined) {
                     intervals[int3Key]++;
                     return;
                 }

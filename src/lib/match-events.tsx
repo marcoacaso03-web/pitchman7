@@ -84,8 +84,8 @@ export const getEventLabel = (event: Partial<MatchEvent>) => {
 /**
  * Formatta il minuto dell'evento tenendo conto del periodo e della durata del match.
  */
-export const formatDisplayMinute = (minute: number | null, period: string, matchDuration: number = 90) => {
-  if (minute === null) return "";
+export const formatDisplayMinute = (minute: number | null | undefined, period: string, matchDuration: number = 90) => {
+  if (minute === null || minute === undefined) return "";
 
   const halfTime = Math.floor(matchDuration / 2);
 

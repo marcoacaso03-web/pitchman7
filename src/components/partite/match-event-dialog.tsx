@@ -63,7 +63,7 @@ export function MatchEventDialog({ open, onOpenChange, eventToEdit }: MatchEvent
     if (eventToEdit && open) {
       setUiType(eventToEdit.type as UIEventType);
       setTeam(eventToEdit.team);
-      setMinute(eventToEdit.minute);
+      setMinute(eventToEdit.minute ?? null);
       setPeriod(eventToEdit.period);
       setNotes(eventToEdit.notes || "");
       
