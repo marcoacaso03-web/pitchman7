@@ -82,14 +82,14 @@ export default function AltroPage() {
       setLocalTeamName(teamName);
       setLocalDefaultDuration(defaultDuration);
     }
-  }, [isSquadraOpen, teamName, defaultDuration, trainingDays, autoSetPresenceOnGenerate]);
+  }, [isSquadraOpen, teamName, defaultDuration]);
 
   useEffect(() => {
     if (isNotificheOpen) {
       setLocalMatchNotificationEnabled(matchNotificationEnabled || false);
       setLocalMatchNotificationTime(matchNotificationTime || '20:00');
     }
-  }, [isNotificheOpen, matchNotificationEnabled, matchNotificationTime, trainingNotificationEnabled, trainingNotificationTime]);
+  }, [isNotificheOpen, matchNotificationEnabled, matchNotificationTime]);
 
   const { user, logout } = useAuthStore();
 
