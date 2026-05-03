@@ -11,7 +11,6 @@ import { GuideDialog } from './guide-dialog';
 const navItems = [
   { href: "/", label: "Dashboard" },
   { href: "/calendario", label: "Calendario" },
-  { href: "/allenamento", label: "Allenamento" },
   { href: "/membri", label: "Rosa" },
   { href: "/altro", label: "Impostazioni" },
 ];

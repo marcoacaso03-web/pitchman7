@@ -21,11 +21,6 @@ export const FAQ_DATA: FAQItem[] = [
     question: "Come inserisco il calendario delle partite?",
     answer: "Hai due opzioni:\n\n• Import AI (Premium): Incolla il testo del calendario e l'AI lo trasformerà in partite strutturate.\n• Manuale: Premi \"NUOVA\" per aggiungere singole partite (amichevoli, recuperi, tornei)."
   },
-  {
-    category: "Primo Avvio",
-    question: "Come genero le sessioni di allenamento?",
-    answer: "Nella sezione \"Allenamento\", premi \"+\" per generare le giornate. Puoi scegliere se generare tutto il periodo o settimana per settimana. Nelle schede puoi poi segnare le presenze settimanali dei giocatori."
-  },
   // ⚽ Partite
   {
     category: "Partite",
@@ -57,7 +52,7 @@ export const FAQ_DATA: FAQItem[] = [
   {
     category: "Statistiche",
     question: "Quali statistiche sono disponibili?",
-    answer: "La sezione \"Statistiche\" offre: classifica marcatori e assistman, andamento risultati (grafico V/P/S), minutaggio medio per giocatore, cartellini e sanzioni, presenze allenamento e rendimento per ruolo."
+    answer: "La sezione \"Statistiche\" offre: classifica marcatori e assistman, andamento risultati (grafico V/P/S), minutaggio medio per giocatore, cartellini e sanzioni, e rendimento per ruolo."
   },
   {
     category: "Statistiche",
@@ -68,7 +63,7 @@ export const FAQ_DATA: FAQItem[] = [
   {
     category: "AI Assistant",
     question: "Cosa può fare l'assistente AI?",
-    answer: "L'AI può: analizzare le statistiche e fornirti insight tattici, suggerire formazioni basate su rendimento e presenze, rispondere a domande come \"Chi è il mio miglior marcatore?\" o \"Come stiamo andando in trasferta?\", e aiutarti a usare l'app."
+    answer: "L'AI può: analizzare le statistiche e fornirti insight tattici, suggerire formazioni basate su rendimento e disponibilità, rispondere a domande come \"Chi è il mio miglior marcatore?\" o \"Come stiamo andando in questo torneo?\", e aiutarti a usare l'app."
   },
   {
     category: "AI Assistant",
@@ -85,7 +80,7 @@ export const FAQ_DATA: FAQItem[] = [
   {
     category: "Piano Pro",
     question: "Cosa include il piano gratuito?",
-    answer: "Il piano Free include: gestione completa della rosa, inserimento manuale partite e risultati, presenze allenamento e note, libreria esercizi privata."
+    answer: "Il piano Free include: gestione completa della rosa, inserimento manuale partite e risultati, note tattiche e gestione base dei tornei."
   },
   {
     category: "Piano Pro",

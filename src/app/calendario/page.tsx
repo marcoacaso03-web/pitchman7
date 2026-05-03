@@ -14,13 +14,14 @@ import {
   Trophy,
   Calendar as CalendarIcon,
   ArrowRight,
-  Home,
-  Plane,
   Clock,
   History,
   TrendingUp,
   PlusCircle,
   ChevronRight,
+  ChevronDown,
+  ChevronUp,
+  Layers,
   Globe,
   ClipboardCopy,
   Trash2,
@@ -28,7 +29,6 @@ import {
   Save
 } from "lucide-react";
 import { GiWhistle } from "react-icons/gi";
-import { PiTrafficCone } from "react-icons/pi";
 import { format, isAfter, parseISO, startOfDay } from "date-fns";
 import { it } from "date-fns/locale";
 import { cn } from '@/lib/utils';
@@ -65,6 +65,8 @@ export default function CalendarioPage() {
   const [isDeleteAllOpen, setIsDeleteAllOpen] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const [pendingDeletions, setPendingDeletions] = useState<string[]>([]);
+  const [expandedTournaments, setExpandedTournaments] = useState<Record<string, boolean>>({});
+  const [matchFormDefaultType, setMatchFormDefaultType] = useState<'Campionato' | 'Torneo' | 'Amichevole'>('Campionato');
 
   const { activeSeason, fetchAll: fetchSeasons } = useSeasonsStore();
   const { matches, fetchAll: fetchMatches, add: addMatch, remove: removeMatch, removeAll: removeAllMatches, loading } = useMatchesStore();
@@ -185,6 +187,25 @@ export default function CalendarioPage() {
     }, 200);
   };
 
+  const { groupedTournaments, standaloneMatches } = useMemo(() => {
+    const tourneys: Record<string, typeof UI_Matches> = {};
+    const others: typeof UI_Matches = [];
+
+    UI_Matches.forEach(m => {
+      if (m.type === 'Torneo' && m.tournamentName) {
+        if (!tourneys[m.tournamentName]) tourneys[m.tournamentName] = [];
+        tourneys[m.tournamentName].push(m);
+      } else {
+        others.push(m);
+      }
+    });
+
+    return { 
+        groupedTournaments: tourneys, 
+        standaloneMatches: others 
+    };
+  }, [UI_Matches]);
+
   if (!mounted) return null;
 
   return (
@@ -203,20 +224,28 @@ export default function CalendarioPage() {
 
             <Button
               variant="outline"
-              className="bg-primary dark:bg-black border border-primary dark:border-brand-green text-white dark:text-brand-green hover:opacity-90 dark:hover:bg-black/80 hover:scale-105 transition-all h-8 sm:h-9 px-2 sm:px-3 rounded-xl shadow-md dark:shadow-[0_0_15px_rgba(172,229,4,0.15)] hidden sm:flex items-center"
-              onClick={() => setIsMatchFormOpen(true)}
+              className="bg-primary/10 dark:bg-black border border-primary/30 dark:border-brand-green/30 text-primary dark:text-brand-green hover:opacity-90 dark:hover:bg-brand-green/10 hover:scale-105 transition-all h-8 sm:h-9 px-2 sm:px-3 rounded-xl shadow-md hidden sm:flex items-center"
+              onClick={() => {
+                setMatchFormDefaultType('Torneo');
+                setIsMatchFormOpen(true);
+              }}
+              title="Nuovo Torneo"
+            >
+              <Layers className="sm:mr-1.5 h-4 w-4" />
+              <span className="hidden sm:inline font-black uppercase text-[10px]">Torneo</span>
+            </Button>
+            
+            <Button
+              variant="outline"
+              className="bg-primary dark:bg-black border border-primary dark:border-brand-green text-white dark:text-brand-green hover:opacity-90 dark:hover:bg-black/80 hover:scale-105 transition-all h-8 sm:h-9 px-2 sm:px-3 rounded-xl shadow-md dark:shadow-[0_0_15px_rgba(172,229,4,0.15)] flex items-center"
+              onClick={() => {
+                setMatchFormDefaultType('Campionato');
+                setIsMatchFormOpen(true);
+              }}
               title="Nuova Partita"
             >
               <PlusCircle className="sm:mr-1.5 h-4 w-4" />
               <span className="hidden sm:inline font-black uppercase text-[10px]">Nuova</span>
-            </Button>
-            <Button
-              variant="outline"
-              className="bg-primary dark:bg-black border border-primary dark:border-brand-green text-white dark:text-brand-green hover:opacity-90 dark:hover:bg-black/80 hover:scale-105 transition-all h-8 w-8 rounded-xl shadow-md dark:shadow-[0_0_15px_rgba(172,229,4,0.15)] sm:hidden flex items-center justify-center p-0"
-              onClick={() => setIsMatchFormOpen(true)}
-              title="Nuova Partita"
-            >
-              <PlusCircle className="h-4 w-4" />
             </Button>
           </div>
         </PageHeader>
@@ -235,7 +264,7 @@ export default function CalendarioPage() {
             className="relative overflow-hidden border-2 border-primary/50 dark:border-brand-green bg-primary/10 dark:bg-brand-green/5 rounded-3xl cursor-pointer group hover:bg-primary/20 dark:hover:bg-brand-green/10 transition-all shadow-lg dark:shadow-[0_0_20px_rgba(172,229,4,0.1)]"
           >
             <div className="absolute right-0 top-0 p-4 opacity-10 group-hover:scale-110 transition-transform">
-              {nextMatch.isHome ? <Home className="w-16 h-16" /> : <Plane className="w-16 h-16" />}
+              <Trophy className="w-16 h-16" />
             </div>
 
             <CardContent className="p-4 sm:p-5">
@@ -256,8 +285,6 @@ export default function CalendarioPage() {
                         <Clock className="h-3 w-3" />
                         {format(parseISO(nextMatch.date), "dd MMM", { locale: it })}
                       </span>
-                      <span>•</span>
-                      <span className="truncate">{nextMatch.isHome ? "Casa" : "Trasferta"}</span>
                     </div>
                   </div>
                 </div>
@@ -398,89 +425,74 @@ export default function CalendarioPage() {
           )}
         </div>
 
-        <div className="space-y-2">
-          {UI_Matches.map((m) => (
-            <Card
-              key={m.id}
-              onClick={() => router.push(`/calendario/${m.id}`)}
-              className={cn(
-                "bg-card dark:bg-black/40 border border-border dark:border-white/5 rounded-2xl cursor-pointer hover:bg-muted dark:hover:bg-white/5 transition-all group overflow-hidden",
-                m.status === 'scheduled' && "border-l-4 border-l-primary dark:border-l-brand-green"
-              )}
-            >
-              <CardContent className="p-4 pl-2 flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2 min-w-0 flex-1">
-                  {(() => {
-                    const sameTypeMatches = sortedMatches.filter(match => match.type === m.type);
-                    const autoRound = sameTypeMatches.findIndex(match => match.id === m.id) + 1;
-                    return <RoundBadge round={autoRound} />;
-                  })()}
-
-                  <div className={cn(
-                    "w-12 h-12 rounded-xl flex flex-col items-center justify-center font-black shrink-0",
-                    m.status === 'completed' ? "bg-muted dark:bg-zinc-900 text-muted-foreground" : "bg-primary/20 dark:bg-brand-green/20 text-primary dark:text-brand-green"
-                  )}>
-                    <span className="leading-none text-base">{format(parseISO(m.date), "dd")}</span>
-                    <span className="uppercase text-[9px] opacity-70 mt-0.5">{format(parseISO(m.date), "MMM", { locale: it })}</span>
-                  </div>
-
-                  <div className="min-w-0 flex-1">
-                    <h5 className="text-sm font-black uppercase tracking-tight text-foreground dark:text-white group-hover:text-primary dark:group-hover:text-brand-green transition-colors truncate">
-                      {m.opponent}
-                    </h5>
-                    <div className="flex items-center gap-2 mt-0.5">
-                      <span className="text-[9px] font-bold uppercase text-muted-foreground/60">{m.type}</span>
-                      <span className="text-muted-foreground/30">•</span>
-                      <span className="text-[9px] font-bold uppercase text-muted-foreground/60">{m.isHome ? "Casa" : "Trasferta"}</span>
+        <div className="space-y-4">
+          {/* GRUPPI TORNEO */}
+          {Object.entries(groupedTournaments).map(([tournamentName, tourneyMatches]) => {
+            const isExpanded = expandedTournaments[tournamentName] ?? false;
+            const completedCount = tourneyMatches.filter(m => m.status === 'completed' || !!m.result).length;
+            
+            return (
+              <div key={tournamentName} className="space-y-2">
+                <Button
+                  variant="ghost"
+                  onClick={() => setExpandedTournaments(prev => ({ ...prev, [tournamentName]: !isExpanded }))}
+                  className="w-full h-auto p-4 flex items-center justify-between bg-primary/5 dark:bg-brand-green/5 border border-primary/20 dark:border-brand-green/20 rounded-2xl hover:bg-primary/10 dark:hover:bg-brand-green/10 transition-all group"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="h-10 w-10 rounded-xl bg-primary/20 dark:bg-brand-green/20 flex items-center justify-center text-primary dark:text-brand-green">
+                      <Layers className="h-5 w-5" />
+                    </div>
+                    <div className="text-left">
+                      <h4 className="text-sm font-black uppercase tracking-tight text-foreground dark:text-white">
+                        {tournamentName}
+                      </h4>
+                      <p className="text-[10px] font-bold uppercase text-muted-foreground/60">
+                        {tourneyMatches.length} Gare • {completedCount} Concluse
+                      </p>
                     </div>
                   </div>
-                </div>
+                  {isExpanded ? <ChevronUp className="h-5 w-5 text-muted-foreground" /> : <ChevronDown className="h-5 w-5 text-muted-foreground" />}
+                </Button>
 
-                <div className="flex items-center gap-3 shrink-0 min-w-[85px] justify-end">
-                  {m.status === 'completed' || !!m.result ? (
-                    <div className="flex items-center gap-1.5 bg-muted/50 dark:bg-white/5 px-2.5 py-1 rounded-lg shrink-0 whitespace-nowrap">
-                      <span className={cn(
-                        "text-xs font-black whitespace-nowrap",
-                        m.resultType === 'W' ? "text-brand-green" : m.resultType === 'L' ? "text-rose-500" : "text-foreground dark:text-white"
-                      )}>
-                        {m.teamGoals ?? (m.isHome ? m.result?.home : m.result?.away) ?? 0} - {m.opponentGoals ?? (m.isHome ? m.result?.away : m.result?.home) ?? 0}
-                      </span>
-                    </div>
-                  ) : m.status === 'canceled' ? (
-                    <Badge variant="outline" className="text-[9px] uppercase font-black border-rose-500/50 text-rose-500">Annullata</Badge>
-                  ) : (
-                    <Badge variant="outline" className="text-[9px] uppercase font-black border-primary/50 dark:border-brand-green/50 text-primary dark:text-brand-green animate-pulse">Programmata</Badge>
-                  )}
+                {isExpanded && (
+                  <div className="space-y-2 ml-4 border-l-2 border-primary/10 dark:border-brand-green/10 pl-4 py-2 animate-in slide-in-from-top-2 duration-200">
+                    {tourneyMatches.map((m) => (
+                      <MatchCard 
+                        key={m.id} 
+                        match={m} 
+                        isEditMode={isEditMode} 
+                        onDelete={() => setPendingDeletions(prev => [...prev, m.id])}
+                        router={router}
+                        sortedMatches={sortedMatches}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
 
-                  {isEditMode ? (
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="h-8 w-8 text-red-500 hover:text-white hover:bg-red-500 rounded-xl shrink-0 transition-colors"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setPendingDeletions(prev => [...prev, m.id]);
-                      }}
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
-                  ) : (
-                    <ChevronRight className="h-4 w-4 text-muted-foreground/50 group-hover:translate-x-1 transition-transform" />
-                  )}
-                </div>
-              </CardContent>
-            </Card>
+          {/* PARTITE STANDALONE */}
+          {standaloneMatches.map((m) => (
+            <MatchCard 
+              key={m.id} 
+              match={m} 
+              isEditMode={isEditMode} 
+              onDelete={() => setPendingDeletions(prev => [...prev, m.id])}
+              router={router}
+              sortedMatches={sortedMatches}
+            />
           ))}
 
-          {loading && sortedMatches.length === 0 ? (
+          {loading && UI_Matches.length === 0 ? (
             <div className="space-y-4 px-2">
               <Skeleton className="h-24 w-full rounded-2xl bg-card/20" />
               <Skeleton className="h-24 w-full rounded-2xl bg-card/20" />
               <Skeleton className="h-24 w-full rounded-2xl bg-card/20" />
             </div>
-          ) : sortedMatches.length === 0 && (
+          ) : UI_Matches.length === 0 && (
             <div className="py-12 text-center bg-card dark:bg-black/20 border border-dashed border-border dark:border-white/10 rounded-3xl">
-              <PiTrafficCone className="h-12 w-12 text-muted-foreground/20 mx-auto mb-4" />
+              <CalendarIcon className="h-12 w-12 text-muted-foreground/20 mx-auto mb-4" />
               <p className="text-sm font-black uppercase tracking-widest text-muted-foreground/40 mb-4">Mister inizia a popolare il calendario!</p>
               <Button
                 variant="outline"
@@ -498,6 +510,7 @@ export default function CalendarioPage() {
         open={isMatchFormOpen}
         onOpenChange={setIsMatchFormOpen}
         onSave={handleCreateMatch}
+        match={matchFormDefaultType !== 'Campionato' ? { type: matchFormDefaultType } as any : null}
       />
 
 
@@ -520,5 +533,80 @@ export default function CalendarioPage() {
       </AlertDialog>
 
     </div>
+  );
+}
+
+function MatchCard({ match, isEditMode, onDelete, router, sortedMatches }: any) {
+  const m = match;
+  return (
+    <Card
+      onClick={() => router.push(`/calendario/${m.id}`)}
+      className={cn(
+        "bg-card dark:bg-black/40 border border-border dark:border-white/5 rounded-2xl cursor-pointer hover:bg-muted dark:hover:bg-white/5 transition-all group overflow-hidden",
+        m.status === 'scheduled' && "border-l-4 border-l-primary dark:border-l-brand-green"
+      )}
+    >
+      <CardContent className="p-4 pl-2 flex items-center justify-between gap-2">
+        <div className="flex items-center gap-2 min-w-0 flex-1">
+          {(() => {
+            const sameGroupMatches = m.type === 'Torneo' && m.tournamentName
+              ? sortedMatches.filter((match: any) => match.tournamentName === m.tournamentName)
+              : sortedMatches.filter((match: any) => match.type === m.type && !match.tournamentName);
+            const autoRound = sameGroupMatches.findIndex((match: any) => match.id === m.id) + 1;
+            return <RoundBadge round={autoRound} />;
+          })()}
+
+          <div className={cn(
+            "w-12 h-12 rounded-xl flex flex-col items-center justify-center font-black shrink-0",
+            m.status === 'completed' ? "bg-muted dark:bg-zinc-900 text-muted-foreground" : "bg-primary/20 dark:bg-brand-green/20 text-primary dark:text-brand-green"
+          )}>
+            <span className="leading-none text-base">{format(parseISO(m.date), "dd")}</span>
+            <span className="uppercase text-[9px] opacity-70 mt-0.5">{format(parseISO(m.date), "MMM", { locale: it })}</span>
+          </div>
+
+          <div className="min-w-0 flex-1">
+            <h5 className="text-sm font-black uppercase tracking-tight text-foreground dark:text-white group-hover:text-primary dark:group-hover:text-brand-green transition-colors truncate">
+              {m.opponent}
+            </h5>
+            <div className="flex items-center gap-2 mt-0.5">
+              <span className="text-[9px] font-bold uppercase text-muted-foreground/60">{m.type}</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-3 shrink-0 min-w-[85px] justify-end">
+          {m.status === 'completed' || !!m.result ? (
+            <div className="flex items-center gap-1.5 bg-muted/50 dark:bg-white/5 px-2.5 py-1 rounded-lg shrink-0 whitespace-nowrap">
+              <span className={cn(
+                "text-xs font-black whitespace-nowrap",
+                m.resultType === 'W' ? "text-brand-green" : m.resultType === 'L' ? "text-rose-500" : "text-foreground dark:text-white"
+              )}>
+                {m.teamGoals ?? (m.isHome ? m.result?.home : m.result?.away) ?? 0} - {m.opponentGoals ?? (m.isHome ? m.result?.away : m.result?.home) ?? 0}
+              </span>
+            </div>
+          ) : m.status === 'canceled' ? (
+            <Badge variant="outline" className="text-[9px] uppercase font-black border-rose-500/50 text-rose-500">Annullata</Badge>
+          ) : (
+            <Badge variant="outline" className="text-[9px] uppercase font-black border-primary/50 dark:border-brand-green/50 text-primary dark:text-brand-green animate-pulse">Programmata</Badge>
+          )}
+
+          {isEditMode ? (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8 text-red-500 hover:text-white hover:bg-red-500 rounded-xl shrink-0 transition-colors"
+              onClick={(e: any) => {
+                e.stopPropagation();
+                onDelete();
+              }}
+            >
+              <Trash2 className="h-4 w-4" />
+            </Button>
+          ) : (
+            <ChevronRight className="h-4 w-4 text-muted-foreground/50 group-hover:translate-x-1 transition-transform" />
+          )}
+        </div>
+      </CardContent>
+    </Card>
   );
 }

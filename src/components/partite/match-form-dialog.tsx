@@ -246,34 +246,14 @@ export function MatchFormDialog({ open, onOpenChange, onSave, match }: MatchForm
               )}
             />
 
-            <div className="grid grid-cols-2 gap-4">
-                <FormField
-                    control={form.control}
-                    name="isHome"
-                    render={({ field }) => (
-                        <FormItem className="flex flex-row items-center justify-between rounded-xl border border-primary/30 dark:border-brand-green/30 p-3 bg-muted/40 dark:bg-black/40">
-                        <div className="space-y-0.5">
-                            <FormLabel className="text-[10px] font-black uppercase tracking-widest text-primary dark:text-brand-green">In Casa</FormLabel>
-                        </div>
-                        <FormControl>
-                            <Switch
-                                checked={field.value}
-                                onCheckedChange={field.onChange}
-                                className="data-[state=checked]:bg-primary dark:data-[state=checked]:bg-brand-green"
-                            />
-                        </FormControl>
-                        </FormItem>
-                    )}
-                />
-
                 <FormField
                     control={form.control}
                     name="status"
                     render={({ field }) => (
-                        <FormItem>
+                        <FormItem className="flex-1">
                         <Select onValueChange={field.onChange} value={field.value}>
                             <FormControl>
-                            <SelectTrigger className="h-[54px] rounded-xl text-xs font-bold uppercase bg-background dark:bg-black border border-primary/50 dark:border-brand-green/50 focus:ring-1 focus:ring-primary dark:focus:ring-brand-green text-foreground dark:text-white">
+                            <SelectTrigger className="h-12 rounded-xl text-xs font-bold uppercase bg-background dark:bg-black border border-primary/50 dark:border-brand-green/50 focus:ring-1 focus:ring-primary dark:focus:ring-brand-green text-foreground dark:text-white">
                                 <SelectValue placeholder="Stato" />
                             </SelectTrigger>
                             </FormControl>
@@ -287,7 +267,6 @@ export function MatchFormDialog({ open, onOpenChange, onSave, match }: MatchForm
                         </FormItem>
                     )}
                 />
-            </div>
 
             <DialogFooter className="pt-4 flex-row gap-2">
               <Button 

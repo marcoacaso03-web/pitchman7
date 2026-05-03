@@ -7,7 +7,6 @@ import { useSettingsStore } from '@/store/useSettingsStore';
 import { SplashScreen } from '@/components/layout/splash-screen';
 import { usePlayersStore } from '@/store/usePlayersStore';
 import { useMatchesStore } from '@/store/useMatchesStore';
-import { useTrainingStore } from '@/store/useTrainingStore';
 import { useStatsStore } from '@/store/useStatsStore';
 import { useSeasonsStore } from '@/store/useSeasonsStore';
 import { useAppStore } from '@/store/useAppStore';
@@ -26,7 +25,6 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
   const { fetchAll: fetchSeasons } = useSeasonsStore();
   const { fetchAll: fetchPlayers } = usePlayersStore();
   const { fetchAll: fetchMatches } = useMatchesStore();
-  const { fetchAll: fetchTrainings } = useTrainingStore();
   const { loadDetailedStats } = useStatsStore();
 
   useEffect(() => {
@@ -49,7 +47,6 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
             await Promise.all([
               fetchPlayers(),
               fetchMatches(season.id),
-              fetchTrainings(),
               loadDetailedStats(season.id)
             ]);
           }
@@ -62,7 +59,7 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
     };
 
     initData();
-  }, [mounted, isInitialized, isAuthenticated, user, hasInitialized, fetchSettings, fetchSeasons, fetchPlayers, fetchMatches, fetchTrainings, loadDetailedStats, setHasInitialized]);
+  }, [mounted, isInitialized, isAuthenticated, user, hasInitialized, fetchSettings, fetchSeasons, fetchPlayers, fetchMatches, loadDetailedStats, setHasInitialized]);
 
   useEffect(() => {
     if (mounted && isInitialized && !isAuthenticated && pathname !== '/login') {

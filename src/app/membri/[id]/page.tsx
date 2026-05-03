@@ -13,8 +13,7 @@ import { useSeasonsStore } from "@/store/useSeasonsStore";
 import { useAuthStore } from "@/store/useAuthStore";
 import { useThemeStore } from "@/store/useThemeStore";
 import { aggregationRepository } from "@/lib/repositories/aggregation-repository";
-import { trainingRepository } from "@/lib/repositories/training-repository";
-import type { Player, TrainingSession, TrainingAttendance, TrainingStatus, Match } from "@/lib/types";
+import type { Player, Match } from "@/lib/types";
 import { parseISO, isAfter, startOfDay } from "date-fns";
 
 import { PageHeader } from "@/components/layout/page-header";
@@ -133,11 +132,6 @@ interface PlayerDetailStats {
   subs: number;
 }
 
-interface TrainingRecord {
-  session: TrainingSession;
-  status: TrainingStatus | null;
-}
-
 interface MatchRecord {
   match: Match;
   status: "titolare" | "entrato" | "inutilizzato" | "non_convocato" | "da_giocare" | "infortunato";
@@ -171,86 +165,6 @@ function StatCard({ icon: Icon, label, value, sub, color = "text-primary dark:te
       <span className="text-[9px] font-black uppercase tracking-[0.1em] text-muted-foreground dark:text-white/30">{label}</span>
       <span className={`text-2xl font-black text-foreground dark:text-white`}>{value}</span>
       {sub && <span className="text-[8px] text-muted-foreground dark:text-white/40 font-black uppercase tracking-tighter">{sub}</span>}
-    </div>
-  );
-}
-
-// ─── Componente HeatMap presenza allenamenti ───────────────────────────────────
-function TrainingHeatmap({ records }: { records: TrainingRecord[] }) {
-  const statusColor: Record<string, string> = {
-    presente: "bg-emerald-500",
-    ritardo: "bg-amber-400",
-    assente: "bg-red-500",
-    infortunato: "bg-fuchsia-500"
-  };
-  const statusLabel: Record<string, string> = {
-    presente: "Presente",
-    ritardo: "In ritardo",
-    assente: "Assente",
-    infortunato: "Infortunato"
-  };
-
-  if (records.length === 0) {
-    return (
-      <div className="text-center py-8 text-muted-foreground text-xs border-2 border-dashed rounded-xl">
-        Nessun allenamento registrato per questa stagione.
-      </div>
-    );
-  }
-
-  const today = startOfDay(new Date());
-  const pastRecords = records.filter(r => {
-    const d = r.session.date.includes('T') ? parseISO(r.session.date) : new Date(r.session.date);
-    return !isAfter(startOfDay(d), today);
-  });
-  
-  const presenti = pastRecords.filter((r) => r.status === "presente" || r.status === "ritardo").length;
-  const totale = pastRecords.length;
-  const percentuale = totale > 0 ? Math.round((presenti / totale) * 100) : 0;
-
-  return (
-    <div className="space-y-3">
-      {/* Progress bar */}
-      <div className="flex items-center gap-3">
-        <div className="flex-1 bg-muted dark:bg-black/40 rounded-full h-2.5 overflow-hidden border border-border dark:border-white/5">
-          <div
-            className="h-full bg-primary dark:bg-brand-green rounded-full transition-all duration-700 shadow-sm dark:shadow-[0_0_10px_rgba(172,229,4,0.5)]"
-            style={{ width: `${percentuale}%` }}
-          />
-        </div>
-        <span className="text-xs font-black text-primary dark:text-brand-green min-w-[3rem] text-right">{percentuale}%</span>
-      </div>
-      <p className="text-[9px] text-muted-foreground dark:text-white/30 font-black uppercase tracking-widest mt-1">
-        {presenti} presenze su {totale} allenamenti svolti
-      </p>
-
-      {/* Griglia dot */}
-      <div className="flex flex-wrap gap-1.5 pt-1">
-        {records.slice(0, 60).map((r) => (
-          <div
-            key={r.session.id}
-            title={`${r.session.date} — ${r.status ? statusLabel[r.status] : "N/A"}`}
-            className={`h-3.5 w-3.5 rounded-sm ${r.status ? statusColor[r.status] : "bg-muted"} cursor-default transition-transform hover:scale-125`}
-          />
-        ))}
-        {records.length > 60 && (
-          <span className="text-[9px] text-muted-foreground self-center">+{records.length - 60}</span>
-        )}
-      </div>
-
-      {/* Legenda */}
-      <div className="flex items-center gap-4 pt-1">
-        {Object.entries(statusColor).map(([key, cls]) => (
-          <div key={key} className="flex items-center gap-1">
-            <div className={`h-2.5 w-2.5 rounded-sm ${cls}`} />
-            <span className="text-[9px] text-muted-foreground font-medium capitalize">{statusLabel[key]}</span>
-          </div>
-        ))}
-        <div className="flex items-center gap-1">
-          <div className="h-2.5 w-2.5 rounded-sm bg-muted" />
-          <span className="text-[9px] text-muted-foreground font-medium">N/A</span>
-        </div>
-      </div>
     </div>
   );
 }
@@ -345,7 +259,6 @@ export default function PlayerDetailPage() {
 
   const [loadingData, setLoadingData] = useState(true);
   const [playerStats, setPlayerStats] = useState<PlayerDetailStats | null>(null);
-  const [trainingRecords, setTrainingRecords] = useState<TrainingRecord[]>([]);
   const [matchRecords, setMatchRecords] = useState<MatchRecord[]>([]);
 
   // Ricerca giocatore nella lista già in cache oppure aspettiamo il fetch
@@ -498,24 +411,6 @@ export default function PlayerDetailPage() {
         });
         setMatchRecords(mRecords);
 
-        // Storico presenze allenamenti
-        const sessions = await trainingRepository.getAll(user.id, activeSeason.id);
-        const sortedSessions = [...sessions].sort((a, b) => a.date.localeCompare(b.date));
-        const sessionIds = sortedSessions.map((s) => s.id);
-        const allAtt = await trainingRepository.getAllAttendanceForSeason(user.id, sessionIds);
-
-        const records: TrainingRecord[] = sortedSessions.map((session) => {
-          const attRecord = allAtt.find((a) => a.sessionId === session.id);
-          const playerAtt = attRecord?.attendance.find((a) => a.playerId === playerId);
-          let status = playerAtt?.status ?? null;
-          
-          if (isInjuredAtDate(session.date, player?.injuries) && (!status || status === "assente")) {
-             status = "infortunato" as any;
-          }
-          
-          return { session, status };
-        });
-        setTrainingRecords(records);
       } catch (e) {
         console.error("Errore caricamento dettaglio giocatore:", e);
       } finally {
@@ -720,43 +615,38 @@ export default function PlayerDetailPage() {
         </Card>
       </div>
 
-      {/* Heatmap presenze */}
-      <div className="grid md:grid-cols-2 gap-4">
-        <Card className="rounded-3xl bg-card dark:bg-black/40 backdrop-blur-sm border-border dark:border-brand-green/20 shadow-sm dark:shadow-[0_0_20px_rgba(172,229,4,0.05)] overflow-hidden">
-          <CardHeader className="pb-0 px-6 pt-6">
-            <CardTitle className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground dark:text-white/30 flex items-center gap-2">
-              <Sword className="h-3.5 w-3.5 text-primary dark:text-brand-green" /> Storico Presenze Partite
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="pt-4 px-6 pb-6">
-            {loadingData ? (
-              <div className="space-y-3">
-                <Skeleton className="h-4 w-full bg-muted dark:bg-white/5" />
-                <Skeleton className="h-16 w-full bg-muted dark:bg-white/5" />
+      {/* Storico presenze partite */}
+      <div className="space-y-3">
+        <h3 className="text-sm font-black uppercase tracking-widest text-foreground dark:text-white flex items-center gap-2">
+          <GiSoccerBall className="h-4 w-4 text-primary dark:text-brand-green" /> Storico Gare
+        </h3>
+        <div className="space-y-2">
+          {loadingData ? (
+             <div className="space-y-2">
+               <Skeleton className="h-12 w-full bg-muted dark:bg-white/5" />
+               <Skeleton className="h-12 w-full bg-muted dark:bg-white/5" />
+             </div>
+          ) : (matchRecords?.length ?? 0) === 0 ? (
+            <p className="text-xs text-muted-foreground dark:text-white/40 italic text-center py-4 bg-muted/5 dark:bg-white/5 rounded-xl border border-dashed border-border dark:border-white/10">Nessuna gara registrata</p>
+          ) : (
+            matchRecords.slice().reverse().map((record, i) => (
+              <div key={i} className="flex items-center justify-between p-3 rounded-xl bg-card dark:bg-black/40 border border-border dark:border-brand-green/10 shadow-sm">
+                 <div className="flex flex-col">
+                    <span className="text-[10px] font-black uppercase text-foreground dark:text-white">{record.match.opponent}</span>
+                    <span className="text-[9px] text-muted-foreground dark:text-white/40 font-bold">{new Date(record.match.date).toLocaleDateString()}</span>
+                 </div>
+                 <Badge variant="outline" className={`text-[8px] font-black uppercase py-0.5 px-2 pointer-events-none ${
+                    record.status === "titolare" ? "bg-primary dark:bg-brand-green text-white dark:text-black border-transparent" :
+                    record.status === "entrato" ? "bg-blue-500/10 text-blue-500 border-blue-500/20" :
+                    record.status === "infortunato" ? "bg-rose-500/10 text-rose-500 border-rose-500/20" :
+                    "bg-muted dark:bg-white/5 text-muted-foreground dark:text-white/40"
+                 }`}>
+                    {record.status}
+                 </Badge>
               </div>
-            ) : (
-              <MatchHeatmap records={matchRecords} />
-            )}
-          </CardContent>
-        </Card>
-
-        <Card className="rounded-3xl bg-card dark:bg-black/40 backdrop-blur-sm border-border dark:border-brand-green/20 shadow-sm dark:shadow-[0_0_20px_rgba(172,229,4,0.05)] overflow-hidden">
-          <CardHeader className="pb-0 px-6 pt-6">
-            <CardTitle className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground dark:text-white/30 flex items-center gap-2">
-              <Calendar className="h-3.5 w-3.5 text-primary dark:text-brand-green" /> Storico Presenze Allenamenti
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="pt-4 px-6 pb-6">
-            {loadingData ? (
-              <div className="space-y-3">
-                <Skeleton className="h-4 w-full bg-muted dark:bg-white/5" />
-                <Skeleton className="h-16 w-full bg-muted dark:bg-white/5" />
-              </div>
-            ) : (
-              <TrainingHeatmap records={trainingRecords} />
-            )}
-          </CardContent>
-        </Card>
+            ))
+          )}
+        </div>
       </div>
     </div>
   );

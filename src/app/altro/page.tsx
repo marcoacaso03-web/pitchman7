@@ -337,7 +337,7 @@ export default function AltroPage() {
           </div>
           <div className="flex flex-col flex-1">
             <span className="text-foreground font-black text-lg tracking-wide uppercase">Gestione Squadra</span>
-            <span className="text-foreground/40 text-[10px] font-bold uppercase tracking-widest">Archivio Stagioni & Allenamenti</span>
+            <span className="text-foreground/40 text-[10px] font-bold uppercase tracking-widest">Archivio Stagioni</span>
           </div>
         </div>
 
@@ -436,7 +436,7 @@ export default function AltroPage() {
         <DialogContent onOpenAutoFocus={(e) => e.preventDefault()} className="max-w-[95vw] sm:max-w-lg rounded-3xl bg-background border border-border dark:bg-black dark:border-brand-green/30 shadow-xl dark:shadow-[0_0_20px_rgba(172,229,4,0.15)] text-foreground max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-xl font-black text-foreground">Gestione Squadra</DialogTitle>
-            <DialogDescription className="text-muted-foreground">Configura archivio stagioni e frequenza allenamento.</DialogDescription>
+            <DialogDescription className="text-muted-foreground">Configura archivio stagioni e preferenze.</DialogDescription>
           </DialogHeader>
 
           <div className="space-y-6 pt-4">
@@ -472,58 +472,6 @@ export default function AltroPage() {
                 </Select>
               </div>
 
-              <div className="flex flex-col gap-3 p-3 rounded-2xl bg-muted/30 dark:bg-card/20 hover:bg-muted/50 dark:hover:bg-card/30 border border-border dark:border-transparent">
-                <div className="flex items-center gap-2">
-                  <PiTrafficCone className="w-4 h-4 text-primary dark:text-brand-green" />
-                  <Label className="text-sm font-bold">Giorni di Allenamento</Label>
-                </div>
-                <div className="flex justify-between gap-1 mt-1">
-                  {[
-                    { label: 'L', value: 1 },
-                    { label: 'M', value: 2 },
-                    { label: 'M', value: 3 },
-                    { label: 'G', value: 4 },
-                    { label: 'V', value: 5 },
-                    { label: 'S', value: 6 },
-                    { label: 'D', value: 0 },
-                  ].map((day) => {
-                    const isSelected = localTrainingDays?.includes(day.value);
-                    return (
-                      <button
-                        key={day.value}
-                        onClick={() => {
-                          const newDays = isSelected
-                            ? localTrainingDays.filter(d => d !== day.value)
-                            : [...(localTrainingDays || []), day.value];
-                          setLocalTrainingDays(newDays);
-                        }}
-                        className={cn(
-                          "w-10 h-10 rounded-xl flex items-center justify-center font-black transition-all",
-                          isSelected
-                            ? "bg-primary dark:bg-black border border-primary dark:border-brand-green text-white shadow-md dark:shadow-[0_0_10px_rgba(172,229,4,0.15)] scale-110"
-                            : "bg-muted dark:bg-black/20 text-muted-foreground hover:bg-muted-foreground/10 dark:hover:bg-black/40"
-                        )}
-                      >
-                        {day.label}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-3 p-3 rounded-2xl bg-muted/30 dark:bg-card/20 hover:bg-muted/50 dark:hover:bg-card/30 border border-border dark:border-transparent">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-primary dark:text-brand-green" />
-                    <Label className="text-sm font-bold">Auto-Compila Presenze</Label>
-                  </div>
-                  <Switch
-                    checked={localAutoSetPresenceOnGenerate}
-                    onCheckedChange={setLocalAutoSetPresenceOnGenerate}
-                    className="data-[state=checked]:bg-primary dark:data-[state=checked]:bg-brand-green"
-                  />
-                </div>
-                <p className="text-[10px] text-muted-foreground/60 font-medium">Marcare tutti come presenti alla creazione automatica degli allenamenti.</p>
               </div>
             </div>
 
@@ -626,7 +574,7 @@ export default function AltroPage() {
                 ))}
               </div>
             </div>
-          </div>
+
         </DialogContent>
       </Dialog>
 
@@ -635,7 +583,7 @@ export default function AltroPage() {
         <DialogContent className="max-w-[95vw] sm:max-w-lg rounded-3xl bg-background border border-border dark:bg-black dark:border-brand-green/30 shadow-xl dark:shadow-[0_0_20px_rgba(172,229,4,0.15)] text-foreground">
           <DialogHeader>
             <DialogTitle className="text-xl font-black text-foreground">Notifiche Push</DialogTitle>
-            <DialogDescription className="text-muted-foreground">Configura gli avvisi pre-gara e pre-allenamento.</DialogDescription>
+            <DialogDescription className="text-muted-foreground">Configura gli avvisi pre-gara.</DialogDescription>
           </DialogHeader>
 
           <div className="space-y-6 pt-4">
@@ -667,33 +615,7 @@ export default function AltroPage() {
               )}
             </div>
 
-            {/* Notifica Allenamento */}
-            <div className="flex flex-col gap-3 p-3 rounded-2xl bg-muted/30 dark:bg-card/20 border border-border dark:border-transparent">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Label className="text-sm font-bold uppercase tracking-tight">Giorno dell'Allenamento</Label>
-                </div>
-                <Switch
-                  checked={localTrainingNotificationEnabled}
-                  onCheckedChange={setLocalTrainingNotificationEnabled}
-                  className="data-[state=checked]:bg-primary dark:data-[state=checked]:bg-brand-green"
-                />
-              </div>
-              <p className="text-xs text-muted-foreground font-medium flex items-center gap-1">
-                "Chi c'era oggi? Segna le presenze e gli esercizi svolti!"
-              </p>
-              {localTrainingNotificationEnabled && (
-                <div className="flex items-center justify-between pt-2 border-t border-border/50">
-                  <Label className="text-xs font-bold text-muted-foreground uppercase">Orario Notifica</Label>
-                  <Input 
-                    type="time" 
-                    value={localTrainingNotificationTime}
-                    onChange={(e) => setLocalTrainingNotificationTime(e.target.value)}
-                    className="w-28 h-8 text-xs font-bold bg-background dark:bg-black border-border dark:border-brand-green/30"
-                  />
-                </div>
-              )}
-            </div>
+
 
             <Button 
                 onClick={handleSaveNotifications}
