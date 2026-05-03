@@ -55,7 +55,7 @@ const importPlayersFlow = ai.defineFlow(
   },
   async (input) => {
     try {
-      const { output } = await prompt(input);
+      const { output } = await prompt(input, { model: 'googleai/gemini-flash-latest' });
       if (!output || !output.players) {
         throw new Error('L\'AI non è riuscita ad estrarre giocatori dal testo fornito.');
       }
