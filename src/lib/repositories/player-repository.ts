@@ -1,6 +1,5 @@
 
 import { 
-  getFirestore, 
   collection, 
   getDocs, 
   getDoc, 
@@ -12,6 +11,7 @@ import {
   where,
   writeBatch
 } from 'firebase/firestore';
+import { getDb } from '@/lib/firebase-client';
 import type { Player, Role } from '@/lib/types';
 import { PlayerSchema } from '@/lib/schemas';
 
@@ -28,7 +28,7 @@ export type PlayerCreateData = {
 export const playerRepository = {
   async getAll(userId: string, seasonId?: string) {
     if (!userId || !seasonId) return [];
-    const db = getFirestore();
+    const db = getDb();
     const playersRef = collection(db, 'teams', seasonId, 'players');
     const q = query(playersRef, where('teamOwnerId', '==', userId));
     const snapshot = await getDocs(q);
@@ -55,14 +55,14 @@ export const playerRepository = {
 
   async getById(id: string, seasonId: string) {
     if (!id || !seasonId) return undefined;
-    const db = getFirestore();
+    const db = getDb();
     const docRef = doc(db, 'teams', seasonId, 'players', id);
     const snapshot = await getDoc(docRef);
     return snapshot.exists() ? { ...snapshot.data(), id: snapshot.id } as Player : undefined;
   },
 
   async add(data: PlayerCreateData) {
-    const db = getFirestore();
+    const db = getDb();
     // Genera un ID corto e leggibile (es: P-XYZ78)
     const shortRandom = Math.random().toString(36).substring(2, 7).toUpperCase();
     const id = `P-${shortRandom}`;
@@ -88,7 +88,7 @@ export const playerRepository = {
   },
 
   async bulkAdd(playersData: { name: string, role: Role }[], userId: string, seasonId: string) {
-    const db = getFirestore();
+    const db = getDb();
     const batch = writeBatch(db);
     
     const newPlayers: Player[] = playersData.map((p) => {
@@ -120,7 +120,7 @@ export const playerRepository = {
   },
 
   async update(id: string, seasonId: string, updates: Partial<Omit<Player, 'id' | 'userId' | 'seasonId'>>) {
-    const db = getFirestore();
+    const db = getDb();
     const docRef = doc(db, 'teams', seasonId, 'players', id);
     const updatesWithTimestamp = { 
       ...updates, 
@@ -133,13 +133,13 @@ export const playerRepository = {
   },
 
   async delete(id: string, seasonId: string) {
-    const db = getFirestore();
+    const db = getDb();
     return await deleteDoc(doc(db, 'teams', seasonId, 'players', id));
   },
 
   async deleteAll(userId: string, seasonId: string) {
     if (!userId || !seasonId) return;
-    const db = getFirestore();
+    const db = getDb();
     const playersRef = collection(db, 'teams', seasonId, 'players');
     const q = query(playersRef, where('teamOwnerId', '==', userId));
     const snapshot = await getDocs(q);

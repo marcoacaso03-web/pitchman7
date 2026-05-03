@@ -1,7 +1,6 @@
 "use client";
 
 import { 
-  getFirestore, 
   collection, 
   getDocs, 
   doc, 
@@ -14,11 +13,12 @@ import {
   or,
   orderBy
 } from 'firebase/firestore';
+import { getDb } from '@/lib/firebase-client';
 import type { Exercise } from '@/lib/types';
 
 export const exerciseRepository = {
   async getAll(userId: string) {
-    const db = getFirestore();
+    const db = getDb();
     const exercisesRef = collection(db, 'exercises');
     
     // Get both global exercises and private ones belonging to the user
@@ -36,7 +36,7 @@ export const exerciseRepository = {
   },
 
   async create(userId: string, ownerName: string, exercise: Omit<Exercise, 'id' | 'userId' | 'ownerName' | 'createdAt' | 'updatedAt'>) {
-    const db = getFirestore();
+    const db = getDb();
     const exercisesRef = collection(db, 'exercises');
     const newDoc = doc(exercisesRef);
     const id = newDoc.id;
@@ -56,7 +56,7 @@ export const exerciseRepository = {
   },
 
   async update(exerciseId: string, updates: Partial<Exercise>) {
-    const db = getFirestore();
+    const db = getDb();
     const docRef = doc(db, 'exercises', exerciseId);
     
     const now = new Date().toISOString();
@@ -69,7 +69,7 @@ export const exerciseRepository = {
   },
 
   async delete(exerciseId: string) {
-    const db = getFirestore();
+    const db = getDb();
     const docRef = doc(db, 'exercises', exerciseId);
     await deleteDoc(docRef);
   }

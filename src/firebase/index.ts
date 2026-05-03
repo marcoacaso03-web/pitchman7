@@ -3,7 +3,9 @@
 import { firebaseConfig } from '@/firebase/config';
 import { initializeApp, getApps, getApp, FirebaseApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import { getFirestore, enableIndexedDbPersistence } from 'firebase/firestore'
+import { initializeFirestore, getFirestore, persistentLocalCache, persistentMultipleTabManager } from 'firebase/firestore';
+
+let firestoreInitialized = false;
 
 // IMPORTANT: DO NOT MODIFY THIS FUNCTION
 export function initializeFirebase() {
@@ -16,20 +18,23 @@ export function initializeFirebase() {
   return getSdks(getApp());
 }
 
-let isPersistenceEnabled = false;
-
 export function getSdks(firebaseApp: FirebaseApp) {
-  const db = getFirestore(firebaseApp);
+  let db;
   
-  if (typeof window !== 'undefined' && !isPersistenceEnabled) {
-    isPersistenceEnabled = true;
-    enableIndexedDbPersistence(db).catch((err) => {
-      if (err.code === 'failed-precondition') {
-        console.warn('Multiple tabs open, persistence can only be enabled in one tab at a time.');
-      } else if (err.code === 'unimplemented') {
-        console.warn('The current browser does not support all of the features required to enable persistence');
-      }
-    });
+  if (typeof window !== 'undefined' && !firestoreInitialized) {
+    firestoreInitialized = true;
+    try {
+      db = initializeFirestore(firebaseApp, {
+        localCache: persistentLocalCache({
+          tabManager: persistentMultipleTabManager()
+        })
+      });
+    } catch (err) {
+      // Se initializeFirestore fallisce (es. già inizializzato), usa getFirestore
+      db = getFirestore(firebaseApp);
+    }
+  } else {
+    db = getFirestore(firebaseApp);
   }
 
   return {

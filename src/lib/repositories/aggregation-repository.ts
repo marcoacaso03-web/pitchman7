@@ -1,5 +1,4 @@
 import { 
-    getFirestore, 
     doc, 
     setDoc, 
     getDoc,
@@ -9,6 +8,7 @@ import {
     getDocs,
     writeBatch
 } from 'firebase/firestore';
+import { getDb } from '@/lib/firebase-client';
 import { matchRepository } from './match-repository';
 import { playerRepository } from './player-repository';
 import { eventRepository } from './event-repository';
@@ -332,7 +332,7 @@ export const aggregationRepository = {
      */
     async rebuildAndPersistSeasonAggregates(userId: string, seasonId: string, options?: AdvancedStatsOptions) {
         const leaderboard = await this.getAdvancedStats(userId, seasonId, options);
-        const db = getFirestore();
+        const db = getDb();
         
         // 1. Salva leaderboard corrente
         const leaderboardRef = doc(db, 'teams', seasonId, 'aggregates', 'leaderboards', 'current', 'data');
@@ -357,7 +357,7 @@ export const aggregationRepository = {
 
     async getPersistedLeaderboard(seasonId: string): Promise<AdvancedStatsLeaderboard | undefined> {
         try {
-            const db = getFirestore();
+            const db = getDb();
             const leaderboardRef = doc(db, 'teams', seasonId, 'aggregates', 'leaderboards', 'current', 'data');
             const snap = await getDoc(leaderboardRef);
             

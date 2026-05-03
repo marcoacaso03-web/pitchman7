@@ -1,15 +1,15 @@
 import { 
-  getFirestore, 
   doc, 
   getDoc, 
   setDoc 
 } from 'firebase/firestore';
+import { getDb } from '@/lib/firebase-client';
 import type { MatchLineup } from '@/lib/types';
 
 export const lineupRepository = {
     async getForMatch(matchId: string, seasonId: string, userId: string) {
         if (!matchId || !seasonId || !userId) return undefined;
-        const db = getFirestore();
+        const db = getDb();
         const docRef = doc(db, 'teams', seasonId, 'matches', matchId, 'lineup', 'primary');
         const snapshot = await getDoc(docRef);
         
@@ -25,7 +25,7 @@ export const lineupRepository = {
 
     async save(lineup: MatchLineup, seasonId: string, userId: string) {
         if (!lineup.matchId || !seasonId || !userId) return lineup;
-        const db = getFirestore();
+        const db = getDb();
         const docRef = doc(db, 'teams', seasonId, 'matches', lineup.matchId, 'lineup', 'primary');
         const lineupWithAuth = {
             ...lineup,

@@ -2,7 +2,6 @@
 "use client";
 
 import { 
-  getFirestore, 
   collection, 
   getDocs, 
   doc, 
@@ -14,12 +13,13 @@ import {
   writeBatch,
   getDoc
 } from 'firebase/firestore';
+import { getDb } from '@/lib/firebase-client';
 import type { TrainingSession, TrainingAttendance, TrainingStatus } from '@/lib/types';
 import { TrainingSessionSchema } from '@/lib/schemas';
 
 export const trainingRepository = {
   async getAll(userId: string, seasonId: string) {
-    const db = getFirestore();
+    const db = getDb();
     const sessionsRef = collection(db, 'users', userId, 'trainingSessions');
     const q = query(sessionsRef, where('seasonId', '==', seasonId));
     const snapshot = await getDocs(q);
@@ -35,7 +35,7 @@ export const trainingRepository = {
   },
 
   async getById(userId: string, sessionId: string) {
-    const db = getFirestore();
+    const db = getDb();
     const docRef = doc(db, 'users', userId, 'trainingSessions', sessionId);
     const snapshot = await getDoc(docRef);
     if (!snapshot.exists()) return undefined;
@@ -49,7 +49,7 @@ export const trainingRepository = {
   },
 
   async bulkAdd(sessions: Omit<TrainingSession, 'id'>[], userId: string) {
-    const db = getFirestore();
+    const db = getDb();
     const batch = writeBatch(db);
     
     sessions.forEach(s => {
@@ -70,19 +70,19 @@ export const trainingRepository = {
   },
 
   async update(userId: string, sessionId: string, updates: Partial<TrainingSession>) {
-    const db = getFirestore();
+    const db = getDb();
     const docRef = doc(db, 'users', userId, 'trainingSessions', sessionId);
     await updateDoc(docRef, updates);
   },
 
   async delete(userId: string, sessionId: string) {
-    const db = getFirestore();
+    const db = getDb();
     const docRef = doc(db, 'users', userId, 'trainingSessions', sessionId);
     await deleteDoc(docRef);
   },
 
   async deleteMany(userId: string, sessionIds: string[]) {
-    const db = getFirestore();
+    const db = getDb();
     const batch = writeBatch(db);
     sessionIds.forEach(id => {
       const docRef = doc(db, 'users', userId, 'trainingSessions', id);
@@ -92,14 +92,14 @@ export const trainingRepository = {
   },
 
   async getAttendance(userId: string, sessionId: string) {
-    const db = getFirestore();
+    const db = getDb();
     const attRef = collection(db, 'users', userId, 'trainingSessions', sessionId, 'attendance');
     const snapshot = await getDocs(attRef);
     return snapshot.docs.map(doc => ({ ...doc.data(), playerId: doc.id } as TrainingAttendance));
   },
 
   async getAllAttendanceForSeason(userId: string, sessionIds: string[]) {
-    const db = getFirestore();
+    const db = getDb();
     const allAttendance: { sessionId: string, attendance: TrainingAttendance[] }[] = [];
     
     // Per un numero limitato di sessioni carichiamo in parallelo
@@ -112,7 +112,7 @@ export const trainingRepository = {
   },
 
   async setAttendance(userId: string, sessionId: string, playerId: string, status: TrainingStatus) {
-    const db = getFirestore();
+    const db = getDb();
     const docRef = doc(db, 'users', userId, 'trainingSessions', sessionId, 'attendance', playerId);
     await setDoc(docRef, { playerId, status });
 

@@ -9,16 +9,16 @@ import {
   updateDoc,
   arrayUnion,
   writeBatch,
-  getFirestore,
   or
 } from 'firebase/firestore';
+import { getDb } from '@/lib/firebase-client';
 import type { Season } from '@/lib/types';
 import { SeasonSchema } from '@/lib/schemas';
 
 export const seasonRepository = {
     async getAll(userId: string) {
         if (!userId) return [];
-        const db = getFirestore();
+        const db = getDb();
         const seasonsRef = collection(db, 'teams');
         
         // Fetch seasons where user is owner OR where user is in sharedWith array
@@ -44,7 +44,7 @@ export const seasonRepository = {
 
     async getById(id: string) {
         if (!id) return undefined;
-        const db = getFirestore();
+        const db = getDb();
         const docRef = doc(db, 'teams', id);
         const snapshot = await getDoc(docRef);
         return snapshot.exists() ? { ...snapshot.data(), id: snapshot.id } as Season : undefined;
@@ -57,7 +57,7 @@ export const seasonRepository = {
     },
 
     async add(name: string, userId: string) {
-        const db = getFirestore();
+        const db = getDb();
         const shortRandom = Math.random().toString(36).substring(2, 7).toUpperCase();
         const id = `S-${shortRandom}`;
         
@@ -76,7 +76,7 @@ export const seasonRepository = {
     },
 
     async joinSeason(seasonId: string, userId: string) {
-        const db = getFirestore();
+        const db = getDb();
         const seasonRef = doc(db, 'teams', seasonId);
         const seasonSnap = await getDoc(seasonRef);
         
@@ -103,7 +103,7 @@ export const seasonRepository = {
 
     async setActive(id: string, userId: string) {
         if (!userId) return;
-        const db = getFirestore();
+        const db = getDb();
         const batch = writeBatch(db);
         
         // Fetch all seasons the user has access to
@@ -123,13 +123,13 @@ export const seasonRepository = {
     },
 
     async delete(id: string) {
-        const db = getFirestore();
+        const db = getDb();
         const docRef = doc(db, 'teams', id);
         return await writeBatch(db).delete(docRef).commit();
     },
 
     async rename(id: string, newName: string) {
-        const db = getFirestore();
+        const db = getDb();
         const docRef = doc(db, 'teams', id);
         return await updateDoc(docRef, { 
             name: newName, 
@@ -155,7 +155,7 @@ export const seasonRepository = {
         }
         
         const defaultId = `S-DEFAULT-${userId.substring(0, 6).toUpperCase()}`;
-        const db = getFirestore();
+        const db = getDb();
         
         const initialSeason: Season = { 
             id: defaultId, 

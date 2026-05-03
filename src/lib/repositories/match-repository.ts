@@ -1,5 +1,4 @@
 import { 
-  getFirestore, 
   collection, 
   getDocs, 
   getDoc, 
@@ -11,6 +10,7 @@ import {
   where,
   writeBatch
 } from 'firebase/firestore';
+import { getDb } from '@/lib/firebase-client';
 import type { Match } from '@/lib/types';
 import { MatchSchema } from '@/lib/schemas';
 
@@ -40,7 +40,7 @@ export type MatchCreateData = Omit<Match, 'id' | 'result' | 'teamOwnerId' | 'tea
 export const matchRepository = {
   async getAll(userId: string, seasonId: string) {
     if (!userId || !seasonId) return [];
-    const db = getFirestore();
+    const db = getDb();
     const matchesRef = collection(db, 'teams', seasonId, 'matches');
     const q = query(matchesRef, where('teamOwnerId', '==', userId));
     const snapshot = await getDocs(q);
@@ -63,7 +63,7 @@ export const matchRepository = {
   
   async getById(id: string, seasonId: string) {
     if (!id || !seasonId) return undefined;
-    const db = getFirestore();
+    const db = getDb();
     const docRef = doc(db, 'teams', seasonId, 'matches', id);
     const snapshot = await getDoc(docRef);
     if (!snapshot.exists()) return undefined;
@@ -76,7 +76,7 @@ export const matchRepository = {
   },
 
   async add(data: MatchCreateData) {
-    const db = getFirestore();
+    const db = getDb();
     const shortRandom = Math.random().toString(36).substring(2, 7).toUpperCase();
     const id = `M-${shortRandom}`;
     
@@ -96,7 +96,7 @@ export const matchRepository = {
   },
 
   async bulkAdd(matchesData: Omit<MatchCreateData, 'userId' | 'seasonId' | 'teamOwnerId' | 'teamId'>[], userId: string, seasonId: string) {
-    const db = getFirestore();
+    const db = getDb();
     const batch = writeBatch(db);
     const now = new Date().toISOString();
     
@@ -125,7 +125,7 @@ export const matchRepository = {
   },
 
   async update(id: string, seasonId: string, updates: Partial<Omit<Match, 'id' | 'userId' | 'seasonId'>>) {
-    const db = getFirestore();
+    const db = getDb();
     const docRef = doc(db, 'teams', seasonId, 'matches', id);
     
     const preparedUpdates = { ...updates };
@@ -141,13 +141,13 @@ export const matchRepository = {
 
   async delete(id: string, seasonId: string) {
     if (!id || !seasonId) return;
-    const db = getFirestore();
+    const db = getDb();
     return await deleteDoc(doc(db, 'teams', seasonId, 'matches', id));
   },
 
   async deleteAll(userId: string, seasonId: string) {
     if (!userId || !seasonId) return;
-    const db = getFirestore();
+    const db = getDb();
     const matchesRef = collection(db, 'teams', seasonId, 'matches');
     const q = query(matchesRef, where('teamOwnerId', '==', userId));
     const snapshot = await getDocs(q);
