@@ -68,29 +68,19 @@ export default function AltroPage() {
   const { seasons, activeSeason, fetchAll: fetchSeasons, addSeason, setActiveSeason, removeSeason, renameSeason, joinSeason } = useSeasonsStore();
   const { 
     defaultDuration, setDefaultDuration, 
-    sessionsPerWeek, setSessionsPerWeek, 
-    trainingDays, setTrainingDays, 
-    autoSetPresenceOnGenerate, setAutoSetPresenceOnGenerate,
     teamName, setTeamName, saveSettings, fetchSettings,
     matchNotificationEnabled, matchNotificationTime,
-    trainingNotificationEnabled, trainingNotificationTime
   } = useSettingsStore();
 
   const [localTeamName, setLocalTeamName] = useState('');
   const [localDefaultDuration, setLocalDefaultDuration] = useState(90);
-  const [localTrainingDays, setLocalTrainingDays] = useState<number[]>([]);
-  const [localAutoSetPresenceOnGenerate, setLocalAutoSetPresenceOnGenerate] = useState(false);
   const [localMatchNotificationEnabled, setLocalMatchNotificationEnabled] = useState(false);
   const [localMatchNotificationTime, setLocalMatchNotificationTime] = useState('20:00');
-  const [localTrainingNotificationEnabled, setLocalTrainingNotificationEnabled] = useState(false);
-  const [localTrainingNotificationTime, setLocalTrainingNotificationTime] = useState('20:00');
 
   useEffect(() => {
     if (isSquadraOpen) {
       setLocalTeamName(teamName);
       setLocalDefaultDuration(defaultDuration);
-      setLocalTrainingDays(trainingDays);
-      setLocalAutoSetPresenceOnGenerate(autoSetPresenceOnGenerate);
     }
   }, [isSquadraOpen, teamName, defaultDuration, trainingDays, autoSetPresenceOnGenerate]);
 
@@ -98,8 +88,6 @@ export default function AltroPage() {
     if (isNotificheOpen) {
       setLocalMatchNotificationEnabled(matchNotificationEnabled || false);
       setLocalMatchNotificationTime(matchNotificationTime || '20:00');
-      setLocalTrainingNotificationEnabled(trainingNotificationEnabled || false);
-      setLocalTrainingNotificationTime(trainingNotificationTime || '20:00');
     }
   }, [isNotificheOpen, matchNotificationEnabled, matchNotificationTime, trainingNotificationEnabled, trainingNotificationTime]);
 
@@ -110,9 +98,6 @@ export default function AltroPage() {
     await saveSettings(user.id, {
       teamName: localTeamName,
       defaultDuration: localDefaultDuration,
-      trainingDays: localTrainingDays,
-      sessionsPerWeek: localTrainingDays.length,
-      autoSetPresenceOnGenerate: localAutoSetPresenceOnGenerate
     });
     setIsSquadraOpen(false);
     toast({ title: "Impostazioni Salvate", description: "Le modifiche alla squadra sono state applicate." });
@@ -123,8 +108,6 @@ export default function AltroPage() {
     await saveSettings(user.id, {
       matchNotificationEnabled: localMatchNotificationEnabled,
       matchNotificationTime: localMatchNotificationTime,
-      trainingNotificationEnabled: localTrainingNotificationEnabled,
-      trainingNotificationTime: localTrainingNotificationTime
     });
     setIsNotificheOpen(false);
     toast({ title: "Notifiche Salvate", description: "Le preferenze di notifica sono state applicate." });
@@ -451,7 +434,7 @@ export default function AltroPage() {
               />
             </div>
 
-            {/* Allenamenti / Gare */}
+            {/* Gare */}
             <div className="space-y-3">
               <h3 className="text-sm font-black uppercase tracking-widest text-foreground">Preferenze</h3>
 
@@ -471,8 +454,7 @@ export default function AltroPage() {
                   </SelectContent>
                 </Select>
               </div>
-
-              </div>
+            </div>
             </div>
 
             <Button 

@@ -56,7 +56,7 @@ export function MatchNotesTab() {
       </CardHeader>
       <CardContent className="space-y-4">
         <Textarea
-          placeholder="Inserisci qui le tue annotazioni (es. Punti deboli avversario, prestazioni individuali, suggerimenti per il prossimo allenamento...)"
+          placeholder="Inserisci qui le tue annotazioni (es. Punti deboli avversario, prestazioni individuali, suggerimenti tattici...)"
           className="min-h-[300px] text-sm leading-relaxed bg-background dark:bg-black border border-primary/50 dark:border-brand-green/30 focus-visible:ring-1 focus-visible:ring-primary dark:focus-visible:ring-brand-green rounded-xl text-foreground dark:text-white"
           value={localNotes}
           onChange={(e) => setLocalNotes(e.target.value)}

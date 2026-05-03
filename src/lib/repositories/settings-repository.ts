@@ -3,14 +3,9 @@ import { getDb } from '@/lib/firebase-client';
 
 export interface UserSettings {
   defaultDuration: number;
-  sessionsPerWeek: number;
-  trainingDays: number[];
-  autoSetPresenceOnGenerate: boolean;
   teamName: string;
   matchNotificationEnabled?: boolean;
   matchNotificationTime?: string;
-  trainingNotificationEnabled?: boolean;
-  trainingNotificationTime?: string;
 }
 
 export const settingsRepository = {
