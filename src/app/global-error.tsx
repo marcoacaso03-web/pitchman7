@@ -33,8 +33,8 @@ export default function GlobalError({
         <div style={{
           padding: '2.5rem',
           borderRadius: '2rem',
-          border: '1px solid rgba(172, 229, 4, 0.2)',
-          backgroundColor: 'rgba(172, 229, 4, 0.05)',
+          border: '1px solid rgba(223, 130, 0, 0.2)',
+          backgroundColor: 'rgba(223, 130, 0, 0.05)',
           maxWidth: '400px',
           width: '100%'
         }}>

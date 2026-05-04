@@ -236,8 +236,8 @@ export const aggregationRepository = {
 
         return [
             { name: `${int1Key}'`, value: intervals[int1Key], fill: "#ace504" },
-            { name: `${int2Key}'`, value: intervals[int2Key], fill: "rgba(172, 229, 4, 0.6)" },
-            { name: `${int2Limit + 1}-${duration}'+`, value: intervals[int3Key], fill: "rgba(172, 229, 4, 0.3)" }
+            { name: `${int2Key}'`, value: intervals[int2Key], fill: "rgba(223, 130, 0, 0.6)" },
+            { name: `${int2Limit + 1}-${duration}'+`, value: intervals[int3Key], fill: "rgba(223, 130, 0, 0.3)" }
         ];
     },
 

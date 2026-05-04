@@ -32,7 +32,7 @@ const RadarChart = dynamic(
       const tooltipBg = isDark ? "black" : "white";
       const tooltipBorder = isDark ? "rgba(172,229,4,0.3)" : "rgba(37,99,235,0.2)";
       const tooltipText = isDark ? "white" : "black";
-      const cursorFill = isDark ? "rgba(172, 229, 4, 0.05)" : "rgba(37, 99, 235, 0.05)";
+      const cursorFill = isDark ? "rgba(223, 130, 0, 0.05)" : "rgba(37, 99, 235, 0.05)";
 
       return (
         <ResponsiveContainer width="100%" height={280}>
