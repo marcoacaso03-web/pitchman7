@@ -164,8 +164,8 @@ export function LiveMatchEventWorkflow({
                       "w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all cursor-pointer",
                       pid ? (
                         isSelected 
-                        ? "bg-brand-green border-brand-green text-black scale-110 shadow-[0_0_15px_rgba(172,229,4,0.5)]"
-                        : "bg-neutral-800 border-neutral-700 text-white hover:border-brand-green/50"
+                        ? "bg-brand-orange border-brand-orange text-black scale-110 shadow-[0_0_15px_rgba(172,229,4,0.5)]"
+                        : "bg-neutral-800 border-neutral-700 text-white hover:border-brand-orange/50"
                       ) : "bg-neutral-900 border-neutral-800 border-dashed"
                     )}>
                       {pid ? <span className="text-[8px] font-black">{acronym}</span> : null}
@@ -193,7 +193,7 @@ export function LiveMatchEventWorkflow({
                   size="sm" 
                   className={cn(
                     "h-8 text-[9px] font-bold uppercase justify-start px-2 rounded-lg border-white/10",
-                    isSelected && "bg-brand-green border-brand-green text-black"
+                    isSelected && "bg-brand-orange border-brand-orange text-black"
                   )}
                   onClick={() => handlePlayerSelect(pid)}
                 >
@@ -227,7 +227,7 @@ export function LiveMatchEventWorkflow({
               if (playersInRole.length === 0) return null;
               return (
                 <div key={role} className="space-y-2">
-                  <h4 className="text-[10px] font-black uppercase text-brand-green tracking-widest pl-1">{role}</h4>
+                  <h4 className="text-[10px] font-black uppercase text-brand-orange tracking-widest pl-1">{role}</h4>
                   <div className="grid grid-cols-1 gap-2">
                     {playersInRole.map(player => {
                       const isSelected = isAssist ? selectedAssistId === player.id : (isSubIn ? selectedPlayerId === player.id : selectedSubOutId === player.id);
@@ -237,7 +237,7 @@ export function LiveMatchEventWorkflow({
                           variant="outline"
                           className={cn(
                             "h-12 justify-start px-4 rounded-xl border-white/5 bg-white/5 hover:bg-white/10 text-white font-bold transition-all",
-                            isSelected && "bg-brand-green/20 border-brand-green text-brand-green"
+                            isSelected && "bg-brand-orange/20 border-brand-orange text-brand-orange"
                           )}
                           onClick={() => handlePlayerSelect(player.id)}
                         >
@@ -272,7 +272,7 @@ export function LiveMatchEventWorkflow({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-[95vw] sm:max-w-md bg-black border border-brand-green/30 text-white p-6 rounded-[32px] shadow-2xl">
+      <DialogContent className="max-w-[95vw] sm:max-w-md bg-black border border-brand-orange/30 text-white p-6 rounded-[32px] shadow-2xl">
         <DialogHeader className="mb-4">
           <div className="flex items-center justify-between">
             {step !== 'player' && (
@@ -303,7 +303,7 @@ export function LiveMatchEventWorkflow({
                   <div className="relative">
                     <input 
                       autoFocus
-                      className="w-full h-14 bg-white/5 border border-white/10 rounded-2xl px-5 text-lg font-black uppercase tracking-widest text-white placeholder:text-white/20 focus:outline-none focus:border-brand-green/50 transition-all"
+                      className="w-full h-14 bg-white/5 border border-white/10 rounded-2xl px-5 text-lg font-black uppercase tracking-widest text-white placeholder:text-white/20 focus:outline-none focus:border-brand-orange/50 transition-all"
                       placeholder={opponentName || "AVVERSARIO"}
                       value={eventType === 'substitution' ? customSubOutName : customPlayerName}
                       onChange={(e) => eventType === 'substitution' ? setCustomSubOutName(e.target.value) : setCustomPlayerName(e.target.value)}
@@ -317,7 +317,7 @@ export function LiveMatchEventWorkflow({
 
                 <div className="space-y-3">
                   <Button 
-                    className="w-full h-14 bg-brand-green text-black font-black uppercase tracking-widest rounded-2xl hover:bg-brand-green/80 shadow-[0_0_20px_rgba(172,229,4,0.3)] transition-all"
+                    className="w-full h-14 bg-brand-orange text-black font-black uppercase tracking-widest rounded-2xl hover:bg-brand-orange/80 shadow-[0_0_20px_rgba(172,229,4,0.3)] transition-all"
                     onClick={() => {
                         if (eventType === 'substitution') {
                             setStep('sub_in');
@@ -345,7 +345,7 @@ export function LiveMatchEventWorkflow({
             <div className="space-y-3">
                <p className="text-[10px] font-black uppercase tracking-widest text-white/40 text-center">Seleziona come è stato segnato il gol</p>
                <Select value={selectedGoalType} onValueChange={(v) => setSelectedGoalType(v as GoalType)}>
-                 <SelectTrigger className="h-14 bg-white/5 border-white/10 rounded-2xl text-lg font-black uppercase tracking-widest focus:ring-brand-green">
+                 <SelectTrigger className="h-14 bg-white/5 border-white/10 rounded-2xl text-lg font-black uppercase tracking-widest focus:ring-brand-orange">
                    <SelectValue placeholder="Tipo Gol" />
                  </SelectTrigger>
                  <SelectContent className="bg-neutral-900 border-white/10 text-white">
@@ -357,7 +357,7 @@ export function LiveMatchEventWorkflow({
             </div>
 
             <Button 
-              className="w-full h-14 bg-brand-green text-black font-black uppercase tracking-widest rounded-2xl hover:bg-brand-green/80 shadow-[0_0_20px_rgba(172,229,4,0.2)]"
+              className="w-full h-14 bg-brand-orange text-black font-black uppercase tracking-widest rounded-2xl hover:bg-brand-orange/80 shadow-[0_0_20px_rgba(172,229,4,0.2)]"
               onClick={handleGoalTypeConfirm}
             >
               Continua all'Assist
@@ -383,7 +383,7 @@ export function LiveMatchEventWorkflow({
                   <div className="relative">
                     <input 
                       autoFocus
-                      className="w-full h-14 bg-white/5 border border-white/10 rounded-2xl px-5 text-lg font-black uppercase tracking-widest text-white placeholder:text-white/20 focus:outline-none focus:border-brand-green/50 transition-all"
+                      className="w-full h-14 bg-white/5 border border-white/10 rounded-2xl px-5 text-lg font-black uppercase tracking-widest text-white placeholder:text-white/20 focus:outline-none focus:border-brand-orange/50 transition-all"
                       placeholder={opponentName || "AVVERSARIO"}
                       value={customAssistName}
                       onChange={(e) => setCustomAssistName(e.target.value)}
@@ -397,7 +397,7 @@ export function LiveMatchEventWorkflow({
 
                 <div className="space-y-3">
                   <Button 
-                    className="w-full h-14 bg-brand-green text-black font-black uppercase tracking-widest rounded-2xl hover:bg-brand-green/80 shadow-[0_0_20px_rgba(172,229,4,0.3)] transition-all"
+                    className="w-full h-14 bg-brand-orange text-black font-black uppercase tracking-widest rounded-2xl hover:bg-brand-orange/80 shadow-[0_0_20px_rgba(172,229,4,0.3)] transition-all"
                     onClick={() => {
                       const finalAssistName = customAssistName.trim() || opponentName || "Avversario";
                       const mainPlayer = allPlayers.find(p => p.id === selectedPlayerId);
@@ -427,7 +427,7 @@ export function LiveMatchEventWorkflow({
                   <div className="relative">
                     <input 
                       autoFocus
-                      className="w-full h-14 bg-white/5 border border-white/10 rounded-2xl px-5 text-lg font-black uppercase tracking-widest text-white placeholder:text-white/20 focus:outline-none focus:border-brand-green/50 transition-all"
+                      className="w-full h-14 bg-white/5 border border-white/10 rounded-2xl px-5 text-lg font-black uppercase tracking-widest text-white placeholder:text-white/20 focus:outline-none focus:border-brand-orange/50 transition-all"
                       placeholder={opponentName || "AVVERSARIO"}
                       value={customPlayerName}
                       onChange={(e) => setCustomPlayerName(e.target.value)}
@@ -441,7 +441,7 @@ export function LiveMatchEventWorkflow({
 
                 <div className="space-y-3">
                   <Button 
-                    className="w-full h-14 bg-brand-green text-black font-black uppercase tracking-widest rounded-2xl hover:bg-brand-green/80 shadow-[0_0_20px_rgba(172,229,4,0.3)] transition-all"
+                    className="w-full h-14 bg-brand-orange text-black font-black uppercase tracking-widest rounded-2xl hover:bg-brand-orange/80 shadow-[0_0_20px_rgba(172,229,4,0.3)] transition-all"
                     onClick={() => {
                       const finalSubInName = customPlayerName.trim() || opponentName || "Avversario";
                       const finalSubOutName = customSubOutName.trim() || opponentName || "Avversario";

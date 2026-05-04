@@ -147,12 +147,12 @@ const roleLabel: Record<string, string> = {
 const roleBg: Record<string, string> = {
   Portiere: "bg-amber-100 dark:bg-amber-500/10 text-amber-700 dark:text-amber-500 border-amber-200 dark:border-amber-500/30 shadow-sm dark:shadow-[0_0_10px_rgba(245,158,11,0.1)]",
   Difensore: "bg-slate-100 dark:bg-slate-500/10 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-500/30",
-  Centrocampista: "bg-blue-100 dark:bg-brand-green/10 text-blue-700 dark:text-brand-green border-blue-200 dark:border-brand-green/30 shadow-sm dark:shadow-[0_0_10px_rgba(172,229,4,0.1)]",
+  Centrocampista: "bg-blue-100 dark:bg-brand-orange/10 text-blue-700 dark:text-brand-orange border-blue-200 dark:border-brand-orange/30 shadow-sm dark:shadow-[0_0_10px_rgba(172,229,4,0.1)]",
   Attaccante: "bg-red-100 dark:bg-red-500/10 text-red-700 dark:text-red-500 border-red-200 dark:border-red-500/30 shadow-sm dark:shadow-[0_0_10px_rgba(239,68,68,0.1)]",
 };
 
 // ─── Componente StatCard ───────────────────────────────────────────────────────
-function StatCard({ icon: Icon, label, value, sub, color = "text-primary dark:text-brand-green" }: {
+function StatCard({ icon: Icon, label, value, sub, color = "text-primary dark:text-brand-orange" }: {
   icon: React.ElementType;
   label: string;
   value: string | number;
@@ -160,7 +160,7 @@ function StatCard({ icon: Icon, label, value, sub, color = "text-primary dark:te
   color?: string;
 }) {
   return (
-    <div className="flex flex-col items-center justify-center gap-1 bg-card dark:bg-black/40 backdrop-blur-sm border border-border dark:border-brand-green/20 rounded-2xl p-4 text-center shadow-sm dark:shadow-[0_0_15px_rgba(172,229,4,0.05)] hover:border-primary/50 dark:hover:border-brand-green/40 transition-all">
+    <div className="flex flex-col items-center justify-center gap-1 bg-card dark:bg-black/40 backdrop-blur-sm border border-border dark:border-brand-orange/20 rounded-2xl p-4 text-center shadow-sm dark:shadow-[0_0_15px_rgba(172,229,4,0.05)] hover:border-primary/50 dark:hover:border-brand-orange/40 transition-all">
       <Icon className={`h-5 w-5 ${color} mb-1 opacity-80`} />
       <span className="text-[9px] font-black uppercase tracking-[0.1em] text-muted-foreground dark:text-white/30">{label}</span>
       <span className={`text-2xl font-black text-foreground dark:text-white`}>{value}</span>
@@ -206,11 +206,11 @@ function MatchHeatmap({ records }: { records: MatchRecord[] }) {
       <div className="flex items-center gap-3">
         <div className="flex-1 bg-muted dark:bg-black/40 rounded-full h-2.5 overflow-hidden border border-border dark:border-white/5">
           <div
-            className="h-full bg-primary dark:bg-brand-green rounded-full transition-all duration-700 shadow-sm dark:shadow-[0_0_10px_rgba(172,229,4,0.5)]"
+            className="h-full bg-primary dark:bg-brand-orange rounded-full transition-all duration-700 shadow-sm dark:shadow-[0_0_10px_rgba(172,229,4,0.5)]"
             style={{ width: `${pct}%` }}
           />
         </div>
-        <span className="text-xs font-black text-primary dark:text-brand-green min-w-[3rem] text-right">{pct}%</span>
+        <span className="text-xs font-black text-primary dark:text-brand-orange min-w-[3rem] text-right">{pct}%</span>
       </div>
       <p className="text-[9px] text-muted-foreground dark:text-white/30 font-black uppercase tracking-widest mt-1">
         Presenza in campo nel {pct}% dei match disputati
@@ -457,11 +457,11 @@ export default function PlayerDetailPage() {
   if (!player && !loadingData) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4 px-4 text-center">
-        <div className="h-24 w-24 rounded-full bg-primary/10 dark:bg-brand-green/10 flex items-center justify-center mb-2 border border-primary/20 dark:border-brand-green/20 shadow-sm dark:shadow-[0_0_20px_rgba(172,229,4,0.15)] relative">
-          <User className="h-12 w-12 text-primary dark:text-brand-green opacity-80" />
-          <div className="absolute inset-0 rounded-full animate-ping opacity-20 bg-primary dark:bg-brand-green"></div>
+        <div className="h-24 w-24 rounded-full bg-primary/10 dark:bg-brand-orange/10 flex items-center justify-center mb-2 border border-primary/20 dark:border-brand-orange/20 shadow-sm dark:shadow-[0_0_20px_rgba(172,229,4,0.15)] relative">
+          <User className="h-12 w-12 text-primary dark:text-brand-orange opacity-80" />
+          <div className="absolute inset-0 rounded-full animate-ping opacity-20 bg-primary dark:bg-brand-orange"></div>
         </div>
-        <h2 className="text-2xl md:text-3xl font-black text-foreground dark:text-white uppercase tracking-widest mt-2 relative after:content-[''] after:absolute after:bottom-[-8px] after:left-1/2 after:-translate-x-1/2 after:w-16 after:h-[3px] after:bg-gradient-to-r after:from-transparent after:via-primary dark:after:via-brand-green after:to-transparent">
+        <h2 className="text-2xl md:text-3xl font-black text-foreground dark:text-white uppercase tracking-widest mt-2 relative after:content-[''] after:absolute after:bottom-[-8px] after:left-1/2 after:-translate-x-1/2 after:w-16 after:h-[3px] after:bg-gradient-to-r after:from-transparent after:via-primary dark:after:via-brand-orange after:to-transparent">
           Non Trovato
         </h2>
         <p className="text-sm font-medium text-muted-foreground dark:text-white/50 max-w-sm mt-4 leading-relaxed">
@@ -469,7 +469,7 @@ export default function PlayerDetailPage() {
         </p>
         <Button 
           onClick={() => router.push("/membri")} 
-          className="mt-6 bg-primary dark:bg-black border-2 border-primary dark:border-brand-green/80 text-white dark:text-white hover:opacity-90 dark:hover:bg-brand-green/10 font-black tracking-wider uppercase rounded-2xl px-8 h-14 shadow-md dark:shadow-[0_0_15px_rgba(172,229,4,0.2)] transition-all"
+          className="mt-6 bg-primary dark:bg-black border-2 border-primary dark:border-brand-orange/80 text-white dark:text-white hover:opacity-90 dark:hover:bg-brand-orange/10 font-black tracking-wider uppercase rounded-2xl px-8 h-14 shadow-md dark:shadow-[0_0_15px_rgba(172,229,4,0.2)] transition-all"
         >
           <ArrowLeft className="h-5 w-5 mr-3" /> Ritorna alla Rosa
         </Button>
@@ -486,7 +486,7 @@ export default function PlayerDetailPage() {
         title={
           <div className="flex flex-col">
             <div className="flex items-center gap-2">
-              <Link href="/membri" className="h-8 w-8 flex items-center justify-center rounded-xl bg-background dark:bg-black border border-primary/20 dark:border-brand-green/20 text-primary dark:text-brand-green hover:bg-primary/10 dark:hover:bg-brand-green/10 transition-colors">
+              <Link href="/membri" className="h-8 w-8 flex items-center justify-center rounded-xl bg-background dark:bg-black border border-primary/20 dark:border-brand-orange/20 text-primary dark:text-brand-orange hover:bg-primary/10 dark:hover:bg-brand-orange/10 transition-colors">
                 <ArrowLeft className="h-4 w-4" />
               </Link>
               <span className="text-xl md:text-3xl text-foreground dark:text-white">
@@ -526,14 +526,14 @@ export default function PlayerDetailPage() {
         }
       >
         <Link href={`/membri/confronto?p1=${playerId}`}>
-          <Button variant="outline" size="sm" className="hidden md:flex gap-2 rounded-xl bg-background dark:bg-black border-primary/30 dark:border-brand-green/30 text-foreground dark:text-white hover:bg-primary/10 dark:hover:bg-brand-green/10 border-2">
-            <ArrowRightLeft className="h-4 w-4 text-primary dark:text-brand-green" />
+          <Button variant="outline" size="sm" className="hidden md:flex gap-2 rounded-xl bg-background dark:bg-black border-primary/30 dark:border-brand-orange/30 text-foreground dark:text-white hover:bg-primary/10 dark:hover:bg-brand-orange/10 border-2">
+            <ArrowRightLeft className="h-4 w-4 text-primary dark:text-brand-orange" />
             <span className="text-xs font-black uppercase tracking-wider">Confronta</span>
           </Button>
         </Link>
         <Link href={`/membri/confronto?p1=${playerId}`} className="md:hidden">
-          <Button variant="outline" size="icon" className="h-10 w-10 rounded-xl bg-background dark:bg-black border-primary/30 dark:border-brand-green/30 text-foreground dark:text-white hover:bg-primary/10 dark:hover:bg-brand-green/10 border-2">
-            <ArrowRightLeft className="h-5 w-5 text-primary dark:text-brand-green" />
+          <Button variant="outline" size="icon" className="h-10 w-10 rounded-xl bg-background dark:bg-black border-primary/30 dark:border-brand-orange/30 text-foreground dark:text-white hover:bg-primary/10 dark:hover:bg-brand-orange/10 border-2">
+            <ArrowRightLeft className="h-5 w-5 text-primary dark:text-brand-orange" />
           </Button>
         </Link>
       </PageHeader>
@@ -574,7 +574,7 @@ export default function PlayerDetailPage() {
 
             {/* 4^ riga: gol fatti mentre è in campo, gol subiti mentre è in campo */}
             <div className="grid grid-cols-2 gap-2">
-              <StatCard icon={GiSoccerBall} label="Gol Fatti" value={playerStats.goalsScoredOnPitch} sub="in campo" color="text-primary dark:text-brand-green" />
+              <StatCard icon={GiSoccerBall} label="Gol Fatti" value={playerStats.goalsScoredOnPitch} sub="in campo" color="text-primary dark:text-brand-orange" />
               <StatCard icon={GiSoccerBall} label="Gol Subiti" value={playerStats.goalsConcededOnPitch} sub="in campo" color="text-rose-500" />
             </div>
           </>
@@ -584,10 +584,10 @@ export default function PlayerDetailPage() {
       {/* Grafici rendimento */}
       <div className="grid md:grid-cols-2 gap-4">
         {/* Radar */}
-        <Card className="rounded-3xl bg-card dark:bg-black/40 backdrop-blur-sm border-border dark:border-brand-green/20 shadow-sm dark:shadow-[0_0_20px_rgba(172,229,4,0.05)] overflow-hidden">
+        <Card className="rounded-3xl bg-card dark:bg-black/40 backdrop-blur-sm border-border dark:border-brand-orange/20 shadow-sm dark:shadow-[0_0_20px_rgba(172,229,4,0.05)] overflow-hidden">
           <CardHeader className="pb-0 px-6 pt-6">
             <CardTitle className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground dark:text-white/30 flex items-center gap-2">
-              <TrendingUp className="h-3.5 w-3.5 text-primary dark:text-brand-green" /> Profilo Tecnico
+              <TrendingUp className="h-3.5 w-3.5 text-primary dark:text-brand-orange" /> Profilo Tecnico
             </CardTitle>
           </CardHeader>
           <CardContent className="pt-2 px-6">
@@ -596,10 +596,10 @@ export default function PlayerDetailPage() {
         </Card>
 
         {/* Barchart W/D/L */}
-        <Card className="rounded-3xl bg-card dark:bg-black/40 backdrop-blur-sm border-border dark:border-brand-green/20 shadow-sm dark:shadow-[0_0_20px_rgba(172,229,4,0.05)] overflow-hidden">
+        <Card className="rounded-3xl bg-card dark:bg-black/40 backdrop-blur-sm border-border dark:border-brand-orange/20 shadow-sm dark:shadow-[0_0_20px_rgba(172,229,4,0.05)] overflow-hidden">
           <CardHeader className="pb-0 px-6 pt-6">
             <CardTitle className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground dark:text-white/30 flex items-center gap-2">
-              <Sword className="h-3.5 w-3.5 text-primary dark:text-brand-green" /> Risultati Personali
+              <Sword className="h-3.5 w-3.5 text-primary dark:text-brand-orange" /> Risultati Personali
             </CardTitle>
           </CardHeader>
           <CardContent className="pt-4 px-6 pb-6">
@@ -618,7 +618,7 @@ export default function PlayerDetailPage() {
       {/* Storico presenze partite */}
       <div className="space-y-3">
         <h3 className="text-sm font-black uppercase tracking-widest text-foreground dark:text-white flex items-center gap-2">
-          <GiSoccerBall className="h-4 w-4 text-primary dark:text-brand-green" /> Storico Gare
+          <GiSoccerBall className="h-4 w-4 text-primary dark:text-brand-orange" /> Storico Gare
         </h3>
         <div className="space-y-2">
           {loadingData ? (
@@ -630,13 +630,13 @@ export default function PlayerDetailPage() {
             <p className="text-xs text-muted-foreground dark:text-white/40 italic text-center py-4 bg-muted/5 dark:bg-white/5 rounded-xl border border-dashed border-border dark:border-white/10">Nessuna gara registrata</p>
           ) : (
             matchRecords.slice().reverse().map((record, i) => (
-              <div key={i} className="flex items-center justify-between p-3 rounded-xl bg-card dark:bg-black/40 border border-border dark:border-brand-green/10 shadow-sm">
+              <div key={i} className="flex items-center justify-between p-3 rounded-xl bg-card dark:bg-black/40 border border-border dark:border-brand-orange/10 shadow-sm">
                  <div className="flex flex-col">
                     <span className="text-[10px] font-black uppercase text-foreground dark:text-white">{record.match.opponent}</span>
                     <span className="text-[9px] text-muted-foreground dark:text-white/40 font-bold">{new Date(record.match.date).toLocaleDateString()}</span>
                  </div>
                  <Badge variant="outline" className={`text-[8px] font-black uppercase py-0.5 px-2 pointer-events-none ${
-                    record.status === "titolare" ? "bg-primary dark:bg-brand-green text-white dark:text-black border-transparent" :
+                    record.status === "titolare" ? "bg-primary dark:bg-brand-orange text-white dark:text-black border-transparent" :
                     record.status === "entrato" ? "bg-blue-500/10 text-blue-500 border-blue-500/20" :
                     record.status === "infortunato" ? "bg-rose-500/10 text-rose-500 border-rose-500/20" :
                     "bg-muted dark:bg-white/5 text-muted-foreground dark:text-white/40"

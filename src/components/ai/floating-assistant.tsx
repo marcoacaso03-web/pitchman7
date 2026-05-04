@@ -96,10 +96,10 @@ export function FloatingAssistant() {
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="w-[340px] sm:w-[380px] h-[520px] bg-white/95 dark:bg-black/90 backdrop-blur-xl border border-divider dark:border-brand-green/30 rounded-[32px] shadow-[0_20px_50px_rgba(0,0,0,0.2)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col overflow-hidden pointer-events-auto"
+            className="w-[340px] sm:w-[380px] h-[520px] bg-white/95 dark:bg-black/90 backdrop-blur-xl border border-divider dark:border-brand-orange/30 rounded-[32px] shadow-[0_20px_50px_rgba(0,0,0,0.2)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col overflow-hidden pointer-events-auto"
           >
             {/* Header */}
-            <div className="p-5 border-b border-divider dark:border-brand-green/20 flex items-center justify-between bg-card dark:bg-black transition-colors">
+            <div className="p-5 border-b border-divider dark:border-brand-orange/20 flex items-center justify-between bg-card dark:bg-black transition-colors">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-2xl bg-black dark:bg-white flex items-center justify-center shadow-lg border border-border dark:border-white/10">
                   <Bot className="text-white dark:text-black h-5 w-5" />
@@ -137,14 +137,14 @@ export function FloatingAssistant() {
                   >
                     <div className={cn(
                         "w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 mt-1 shadow-sm",
-                        msg.role === 'user' ? "bg-muted dark:bg-zinc-800" : "bg-primary/10 dark:bg-brand-green/10"
+                        msg.role === 'user' ? "bg-muted dark:bg-zinc-800" : "bg-primary/10 dark:bg-brand-orange/10"
                     )}>
-                      {msg.role === 'user' ? <User className="h-4 w-4" /> : <Sparkles className="h-4 w-4 text-primary dark:text-brand-green" />}
+                      {msg.role === 'user' ? <User className="h-4 w-4" /> : <Sparkles className="h-4 w-4 text-primary dark:text-brand-orange" />}
                     </div>
                     <div className={cn(
                       "p-3.5 rounded-2xl text-xs leading-relaxed font-medium shadow-sm",
                       msg.role === 'user' 
-                        ? "bg-primary text-white dark:bg-brand-green dark:text-black rounded-tr-none" 
+                        ? "bg-primary text-white dark:bg-brand-orange dark:text-black rounded-tr-none" 
                         : "bg-muted dark:bg-zinc-900 text-foreground dark:text-zinc-200 rounded-tl-none border border-divider dark:border-white/5"
                     )}>
                       {msg.content}
@@ -162,20 +162,20 @@ export function FloatingAssistant() {
             </ScrollArea>
 
             {/* Input Area */}
-            <div className="p-5 border-t border-divider dark:border-brand-green/20">
+            <div className="p-5 border-t border-divider dark:border-brand-orange/20">
               <div className="relative group">
                 <Input 
                   placeholder="Chiedimi della rosa o dei gol..."
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                  className="h-12 bg-muted/50 dark:bg-zinc-900 border-none rounded-2xl pr-12 focus-visible:ring-1 focus-visible:ring-primary/30 dark:focus-visible:ring-brand-green/30 placeholder:text-muted-foreground/40 text-xs font-medium"
+                  className="h-12 bg-muted/50 dark:bg-zinc-900 border-none rounded-2xl pr-12 focus-visible:ring-1 focus-visible:ring-primary/30 dark:focus-visible:ring-brand-orange/30 placeholder:text-muted-foreground/40 text-xs font-medium"
                 />
                 <Button 
                   size="icon"
                   onClick={handleSend}
                   disabled={!input.trim() || isLoading}
-                  className="absolute right-1.5 top-1.5 h-9 w-9 rounded-xl bg-primary dark:bg-brand-green text-white dark:text-black hover:scale-105 active:scale-95 transition-all shadow-md shadow-primary/20 dark:shadow-brand-green/20 border-none"
+                  className="absolute right-1.5 top-1.5 h-9 w-9 rounded-xl bg-primary dark:bg-brand-orange text-white dark:text-black hover:scale-105 active:scale-95 transition-all shadow-md shadow-primary/20 dark:shadow-brand-orange/20 border-none"
                 >
                   <Send className="h-4 w-4" />
                 </Button>
@@ -193,8 +193,8 @@ export function FloatingAssistant() {
         className={cn(
           "h-12 w-12 rounded-[18px] flex items-center justify-center transition-all shadow-2xl relative pointer-events-auto",
           isOpen 
-            ? "bg-white dark:bg-zinc-900 text-foreground dark:text-white border border-divider dark:border-brand-green/20" 
-            : "bg-primary dark:bg-brand-green text-white dark:text-black"
+            ? "bg-white dark:bg-zinc-900 text-foreground dark:text-white border border-divider dark:border-brand-orange/20" 
+            : "bg-primary dark:bg-brand-orange text-white dark:text-black"
         )}
       >
         <AnimatePresence mode="wait">
@@ -206,7 +206,7 @@ export function FloatingAssistant() {
             <motion.div key="bot" initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.5 }} className="relative">
               <div className="absolute -inset-4 bg-white/20 dark:bg-black/20 rounded-full blur-xl animate-pulse" />
               <Bot className="h-6 w-6 relative" />
-              <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-red-500 border-2 border-primary dark:border-brand-green rounded-full shadow-sm" />
+              <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-red-500 border-2 border-primary dark:border-brand-orange rounded-full shadow-sm" />
             </motion.div>
           )}
         </AnimatePresence>

@@ -75,7 +75,7 @@ function MatchDetailContent() {
             <ArrowLeft className="h-4 w-4 mr-2" /> Torna Indietro
           </Button>
           <Button
-            className="flex-1 font-black uppercase text-xs tracking-wider rounded-xl bg-primary dark:bg-black border-2 border-transparent dark:border-brand-green/80 text-white dark:text-white hover:opacity-90 dark:hover:bg-brand-green/10 h-12 shadow-md dark:shadow-[0_0_15px_rgba(172,229,4,0.3)] transition-all"
+            className="flex-1 font-black uppercase text-xs tracking-wider rounded-xl bg-primary dark:bg-black border-2 border-transparent dark:border-brand-orange/80 text-white dark:text-white hover:opacity-90 dark:hover:bg-brand-orange/10 h-12 shadow-md dark:shadow-[0_0_15px_rgba(172,229,4,0.3)] transition-all"
             onClick={() => load(id, urlSeasonId || undefined)}
           >
             Riprova
@@ -99,46 +99,46 @@ function MatchDetailContent() {
               className="flex items-center gap-2.5 group hover:opacity-80 transition-all active:scale-[0.98] text-left"
             >
               <span className="text-foreground dark:text-white">Vs {match.opponent}</span>
-              <div className="p-1.5 rounded-xl bg-primary/10 dark:bg-brand-green/10 border border-primary/20 dark:border-brand-green/20 group-hover:border-primary/40 dark:group-hover:border-brand-green/40 transition-colors">
-                <Settings2 className="h-5 w-5 text-primary dark:text-brand-green group-hover:rotate-90 transition-transform duration-500" />
+              <div className="p-1.5 rounded-xl bg-primary/10 dark:bg-brand-orange/10 border border-primary/20 dark:border-brand-orange/20 group-hover:border-primary/40 dark:group-hover:border-brand-orange/40 transition-colors">
+                <Settings2 className="h-5 w-5 text-primary dark:text-brand-orange group-hover:rotate-90 transition-transform duration-500" />
               </div>
             </button>
           } 
           backAction={() => router.push('/calendario')}
         />
 
-        <Card className="bg-card dark:bg-black border border-border dark:border-brand-green/30 shadow-sm dark:shadow-[0_0_20px_rgba(172,229,4,0.15)] overflow-hidden rounded-3xl text-foreground">
+        <Card className="bg-card dark:bg-black border border-border dark:border-brand-orange/30 shadow-sm dark:shadow-[0_0_20px_rgba(172,229,4,0.15)] overflow-hidden rounded-3xl text-foreground">
           <CardContent className="p-5 md:p-8">
             <div className="flex flex-col items-center justify-center space-y-6">
               <div className="flex items-center justify-between w-full gap-2 md:gap-4">
                 <div className="flex-1 text-center min-w-0">
-                  <p className="text-[9px] opacity-60 mb-1 font-black uppercase tracking-widest text-foreground dark:text-brand-green truncate">{match.isHome ? (teamName || "PITCHMAN") : match.opponent.toUpperCase()}</p>
+                  <p className="text-[9px] opacity-60 mb-1 font-black uppercase tracking-widest text-foreground dark:text-brand-orange truncate">{match.isHome ? (teamName || "PITCHMAN") : match.opponent.toUpperCase()}</p>
                   <p className="text-5xl md:text-7xl font-black tabular-nums text-foreground">{match.result?.home ?? "-"}</p>
                 </div>
                 
-                <div className="text-2xl md:text-4xl font-thin opacity-20 text-primary dark:text-brand-green px-2 self-center pt-6 shrink-0">VS</div>
+                <div className="text-2xl md:text-4xl font-thin opacity-20 text-primary dark:text-brand-orange px-2 self-center pt-6 shrink-0">VS</div>
                 
                 <div className="flex-1 text-center min-w-0">
-                  <p className="text-[9px] opacity-60 mb-1 font-black uppercase tracking-widest text-foreground dark:text-brand-green truncate">{!match.isHome ? (teamName || "PITCHMAN") : match.opponent.toUpperCase()}</p>
+                  <p className="text-[9px] opacity-60 mb-1 font-black uppercase tracking-widest text-foreground dark:text-brand-orange truncate">{!match.isHome ? (teamName || "PITCHMAN") : match.opponent.toUpperCase()}</p>
                   <p className="text-5xl md:text-7xl font-black tabular-nums text-foreground dark:text-white">{match.result?.away ?? "-"}</p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 w-full pt-5 border-t border-border dark:border-brand-green/20">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 w-full pt-5 border-t border-border dark:border-brand-orange/20">
                 <div className="flex items-center gap-2 text-xs font-bold">
-                  <div className="p-1.5 bg-muted dark:bg-black border border-border dark:border-brand-green/30 rounded-lg text-primary dark:text-brand-green">
+                  <div className="p-1.5 bg-muted dark:bg-black border border-border dark:border-brand-orange/30 rounded-lg text-primary dark:text-brand-orange">
                     <CalendarDays className="h-3.5 w-3.5" />
                   </div>
                   <span className="text-foreground dark:text-white">{matchDate.toLocaleDateString('it-IT', { day: '2-digit', month: 'short', year: 'numeric' })}</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs font-bold">
-                  <div className="p-1.5 bg-muted dark:bg-black border border-border dark:border-brand-green/30 rounded-lg text-primary dark:text-brand-green">
+                  <div className="p-1.5 bg-muted dark:bg-black border border-border dark:border-brand-orange/30 rounded-lg text-primary dark:text-brand-orange">
                     {match.isHome ? <Home className="h-3.5 w-3.5" /> : <Plane className="h-3.5 w-3.5" />}
                   </div>
                   <span className="truncate uppercase tracking-wider text-foreground dark:text-white">{match.isHome ? 'Casa' : 'Trasferta'}</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs font-bold col-span-2 md:col-span-1">
-                  <div className="p-1.5 bg-muted dark:bg-black border border-border dark:border-brand-green/30 rounded-lg text-primary dark:text-brand-green">
+                  <div className="p-1.5 bg-muted dark:bg-black border border-border dark:border-brand-orange/30 rounded-lg text-primary dark:text-brand-orange">
                     <Zap className="h-3.5 w-3.5" />
                   </div>
                   <span className="truncate uppercase tracking-wider text-foreground dark:text-white">
@@ -154,14 +154,14 @@ function MatchDetailContent() {
       </div>
 
       <Tabs defaultValue={searchParams.get('tab') || "eventi"} className="w-full">
-        <TabsList className="grid w-full grid-cols-3 mb-4 h-12 bg-muted/50 dark:bg-black/40 border border-border dark:border-brand-green/20 p-1 rounded-xl">
-          <TabsTrigger value="eventi" className="flex items-center gap-1.5 text-[9px] font-black uppercase rounded-lg data-[state=active]:bg-muted dark:data-[state=active]:bg-black data-[state=active]:text-foreground dark:data-[state=active]:text-brand-green data-[state=active]:border data-[state=active]:border-primary dark:data-[state=active]:border-brand-green data-[state=active]:shadow-sm dark:data-[state=active]:shadow-[0_0_10px_rgba(172,229,4,0.15)] text-muted-foreground transition-all">
+        <TabsList className="grid w-full grid-cols-3 mb-4 h-12 bg-muted/50 dark:bg-black/40 border border-border dark:border-brand-orange/20 p-1 rounded-xl">
+          <TabsTrigger value="eventi" className="flex items-center gap-1.5 text-[9px] font-black uppercase rounded-lg data-[state=active]:bg-muted dark:data-[state=active]:bg-black data-[state=active]:text-foreground dark:data-[state=active]:text-brand-orange data-[state=active]:border data-[state=active]:border-primary dark:data-[state=active]:border-brand-orange data-[state=active]:shadow-sm dark:data-[state=active]:shadow-[0_0_10px_rgba(172,229,4,0.15)] text-muted-foreground transition-all">
             <Zap className="h-3.5 w-3.5" /> Cronaca
           </TabsTrigger>
-          <TabsTrigger value="formazione" className="flex items-center gap-1.5 text-[9px] font-black uppercase rounded-lg data-[state=active]:bg-muted dark:data-[state=active]:bg-black data-[state=active]:text-foreground dark:data-[state=active]:text-brand-green data-[state=active]:border data-[state=active]:border-primary dark:data-[state=active]:border-brand-green data-[state=active]:shadow-sm dark:data-[state=active]:shadow-[0_0_10px_rgba(172,229,4,0.15)] text-muted-foreground transition-all">
+          <TabsTrigger value="formazione" className="flex items-center gap-1.5 text-[9px] font-black uppercase rounded-lg data-[state=active]:bg-muted dark:data-[state=active]:bg-black data-[state=active]:text-foreground dark:data-[state=active]:text-brand-orange data-[state=active]:border data-[state=active]:border-primary dark:data-[state=active]:border-brand-orange data-[state=active]:shadow-sm dark:data-[state=active]:shadow-[0_0_10px_rgba(172,229,4,0.15)] text-muted-foreground transition-all">
             <Users className="h-3.5 w-3.5" /> Formazione
           </TabsTrigger>
-          <TabsTrigger value="note" className="flex items-center gap-1.5 text-[9px] font-black uppercase rounded-lg data-[state=active]:bg-muted dark:data-[state=active]:bg-black data-[state=active]:text-foreground dark:data-[state=active]:text-brand-green data-[state=active]:border data-[state=active]:border-primary dark:data-[state=active]:border-brand-green data-[state=active]:shadow-sm dark:data-[state=active]:shadow-[0_0_10px_rgba(172,229,4,0.15)] text-muted-foreground transition-all">
+          <TabsTrigger value="note" className="flex items-center gap-1.5 text-[9px] font-black uppercase rounded-lg data-[state=active]:bg-muted dark:data-[state=active]:bg-black data-[state=active]:text-foreground dark:data-[state=active]:text-brand-orange data-[state=active]:border data-[state=active]:border-primary dark:data-[state=active]:border-brand-orange data-[state=active]:shadow-sm dark:data-[state=active]:shadow-[0_0_10px_rgba(172,229,4,0.15)] text-muted-foreground transition-all">
             <FileText className="h-3.5 w-3.5" /> Note
           </TabsTrigger>
         </TabsList>

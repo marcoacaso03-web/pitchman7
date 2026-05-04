@@ -252,7 +252,7 @@ function ConfrontoContent() {
       <PageHeader
         title={
           <div className="flex items-center gap-2">
-            <Link href={`/membri/${p1Id}`} className="h-8 w-8 flex items-center justify-center rounded-xl bg-card dark:bg-black border border-border dark:border-brand-green/20 text-primary dark:text-brand-green hover:bg-muted dark:hover:bg-brand-green/10 transition-colors">
+            <Link href={`/membri/${p1Id}`} className="h-8 w-8 flex items-center justify-center rounded-xl bg-card dark:bg-black border border-border dark:border-brand-orange/20 text-primary dark:text-brand-orange hover:bg-muted dark:hover:bg-brand-orange/10 transition-colors">
               <ArrowLeft className="h-4 w-4" />
             </Link>
             <span className="font-light text-foreground dark:text-white">Confronto</span>
@@ -263,10 +263,10 @@ function ConfrontoContent() {
 
       {/* Selectors */}
       <div className="grid grid-cols-2 gap-4">
-        <Card className="bg-card dark:bg-black/40 backdrop-blur-sm border-border dark:border-brand-green/30 rounded-3xl shadow-sm dark:shadow-[0_0_20px_rgba(172,229,4,0.05)] transition-colors">
+        <Card className="bg-card dark:bg-black/40 backdrop-blur-sm border-border dark:border-brand-orange/30 rounded-3xl shadow-sm dark:shadow-[0_0_20px_rgba(172,229,4,0.05)] transition-colors">
           <CardContent className="p-5 flex flex-col items-center text-center gap-1">
-            <div className="p-3 bg-primary/10 dark:bg-brand-green/10 rounded-2xl mb-2">
-              <User className="h-6 w-6 text-primary dark:text-brand-green" />
+            <div className="p-3 bg-primary/10 dark:bg-brand-orange/10 rounded-2xl mb-2">
+              <User className="h-6 w-6 text-primary dark:text-brand-orange" />
             </div>
             <h3 className="font-black text-lg text-foreground dark:text-white leading-tight">{p1 ? displayPlayerName(p1) : "..."}</h3>
             <span className="text-[9px] font-black tracking-[0.2em] uppercase text-muted-foreground dark:text-white/30">{p1?.role}</span>
@@ -303,7 +303,7 @@ function ConfrontoContent() {
               )}
               <SelectContent className="bg-card dark:bg-black border-border dark:border-white/10 text-foreground dark:text-white rounded-xl">
                 {eligibleP2s.map(plyr => (
-                  <SelectItem key={plyr.id} value={plyr.id} className="font-bold text-[10px] uppercase focus:bg-primary/20 dark:focus:bg-brand-green/20 focus:text-primary dark:focus:text-brand-green rounded-xl transition-colors">{displayPlayerName(plyr)}</SelectItem>
+                  <SelectItem key={plyr.id} value={plyr.id} className="font-bold text-[10px] uppercase focus:bg-primary/20 dark:focus:bg-brand-orange/20 focus:text-primary dark:focus:text-brand-orange rounded-xl transition-colors">{displayPlayerName(plyr)}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -316,7 +316,7 @@ function ConfrontoContent() {
           <Card className="rounded-3xl bg-card dark:bg-black/40 backdrop-blur-sm border-border dark:border-white/5 shadow-sm dark:shadow-[0_0_20px_rgba(0,0,0,0.2)] overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-700 transition-colors">
             <CardHeader className="pb-0 px-6 pt-6 bg-muted/20 dark:bg-black/20">
               <CardTitle className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/40 dark:text-white/30 flex items-center justify-center gap-2">
-                <BarChart2 className="h-4 w-4 text-primary dark:text-brand-green" /> Bilanciamento Tecnico Comparativo
+                <BarChart2 className="h-4 w-4 text-primary dark:text-brand-orange" /> Bilanciamento Tecnico Comparativo
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-2 px-6">
@@ -350,10 +350,10 @@ function ConfrontoContent() {
                     <div className={cn(
                       "text-center font-black transition-all",
                       is1Better 
-                        ? "text-primary dark:text-brand-green text-xl shadow-[inset_0_-2px_0_rgba(37,99,235,0.4)] dark:shadow-[inset_0_-2px_0_rgba(172,229,4,0.4)]" 
+                        ? "text-primary dark:text-brand-orange text-xl shadow-[inset_0_-2px_0_rgba(37,99,235,0.4)] dark:shadow-[inset_0_-2px_0_rgba(172,229,4,0.4)]" 
                         : "text-muted-foreground/20 dark:text-white/20 text-sm"
                     )}>{row.val1}</div>
-                    <div className="text-center text-[9px] font-black text-muted-foreground/40 dark:text-white/40 uppercase tracking-widest group-hover:text-primary dark:group-hover:text-brand-green transition-colors">{row.label}</div>
+                    <div className="text-center text-[9px] font-black text-muted-foreground/40 dark:text-white/40 uppercase tracking-widest group-hover:text-primary dark:group-hover:text-brand-orange transition-colors">{row.label}</div>
                     <div className={cn(
                       "text-center font-black transition-all",
                       is2Better ? "text-pink-500 text-xl shadow-[inset_0_-2px_0_rgba(236,72,153,0.4)]" : "text-muted-foreground/20 dark:text-white/20 text-sm"

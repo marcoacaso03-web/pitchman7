@@ -129,7 +129,7 @@ export default function HomePage() {
 
           <Card
             onClick={() => router.push(`/calendario/${nextMatch.id}?s=${nextMatch.seasonId}`)}
-            className="bg-primary/20 dark:bg-brand-green/10 border-2 border-primary/50 dark:border-brand-green shadow-xl dark:shadow-[0_0_25px_rgba(172,229,4,0.15)] rounded-3xl cursor-pointer hover:bg-primary/30 dark:hover:bg-brand-green/20 transition-all overflow-hidden relative group"
+            className="bg-primary/20 dark:bg-brand-orange/10 border-2 border-primary/50 dark:border-brand-orange shadow-xl dark:shadow-[0_0_25px_rgba(172,229,4,0.15)] rounded-3xl cursor-pointer hover:bg-primary/30 dark:hover:bg-brand-orange/20 transition-all overflow-hidden relative group"
           >
             <div className="absolute -right-4 -bottom-4 opacity-5">
               {nextMatch.isHome ? <Home className="w-32 h-32" /> : <Plane className="w-32 h-32" />}
@@ -137,11 +137,11 @@ export default function HomePage() {
             <CardContent className="p-4 sm:p-5">
               <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                 <div className="flex gap-4 items-center">
-                  <div className="bg-primary dark:bg-brand-green text-white dark:text-black p-2.5 sm:p-3 rounded-2xl shadow-lg">
+                  <div className="bg-primary dark:bg-brand-orange text-white dark:text-black p-2.5 sm:p-3 rounded-2xl shadow-lg">
                     <GiWhistle className="h-6 w-6 sm:h-8 sm:w-8" />
                   </div>
                   <div>
-                    <p className="text-[10px] sm:text-xs font-black uppercase text-primary dark:text-brand-green tracking-[0.2em] mb-0.5">Partita in Arrivo</p>
+                    <p className="text-[10px] sm:text-xs font-black uppercase text-primary dark:text-brand-orange tracking-[0.2em] mb-0.5">Partita in Arrivo</p>
                     <h4 className="text-lg sm:text-xl font-black uppercase tracking-tight text-foreground dark:text-white">VS {nextMatch.opponent}</h4>
                     <p className="text-sm font-bold text-muted-foreground dark:text-white/60">
                       {format(parseISO(nextMatch.date), "dd MMMM yyyy", { locale: it })}
@@ -150,7 +150,7 @@ export default function HomePage() {
                 </div>
 
                 <div className="w-full sm:w-auto text-right">
-                  <div className="inline-block px-3 py-1.5 bg-background/50 dark:bg-black/60 rounded-xl border border-primary/30 dark:border-brand-green/30 backdrop-blur-md">
+                  <div className="inline-block px-3 py-1.5 bg-background/50 dark:bg-black/60 rounded-xl border border-primary/30 dark:border-brand-orange/30 backdrop-blur-md">
                     <p className="text-xs font-black text-foreground dark:text-white uppercase tracking-wider">{nextMatch.isHome ? "Casa" : "Trasferta"}</p>
                   </div>
                 </div>
@@ -165,25 +165,25 @@ export default function HomePage() {
       <div className="grid grid-cols-3 gap-2">
         <Button
           onClick={() => nextMatch ? router.push(`/calendario/${nextMatch.id}?s=${nextMatch.seasonId}&tab=formazione`) : router.push('/calendario')}
-          className="h-auto flex-col items-center justify-center p-3 bg-card dark:bg-white/5 border border-border dark:border-white/10 hover:bg-muted dark:hover:bg-white/10 hover:border-primary dark:hover:border-brand-green/50 text-foreground dark:text-white rounded-2xl transition-all shadow-sm gap-2"
+          className="h-auto flex-col items-center justify-center p-3 bg-card dark:bg-white/5 border border-border dark:border-white/10 hover:bg-muted dark:hover:bg-white/10 hover:border-primary dark:hover:border-brand-orange/50 text-foreground dark:text-white rounded-2xl transition-all shadow-sm gap-2"
         >
-          <Shield className="h-5 w-5 text-primary dark:text-brand-green" />
+          <Shield className="h-5 w-5 text-primary dark:text-brand-orange" />
           <span className="text-[10px] font-black uppercase text-center leading-tight">Prossima<br />Formazione</span>
         </Button>
 
         <Button
           onClick={() => router.push('/statistiche')}
-          className="h-auto flex-col items-center justify-center p-3 bg-card dark:bg-white/5 border border-border dark:border-white/10 hover:bg-muted dark:hover:bg-white/10 hover:border-primary dark:hover:border-brand-green/50 text-foreground dark:text-white rounded-2xl transition-all shadow-sm gap-2"
+          className="h-auto flex-col items-center justify-center p-3 bg-card dark:bg-white/5 border border-border dark:border-white/10 hover:bg-muted dark:hover:bg-white/10 hover:border-primary dark:hover:border-brand-orange/50 text-foreground dark:text-white rounded-2xl transition-all shadow-sm gap-2"
         >
-          <TrendingUp className="h-5 w-5 text-primary dark:text-brand-green" />
+          <TrendingUp className="h-5 w-5 text-primary dark:text-brand-orange" />
           <span className="text-[10px] font-black uppercase text-center leading-tight">Vedi<br />Statistiche</span>
         </Button>
 
         <Button
           onClick={() => router.push('/scout?new=true')}
-          className="h-auto flex-col items-center justify-center p-3 bg-card dark:bg-white/5 border border-border dark:border-white/10 hover:bg-muted dark:hover:bg-white/10 hover:border-primary dark:hover:border-brand-green/50 text-foreground dark:text-white rounded-2xl transition-all shadow-sm gap-2"
+          className="h-auto flex-col items-center justify-center p-3 bg-card dark:bg-white/5 border border-border dark:border-white/10 hover:bg-muted dark:hover:bg-white/10 hover:border-primary dark:hover:border-brand-orange/50 text-foreground dark:text-white rounded-2xl transition-all shadow-sm gap-2"
         >
-          <PlusCircle className="h-5 w-5 text-primary dark:text-brand-green" />
+          <PlusCircle className="h-5 w-5 text-primary dark:text-brand-orange" />
           <span className="text-[10px] font-black uppercase text-center leading-tight">Nuovo<br />Talento</span>
         </Button>
       </div>
@@ -191,10 +191,10 @@ export default function HomePage() {
       {/* 4. Roster Status */}
       <div
         onClick={() => router.push('/membri')}
-        className="flex flex-wrap items-center justify-between p-3 px-4 bg-card dark:bg-black border border-border dark:border-brand-green/30 rounded-2xl cursor-pointer hover:bg-muted dark:hover:bg-white/5 transition-all shadow-sm group mt-4"
+        className="flex flex-wrap items-center justify-between p-3 px-4 bg-card dark:bg-black border border-border dark:border-brand-orange/30 rounded-2xl cursor-pointer hover:bg-muted dark:hover:bg-white/5 transition-all shadow-sm group mt-4"
       >
         <div className="flex items-center gap-2 mb-2 sm:mb-0">
-          <Users className="h-5 w-5 text-primary dark:text-brand-green group-hover:scale-110 transition-transform" />
+          <Users className="h-5 w-5 text-primary dark:text-brand-orange group-hover:scale-110 transition-transform" />
           <span className="text-sm font-black uppercase tracking-tight text-foreground">Rosa: {players.length} Atleti</span>
         </div>
 
@@ -212,7 +212,7 @@ export default function HomePage() {
       {/* 5. Statistiche Principali (The Wall of Fame) */}
       <div className="flex items-center justify-between mt-4 mb-2">
         <h3 className="text-sm font-black uppercase tracking-widest text-foreground dark:text-white">Statistiche Principali</h3>
-        <Button variant="ghost" size="sm" onClick={() => router.push('/statistiche')} className="text-[10px] font-black uppercase text-primary dark:text-brand-green hover:bg-primary/10 dark:hover:bg-brand-green/10">
+        <Button variant="ghost" size="sm" onClick={() => router.push('/statistiche')} className="text-[10px] font-black uppercase text-primary dark:text-brand-orange hover:bg-primary/10 dark:hover:bg-brand-orange/10">
           Vedi Statistiche <ArrowRight className="ml-1 h-3 w-3" />
         </Button>
       </div>

@@ -61,7 +61,7 @@ export function AdvancedStatsSection() {
                 return (
                     <div className="space-y-2 mt-4">
                         {defenseData.map((item, idx) => (
-                            <div key={idx} className="flex items-center justify-between p-3 bg-muted/20 dark:bg-white/5 rounded-2xl border border-transparent hover:border-brand-green/30 transition-all">
+                            <div key={idx} className="flex items-center justify-between p-3 bg-muted/20 dark:bg-white/5 rounded-2xl border border-transparent hover:border-brand-orange/30 transition-all">
                                 <div className="flex items-center gap-3">
                                     <span className="text-[10px] font-black w-4 text-muted-foreground">#{idx + 1}</span>
                                     <div className="space-y-0.5">
@@ -72,7 +72,7 @@ export function AdvancedStatsSection() {
                                     </div>
                                 </div>
                                 <div className="text-right">
-                                    <p className="text-sm font-black text-brand-green">{item.goalsConcededPerMatch.toFixed(2)}</p>
+                                    <p className="text-sm font-black text-brand-orange">{item.goalsConcededPerMatch.toFixed(2)}</p>
                                     <p className="text-[8px] font-bold text-muted-foreground uppercase">Subiti/Gara</p>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@ export function AdvancedStatsSection() {
                 return (
                     <div className="space-y-2 mt-4">
                         {bestGaPerStarter.map((item, idx) => (
-                            <div key={idx} className="flex items-center justify-between p-3 bg-muted/20 dark:bg-white/5 rounded-2xl border border-transparent hover:border-primary/30 dark:hover:border-brand-green/30 transition-all">
+                            <div key={idx} className="flex items-center justify-between p-3 bg-muted/20 dark:bg-white/5 rounded-2xl border border-transparent hover:border-primary/30 dark:hover:border-brand-orange/30 transition-all">
                                 <div className="flex items-center gap-3">
                                     <span className="text-[10px] font-black w-4 text-muted-foreground">#{idx + 1}</span>
                                     <div className="space-y-0.5">
@@ -92,7 +92,7 @@ export function AdvancedStatsSection() {
                                     </div>
                                 </div>
                                 <div className="text-right">
-                                    <p className="text-sm font-black text-primary dark:text-brand-green">{item.gaPerStarter.toFixed(2)}</p>
+                                    <p className="text-sm font-black text-primary dark:text-brand-orange">{item.gaPerStarter.toFixed(2)}</p>
                                     <p className="text-[8px] font-bold text-muted-foreground uppercase">G+A / Start</p>
                                 </div>
                             </div>
@@ -103,13 +103,13 @@ export function AdvancedStatsSection() {
                 return (
                     <div className="space-y-2 mt-4">
                         {decisiveGoalsLeaders.map((item, idx) => (
-                            <div key={idx} className="flex items-center justify-between p-3 bg-muted/20 dark:bg-white/5 rounded-2xl border border-transparent hover:border-primary/30 dark:hover:border-brand-green/30 transition-all">
+                            <div key={idx} className="flex items-center justify-between p-3 bg-muted/20 dark:bg-white/5 rounded-2xl border border-transparent hover:border-primary/30 dark:hover:border-brand-orange/30 transition-all">
                                 <div className="flex items-center gap-3">
                                     <span className="text-[10px] font-black w-4 text-muted-foreground">#{idx + 1}</span>
                                     <p className="text-[11px] font-black uppercase tracking-tight text-foreground dark:text-white">{getPlayerName(item.playerId)}</p>
                                 </div>
                                 <div className="text-right">
-                                    <p className="text-sm font-black text-primary dark:text-brand-green">{item.decisiveGoals}</p>
+                                    <p className="text-sm font-black text-primary dark:text-brand-orange">{item.decisiveGoals}</p>
                                     <p className="text-[8px] font-bold text-muted-foreground uppercase">Gol Decisivi</p>
                                 </div>
                             </div>
@@ -120,7 +120,7 @@ export function AdvancedStatsSection() {
                 return (
                     <div className="space-y-2 mt-4">
                         {lowestStarterLossRate.map((item, idx) => (
-                            <div key={idx} className="flex items-center justify-between p-3 bg-muted/20 dark:bg-white/5 rounded-2xl border border-transparent hover:border-primary/30 dark:hover:border-brand-green/30 transition-all">
+                            <div key={idx} className="flex items-center justify-between p-3 bg-muted/20 dark:bg-white/5 rounded-2xl border border-transparent hover:border-primary/30 dark:hover:border-brand-orange/30 transition-all">
                                 <div className="flex items-center gap-3">
                                     <span className="text-[10px] font-black w-4 text-muted-foreground">#{idx + 1}</span>
                                     <div className="space-y-0.5">
@@ -129,7 +129,7 @@ export function AdvancedStatsSection() {
                                     </div>
                                 </div>
                                 <div className="text-right">
-                                    <p className="text-sm font-black text-primary dark:text-brand-green">{Math.round(item.lossRate * 100)}%</p>
+                                    <p className="text-sm font-black text-primary dark:text-brand-orange">{Math.round(item.lossRate * 100)}%</p>
                                     <p className="text-[8px] font-bold text-muted-foreground uppercase">Loss Rate</p>
                                 </div>
                             </div>
@@ -163,17 +163,17 @@ export function AdvancedStatsSection() {
     };
 
     return (
-        <div className="space-y-4 pt-4 border-t border-brand-green/10">
-            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-primary dark:text-brand-green/60 ml-1">Statistiche Advanced</h3>
+        <div className="space-y-4 pt-4 border-t border-brand-orange/10">
+            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-primary dark:text-brand-orange/60 ml-1">Statistiche Advanced</h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {/* 1. BEST DEFENSE (Pair or Trio) */}
                 <Card 
                     onClick={() => setSelectedRanking('defense')}
-                    className="cursor-pointer bg-card dark:bg-black/40 border-border dark:border-brand-green/30 shadow-sm rounded-3xl overflow-hidden transition-all hover:border-brand-green/50 hover:shadow-[0_0_20px_rgba(172,229,4,0.1)] group relative"
+                    className="cursor-pointer bg-card dark:bg-black/40 border-border dark:border-brand-orange/30 shadow-sm rounded-3xl overflow-hidden transition-all hover:border-brand-orange/50 hover:shadow-[0_0_20px_rgba(172,229,4,0.1)] group relative"
                 >
                     <CardHeader className="pb-1 flex flex-row items-center justify-between space-y-0">
-                        <CardTitle className="text-[10px] font-black uppercase tracking-widest flex items-center gap-2 text-muted-foreground group-hover:text-brand-green transition-colors">
+                        <CardTitle className="text-[10px] font-black uppercase tracking-widest flex items-center gap-2 text-muted-foreground group-hover:text-brand-orange transition-colors">
                             <ShieldCheck className="h-3 w-3" />
                             Muro Difensivo
                         </CardTitle>
@@ -186,13 +186,13 @@ export function AdvancedStatsSection() {
                                 <TabsList className="bg-black/20 border border-white/5 h-7 p-0.5 rounded-lg">
                                     <TabsTrigger 
                                         value="2" 
-                                        className="text-[8px] font-black h-6 px-2 data-[state=active]:bg-brand-green data-[state=active]:text-black uppercase"
+                                        className="text-[8px] font-black h-6 px-2 data-[state=active]:bg-brand-orange data-[state=active]:text-black uppercase"
                                     >
                                         DIF A 2
                                     </TabsTrigger>
                                     <TabsTrigger 
                                         value="3" 
-                                        className="text-[8px] font-black h-6 px-2 data-[state=active]:bg-brand-green data-[state=active]:text-black uppercase"
+                                        className="text-[8px] font-black h-6 px-2 data-[state=active]:bg-brand-orange data-[state=active]:text-black uppercase"
                                     >
                                         DIF A 3
                                     </TabsTrigger>
@@ -207,7 +207,7 @@ export function AdvancedStatsSection() {
                                     {currentBestDefense.playerIds.map(id => getPlayerName(id)).join(' + ')}
                                 </p>
                                 <div className="flex items-baseline gap-2">
-                                    <span className="text-2xl font-black text-brand-green">{currentBestDefense.goalsConcededPerMatch.toFixed(2)}</span>
+                                    <span className="text-2xl font-black text-brand-orange">{currentBestDefense.goalsConcededPerMatch.toFixed(2)}</span>
                                     <span className="text-[10px] font-bold text-muted-foreground uppercase opacity-60">Subiti/Gara</span>
                                 </div>
                             </div>
@@ -220,10 +220,10 @@ export function AdvancedStatsSection() {
                 {/* 2. BEST G/A PER STARTER */}
                 <Card 
                     onClick={() => setSelectedRanking('efficiency')}
-                    className="cursor-pointer bg-card dark:bg-black/40 border-border dark:border-brand-green/30 shadow-sm rounded-3xl overflow-hidden transition-all hover:border-primary/50 dark:hover:border-brand-green/50 hover:shadow-[0_0_20px_rgba(172,229,4,0.1)] group"
+                    className="cursor-pointer bg-card dark:bg-black/40 border-border dark:border-brand-orange/30 shadow-sm rounded-3xl overflow-hidden transition-all hover:border-primary/50 dark:hover:border-brand-orange/50 hover:shadow-[0_0_20px_rgba(172,229,4,0.1)] group"
                 >
                     <CardHeader className="pb-1">
-                        <CardTitle className="text-[10px] font-black uppercase tracking-widest flex items-center gap-2 text-muted-foreground group-hover:text-primary dark:group-hover:text-brand-green transition-colors">
+                        <CardTitle className="text-[10px] font-black uppercase tracking-widest flex items-center gap-2 text-muted-foreground group-hover:text-primary dark:group-hover:text-brand-orange transition-colors">
                             <Zap className="h-3 w-3" />
                             Efficiency Index
                         </CardTitle>
@@ -235,7 +235,7 @@ export function AdvancedStatsSection() {
                                     {getPlayerName(bestGaPlayer.playerId)}
                                 </p>
                                 <div className="flex items-baseline gap-2">
-                                    <span className="text-2xl font-black text-primary dark:text-brand-green">{bestGaPlayer.gaPerStarter.toFixed(2)}</span>
+                                    <span className="text-2xl font-black text-primary dark:text-brand-orange">{bestGaPlayer.gaPerStarter.toFixed(2)}</span>
                                     <span className="text-[10px] font-bold text-muted-foreground uppercase opacity-60">G+A / Start</span>
                                 </div>
                             </div>
@@ -248,10 +248,10 @@ export function AdvancedStatsSection() {
                 {/* 3. MOST DECISIVE GOALS */}
                 <Card 
                     onClick={() => setSelectedRanking('decisive')}
-                    className="cursor-pointer bg-card dark:bg-black/40 border-border dark:border-brand-green/30 shadow-sm rounded-3xl overflow-hidden transition-all hover:border-primary/50 dark:hover:border-brand-green/50 hover:shadow-[0_0_20px_rgba(172,229,4,0.1)] group"
+                    className="cursor-pointer bg-card dark:bg-black/40 border-border dark:border-brand-orange/30 shadow-sm rounded-3xl overflow-hidden transition-all hover:border-primary/50 dark:hover:border-brand-orange/50 hover:shadow-[0_0_20px_rgba(172,229,4,0.1)] group"
                 >
                     <CardHeader className="pb-1">
-                        <CardTitle className="text-[10px] font-black uppercase tracking-widest flex items-center gap-2 text-muted-foreground group-hover:text-primary dark:group-hover:text-brand-green transition-colors">
+                        <CardTitle className="text-[10px] font-black uppercase tracking-widest flex items-center gap-2 text-muted-foreground group-hover:text-primary dark:group-hover:text-brand-orange transition-colors">
                             <Target className="h-3 w-3" />
                             RISOLUTORE
                         </CardTitle>
@@ -263,7 +263,7 @@ export function AdvancedStatsSection() {
                                     {getPlayerName(topDecisive.playerId)}
                                 </p>
                                 <div className="flex items-baseline gap-2">
-                                    <span className="text-2xl font-black text-primary dark:text-brand-green">{topDecisive.decisiveGoals}</span>
+                                    <span className="text-2xl font-black text-primary dark:text-brand-orange">{topDecisive.decisiveGoals}</span>
                                     <span className="text-[10px] font-bold text-muted-foreground uppercase opacity-60">Gol decisivi</span>
                                 </div>
                             </div>
@@ -276,10 +276,10 @@ export function AdvancedStatsSection() {
                 {/* 4. LOWEST LOSS RATE */}
                 <Card 
                     onClick={() => setSelectedRanking('amulet')}
-                    className="cursor-pointer bg-card dark:bg-black/40 border-border dark:border-brand-green/30 shadow-sm rounded-3xl overflow-hidden transition-all hover:border-primary/50 dark:hover:border-brand-green/50 hover:shadow-[0_0_20px_rgba(172,229,4,0.1)] group"
+                    className="cursor-pointer bg-card dark:bg-black/40 border-border dark:border-brand-orange/30 shadow-sm rounded-3xl overflow-hidden transition-all hover:border-primary/50 dark:hover:border-brand-orange/50 hover:shadow-[0_0_20px_rgba(172,229,4,0.1)] group"
                 >
                     <CardHeader className="pb-1">
-                        <CardTitle className="text-[10px] font-black uppercase tracking-widest flex items-center gap-2 text-muted-foreground group-hover:text-primary dark:group-hover:text-brand-green transition-colors">
+                        <CardTitle className="text-[10px] font-black uppercase tracking-widest flex items-center gap-2 text-muted-foreground group-hover:text-primary dark:group-hover:text-brand-orange transition-colors">
                             <Users className="h-3 w-3" />
                             Amuleto Squadra
                         </CardTitle>
@@ -291,7 +291,7 @@ export function AdvancedStatsSection() {
                                     {getPlayerName(bestLossRatePlayer.playerId)}
                                 </p>
                                 <div className="flex items-baseline gap-2">
-                                    <span className="text-2xl font-black text-primary dark:text-brand-green">{Math.round(bestLossRatePlayer.lossRate * 100)}%</span>
+                                    <span className="text-2xl font-black text-primary dark:text-brand-orange">{Math.round(bestLossRatePlayer.lossRate * 100)}%</span>
                                     <span className="text-[10px] font-bold text-muted-foreground uppercase opacity-60">% partite perse</span>
                                 </div>
                             </div>
@@ -304,7 +304,7 @@ export function AdvancedStatsSection() {
 
             {/* RANKING DIALOG */}
             <Dialog open={!!selectedRanking} onOpenChange={(open) => !open && setSelectedRanking(null)}>
-                <DialogContent className="max-w-[90vw] sm:max-w-md bg-card dark:bg-black border border-border dark:border-brand-green/30 p-6 rounded-[32px] shadow-2xl overflow-hidden">
+                <DialogContent className="max-w-[90vw] sm:max-w-md bg-card dark:bg-black border border-border dark:border-brand-orange/30 p-6 rounded-[32px] shadow-2xl overflow-hidden">
                     <DialogHeader className="flex flex-row items-center justify-between space-y-0">
                         <div className="flex items-center gap-3">
                             <div className="p-2.5 rounded-2xl bg-muted/20 dark:bg-white/5 border border-border dark:border-white/10 shadow-sm">
@@ -327,13 +327,13 @@ export function AdvancedStatsSection() {
                                     <TabsList className="bg-muted/50 dark:bg-black/40 border border-divider dark:border-white/5 h-9 p-1 rounded-xl">
                                         <TabsTrigger 
                                             value="2" 
-                                            className="text-[10px] font-black h-7 px-3 data-[state=active]:bg-brand-green data-[state=active]:text-black uppercase tracking-widest"
+                                            className="text-[10px] font-black h-7 px-3 data-[state=active]:bg-brand-orange data-[state=active]:text-black uppercase tracking-widest"
                                         >
                                             DIF A 2
                                         </TabsTrigger>
                                         <TabsTrigger 
                                             value="3" 
-                                            className="text-[10px] font-black h-7 px-3 data-[state=active]:bg-brand-green data-[state=active]:text-black uppercase tracking-widest"
+                                            className="text-[10px] font-black h-7 px-3 data-[state=active]:bg-brand-orange data-[state=active]:text-black uppercase tracking-widest"
                                         >
                                             DIF A 3
                                         </TabsTrigger>

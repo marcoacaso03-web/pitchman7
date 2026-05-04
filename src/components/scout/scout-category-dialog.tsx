@@ -67,8 +67,8 @@ export function ScoutCategoryDialog({ open, onOpenChange, categories }: ScoutCat
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-[95vw] md:max-w-md rounded-3xl p-0 overflow-hidden bg-background dark:bg-black border border-border dark:border-brand-green/30 shadow-sm dark:shadow-[0_0_20px_rgba(172,229,4,0.15)] transition-colors duration-300">
-        <DialogHeader className="p-6 bg-card dark:bg-black border-b border-border dark:border-brand-green/30 text-foreground dark:text-white shrink-0">
+      <DialogContent className="max-w-[95vw] md:max-w-md rounded-3xl p-0 overflow-hidden bg-background dark:bg-black border border-border dark:border-brand-orange/30 shadow-sm dark:shadow-[0_0_20px_rgba(172,229,4,0.15)] transition-colors duration-300">
+        <DialogHeader className="p-6 bg-card dark:bg-black border-b border-border dark:border-brand-orange/30 text-foreground dark:text-white shrink-0">
           <DialogTitle className="text-xl font-black uppercase tracking-tight">
             Gestisci Etichette
           </DialogTitle>
@@ -76,19 +76,19 @@ export function ScoutCategoryDialog({ open, onOpenChange, categories }: ScoutCat
 
         <div className="p-6 space-y-6">
           {/* Form nuova categoria */}
-          <div className="space-y-4 p-4 rounded-2xl bg-muted dark:bg-card/50 border border-border dark:border-brand-green/20">
+          <div className="space-y-4 p-4 rounded-2xl bg-muted dark:bg-card/50 border border-border dark:border-brand-orange/20">
             <div className="space-y-1.5">
-              <Label className="text-[10px] font-black uppercase tracking-widest text-primary dark:text-brand-green ml-1">Nuova Etichetta</Label>
+              <Label className="text-[10px] font-black uppercase tracking-widest text-primary dark:text-brand-orange ml-1">Nuova Etichetta</Label>
               <div className="flex gap-2">
                 <Input 
                   value={newCatName} 
                   onChange={e => setNewCatName(e.target.value)}
                   placeholder="Es: Piede Sinistro"
-                  className="h-10 rounded-xl font-bold uppercase text-xs bg-background dark:bg-black border border-primary/50 dark:border-brand-green/50 focus-visible:ring-1 focus-visible:ring-primary dark:focus-visible:ring-brand-green text-foreground dark:text-white shadow-sm"
+                  className="h-10 rounded-xl font-bold uppercase text-xs bg-background dark:bg-black border border-primary/50 dark:border-brand-orange/50 focus-visible:ring-1 focus-visible:ring-primary dark:focus-visible:ring-brand-orange text-foreground dark:text-white shadow-sm"
                 />
                 <Button 
                   size="sm" 
-                  className="bg-primary border border-primary text-white hover:bg-primary/90 hover:text-white dark:bg-black dark:border-brand-green dark:text-brand-green dark:hover:bg-brand-green dark:hover:text-black shadow-sm dark:shadow-[0_0_10px_rgba(172,229,4,0.15)] h-10 rounded-xl font-black uppercase px-4 transition-all"
+                  className="bg-primary border border-primary text-white hover:bg-primary/90 hover:text-white dark:bg-black dark:border-brand-orange dark:text-brand-orange dark:hover:bg-brand-orange dark:hover:text-black shadow-sm dark:shadow-[0_0_10px_rgba(172,229,4,0.15)] h-10 rounded-xl font-black uppercase px-4 transition-all"
                   onClick={handleAddCategory}
                   disabled={loading || !newCatName.trim()}
                 >
@@ -98,7 +98,7 @@ export function ScoutCategoryDialog({ open, onOpenChange, categories }: ScoutCat
             </div>
             
             <div className="space-y-1.5">
-              <Label className="text-[10px] font-black uppercase tracking-widest text-primary dark:text-brand-green ml-1">Scegli Colore</Label>
+              <Label className="text-[10px] font-black uppercase tracking-widest text-primary dark:text-brand-orange ml-1">Scegli Colore</Label>
               <div className="flex flex-wrap gap-2">
                 {PRESET_COLORS.map(color => (
                   <div 
@@ -116,8 +116,8 @@ export function ScoutCategoryDialog({ open, onOpenChange, categories }: ScoutCat
 
           {/* Lista categorie esistenti */}
           <div className="space-y-2">
-            <Label className="text-[10px] font-black uppercase tracking-widest text-primary dark:text-brand-green ml-1">Etichette Esistenti</Label>
-            <ScrollArea className="h-[200px] w-full rounded-xl bg-muted dark:bg-card/50 border border-border dark:border-brand-green/20 p-2">
+            <Label className="text-[10px] font-black uppercase tracking-widest text-primary dark:text-brand-orange ml-1">Etichette Esistenti</Label>
+            <ScrollArea className="h-[200px] w-full rounded-xl bg-muted dark:bg-card/50 border border-border dark:border-brand-orange/20 p-2">
               <div className="space-y-2">
                 {categories.length === 0 ? (
                   <p className="text-[10px] text-center py-10 text-muted-foreground font-bold uppercase italic">Nessuna etichetta salvata.</p>
@@ -145,7 +145,7 @@ export function ScoutCategoryDialog({ open, onOpenChange, categories }: ScoutCat
         </div>
 
         <DialogFooter className="p-6 pt-0">
-          <Button className="w-full rounded-xl font-black uppercase text-xs h-12 bg-primary dark:bg-black border border-primary/30 dark:border-brand-green/30 text-white hover:opacity-90 dark:hover:bg-black/80 hover:border-primary dark:hover:border-brand-green shadow-sm dark:shadow-[0_0_10px_rgba(172,229,4,0.1)] transition-all" onClick={() => onOpenChange(false)}>
+          <Button className="w-full rounded-xl font-black uppercase text-xs h-12 bg-primary dark:bg-black border border-primary/30 dark:border-brand-orange/30 text-white hover:opacity-90 dark:hover:bg-black/80 hover:border-primary dark:hover:border-brand-orange shadow-sm dark:shadow-[0_0_10px_rgba(172,229,4,0.1)] transition-all" onClick={() => onOpenChange(false)}>
             Chiudi
           </Button>
         </DialogFooter>

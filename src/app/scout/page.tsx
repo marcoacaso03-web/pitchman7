@@ -126,17 +126,17 @@ function ScoutContent() {
         <div className="flex gap-2">
           <Button
             size="sm"
-            className="h-9 text-[10px] font-black uppercase rounded-xl bg-card border border-border dark:bg-black dark:border-brand-green/30 text-foreground dark:text-white hover:bg-muted dark:hover:bg-black/60 shadow-sm dark:shadow-[0_0_10px_rgba(172,229,4,0.1)] transition-all"
+            className="h-9 text-[10px] font-black uppercase rounded-xl bg-card border border-border dark:bg-black dark:border-brand-orange/30 text-foreground dark:text-white hover:bg-muted dark:hover:bg-black/60 shadow-sm dark:shadow-[0_0_10px_rgba(172,229,4,0.1)] transition-all"
             onClick={() => setIsCategoryDialogOpen(true)}
           >
-            <Tag className="mr-1.5 h-3.5 w-3.5 text-primary dark:text-brand-green" /> Etichette
+            <Tag className="mr-1.5 h-3.5 w-3.5 text-primary dark:text-brand-orange" /> Etichette
           </Button>
           <Button
             size="sm"
-            className="h-9 text-[10px] font-black uppercase rounded-xl bg-primary dark:bg-black border border-primary dark:border-brand-green text-white dark:text-white hover:opacity-90 dark:hover:bg-black/80 shadow-md dark:shadow-[0_0_10px_rgba(172,229,4,0.15)] hover:scale-105 transition-all"
+            className="h-9 text-[10px] font-black uppercase rounded-xl bg-primary dark:bg-black border border-primary dark:border-brand-orange text-white dark:text-white hover:opacity-90 dark:hover:bg-black/80 shadow-md dark:shadow-[0_0_10px_rgba(172,229,4,0.15)] hover:scale-105 transition-all"
             onClick={() => { setEditingPlayer(null); setIsPlayerDialogOpen(true); }}
           >
-            <UserPlus className="mr-1.5 h-3.5 w-3.5 text-white dark:text-brand-green" /> Nuovo
+            <UserPlus className="mr-1.5 h-3.5 w-3.5 text-white dark:text-brand-orange" /> Nuovo
           </Button>
         </div>
       </PageHeader>
@@ -145,18 +145,18 @@ function ScoutContent() {
       <div className="space-y-3">
         <div className="flex flex-col md:flex-row gap-3">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary dark:text-brand-green" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary dark:text-brand-orange" />
             <Input
               placeholder="Cerca talento per nome..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-9 h-10 w-full rounded-2xl border-border dark:border-brand-green/30 bg-card dark:bg-black/40 text-foreground dark:text-white font-bold text-sm focus-visible:ring-1 focus-visible:ring-primary dark:focus-visible:ring-brand-green shadow-sm dark:shadow-[0_0_10px_rgba(172,229,4,0.05)] placeholder:text-muted-foreground/30 dark:placeholder:text-white/20"
+              className="pl-9 h-10 w-full rounded-2xl border-border dark:border-brand-orange/30 bg-card dark:bg-black/40 text-foreground dark:text-white font-bold text-sm focus-visible:ring-1 focus-visible:ring-primary dark:focus-visible:ring-brand-orange shadow-sm dark:shadow-[0_0_10px_rgba(172,229,4,0.05)] placeholder:text-muted-foreground/30 dark:placeholder:text-white/20"
             />
           </div>
         </div>
 
         <div className="flex items-center gap-2 px-1">
-          <Filter className="h-3 w-3 text-primary dark:text-brand-green" />
+          <Filter className="h-3 w-3 text-primary dark:text-brand-orange" />
           <span className="text-[9px] font-black uppercase tracking-widest text-muted-foreground">Filtra per etichetta:</span>
         </div>
         <ScrollArea className="w-full whitespace-nowrap pb-2">
@@ -166,7 +166,7 @@ function ScoutContent() {
               className={cn(
                 "cursor-pointer uppercase font-black text-[9px] px-3 py-1 rounded-lg transition-all border",
                 selectedCategoryIds.length === 0
-                  ? "bg-muted dark:bg-black border-primary dark:border-brand-green text-foreground dark:text-brand-green shadow-sm dark:shadow-[0_0_10px_rgba(172,229,4,0.15)]"
+                  ? "bg-muted dark:bg-black border-primary dark:border-brand-orange text-foreground dark:text-brand-orange shadow-sm dark:shadow-[0_0_10px_rgba(172,229,4,0.15)]"
                   : "bg-card dark:bg-black/40 border-border dark:border-white/10 text-muted-foreground"
               )}
               onClick={() => setSelectedCategoryIds([])}
@@ -202,9 +202,9 @@ function ScoutContent() {
             <Skeleton key={i} className="h-32 w-full rounded-2xl" />
           ))
         ) : filteredPlayers.length === 0 ? (
-          <Card className="col-span-full border border-dashed border-border dark:border-brand-green/30 bg-muted/20 dark:bg-black/20 hover:bg-muted/30 dark:hover:bg-black/30 rounded-3xl">
+          <Card className="col-span-full border border-dashed border-border dark:border-brand-orange/30 bg-muted/20 dark:bg-black/20 hover:bg-muted/30 dark:hover:bg-black/30 rounded-3xl">
             <CardContent className="flex flex-col items-center justify-center py-16 text-center">
-              <Search className="h-12 w-12 text-primary dark:text-brand-green mb-4 opacity-40" />
+              <Search className="h-12 w-12 text-primary dark:text-brand-orange mb-4 opacity-40" />
               <h3 className="text-sm font-black uppercase text-foreground dark:text-white">Nessun talento trovato</h3>
               <p className="text-[10px] font-bold text-muted-foreground/60 dark:text-white/30 uppercase tracking-widest mt-1">
                 {players?.length === 0 ? "Inizia aggiungendo il primo talento alla tua lista." : "Prova a cambiare i filtri selezionati."}
@@ -214,7 +214,7 @@ function ScoutContent() {
         ) : (
           <>
             {visiblePlayers.map((player) => (
-              <Card key={player.id} className="overflow-hidden border border-border dark:border-brand-green/30 bg-card dark:bg-black/40 backdrop-blur-sm shadow-sm dark:shadow-[0_0_15px_rgba(172,229,4,0.1)] rounded-3xl transition-all group hover:opacity-90">
+              <Card key={player.id} className="overflow-hidden border border-border dark:border-brand-orange/30 bg-card dark:bg-black/40 backdrop-blur-sm shadow-sm dark:shadow-[0_0_15px_rgba(172,229,4,0.1)] rounded-3xl transition-all group hover:opacity-90">
                 <CardContent className="p-4">
                   <div className="flex justify-between items-start mb-2">
                     <div className="flex flex-col">
@@ -229,7 +229,7 @@ function ScoutContent() {
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="h-7 w-7 text-muted-foreground hover:text-primary hover:bg-primary/10 dark:hover:text-brand-green dark:hover:bg-brand-green/10 transition-all"
+                        className="h-7 w-7 text-muted-foreground hover:text-primary hover:bg-primary/10 dark:hover:text-brand-orange dark:hover:bg-brand-orange/10 transition-all"
                         onClick={(e) => { e.stopPropagation(); setEditingPlayer(player); setIsPlayerDialogOpen(true); }}
                       >
                         <Edit className="h-3.5 w-3.5" />
@@ -294,15 +294,15 @@ function ScoutContent() {
 
       {/* Alert Dialog per Delete */}
       <AlertDialog open={!!playerToDelete} onOpenChange={(open) => !open && setPlayerToDelete(null)}>
-        <AlertDialogContent className="max-w-md rounded-3xl bg-card dark:bg-black border border-border dark:border-brand-green/30">
+        <AlertDialogContent className="max-w-md rounded-3xl bg-card dark:bg-black border border-border dark:border-brand-orange/30">
           <AlertDialogHeader>
             <AlertDialogTitle className="text-foreground dark:text-white font-black uppercase">Sei sicuro?</AlertDialogTitle>
             <AlertDialogDescription className="text-muted-foreground">
-              Vuoi eliminare definitivamente il talento <strong className="text-foreground dark:text-brand-green uppercase">{playerToDelete?.name}</strong>? Questa azione non può essere annullata.
+              Vuoi eliminare definitivamente il talento <strong className="text-foreground dark:text-brand-orange uppercase">{playerToDelete?.name}</strong>? Questa azione non può essere annullata.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel className="rounded-xl font-bold uppercase text-xs h-10 border-border dark:border-brand-green/30 text-foreground dark:text-white hover:bg-muted dark:hover:bg-black/40">Annulla</AlertDialogCancel>
+            <AlertDialogCancel className="rounded-xl font-bold uppercase text-xs h-10 border-border dark:border-brand-orange/30 text-foreground dark:text-white hover:bg-muted dark:hover:bg-black/40">Annulla</AlertDialogCancel>
             <AlertDialogAction
               onClick={confirmDeletePlayer}
               className="rounded-xl font-bold uppercase text-xs h-10 bg-destructive text-destructive-foreground hover:bg-destructive/90"

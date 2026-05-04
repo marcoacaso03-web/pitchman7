@@ -46,18 +46,18 @@ export function GuideDialog() {
     <Dialog>
       <DialogTrigger asChild>
         <button
-          className="flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-white dark:bg-black font-black text-xs text-foreground dark:text-white shadow-sm transition-all hover:bg-muted dark:hover:bg-brand-green/10 dark:border-brand-green/30 dark:shadow-[0_0_12px_rgba(172,229,4,0.15)] group shrink-0"
+          className="flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-white dark:bg-black font-black text-xs text-foreground dark:text-white shadow-sm transition-all hover:bg-muted dark:hover:bg-brand-orange/10 dark:border-brand-orange/30 dark:shadow-[0_0_12px_rgba(172,229,4,0.15)] group shrink-0"
           title="FAQ & Guida"
         >
           <span className="group-hover:scale-110 transition-transform">?</span>
         </button>
       </DialogTrigger>
 
-      <DialogContent className="max-w-2xl max-h-[85vh] p-0 overflow-hidden border-border dark:border-brand-green/30 dark:shadow-[0_0_20px_rgba(172,229,4,0.1)]">
+      <DialogContent className="max-w-2xl max-h-[85vh] p-0 overflow-hidden border-border dark:border-brand-orange/30 dark:shadow-[0_0_20px_rgba(172,229,4,0.1)]">
         <DialogHeader className="p-6 pb-0">
           <DialogTitle className="flex items-center gap-2 text-2xl font-black italic uppercase tracking-tighter">
-            <Trophy className="h-6 w-6 text-brand-green" />
-            FAQ <span className="text-brand-green">PitchMan</span>
+            <Trophy className="h-6 w-6 text-brand-orange" />
+            FAQ <span className="text-brand-orange">PitchMan</span>
           </DialogTitle>
           <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mt-1">
             Domande frequenti e guida all&apos;utilizzo
@@ -80,9 +80,9 @@ export function GuideDialog() {
                     <AccordionItem
                       key={`${category}-${idx}`}
                       value={`${category}-${idx}`}
-                      className="border border-border dark:border-brand-green/10 rounded-xl px-4 overflow-hidden data-[state=open]:border-brand-green/30 transition-colors"
+                      className="border border-border dark:border-brand-orange/10 rounded-xl px-4 overflow-hidden data-[state=open]:border-brand-orange/30 transition-colors"
                     >
-                      <AccordionTrigger className="text-sm font-semibold text-left py-3 hover:no-underline hover:text-brand-green transition-colors [&[data-state=open]]:text-brand-green">
+                      <AccordionTrigger className="text-sm font-semibold text-left py-3 hover:no-underline hover:text-brand-orange transition-colors [&[data-state=open]]:text-brand-orange">
                         {faq.question}
                       </AccordionTrigger>
                       <AccordionContent className="text-sm text-muted-foreground leading-relaxed pb-4 whitespace-pre-line">
@@ -95,12 +95,12 @@ export function GuideDialog() {
             ))}
 
             {/* Pro Tip */}
-            <div className="flex gap-4 p-5 rounded-2xl bg-brand-green/5 border border-brand-green/20 items-start">
-              <div className="p-2 rounded-lg bg-brand-green/10 shrink-0">
-                <Zap className="h-5 w-5 text-brand-green fill-brand-green" />
+            <div className="flex gap-4 p-5 rounded-2xl bg-brand-orange/5 border border-brand-orange/20 items-start">
+              <div className="p-2 rounded-lg bg-brand-orange/10 shrink-0">
+                <Zap className="h-5 w-5 text-brand-orange fill-brand-orange" />
               </div>
               <div className="space-y-1">
-                <p className="text-xs font-black uppercase tracking-tighter text-brand-green">Pro Tip</p>
+                <p className="text-xs font-black uppercase tracking-tighter text-brand-orange">Pro Tip</p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Puoi anche chiedere all&apos;
                   <span className="font-bold text-foreground dark:text-white">AI Assistant</span> come usare

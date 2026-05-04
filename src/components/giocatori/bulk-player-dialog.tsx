@@ -152,7 +152,7 @@ export function BulkPlayerDialog({ open, onOpenChange, onSave }: BulkPlayerDialo
           <Button variant="ghost" className="flex-1 rounded-xl font-bold uppercase text-xs h-11 text-foreground dark:text-white hover:bg-muted dark:hover:bg-white/5" onClick={() => onOpenChange(false)} disabled={isSaving}>
             Annulla
           </Button>
-          <Button onClick={handleSave} className="flex-1 bg-primary dark:bg-brand-green text-white dark:text-black hover:opacity-90 dark:hover:bg-brand-green/90 rounded-xl font-bold uppercase text-xs h-11 shadow-sm transition-all" disabled={isSaving}>
+          <Button onClick={handleSave} className="flex-1 bg-primary dark:bg-brand-orange text-white dark:text-black hover:opacity-90 dark:hover:bg-brand-orange/90 rounded-xl font-bold uppercase text-xs h-11 shadow-sm transition-all" disabled={isSaving}>
             {isSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Salva Giocatori'}
           </Button>
         </DialogFooter>

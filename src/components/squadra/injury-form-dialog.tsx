@@ -58,11 +58,11 @@ export function InjuryFormDialog({
         weekday: "text-muted-foreground/30 rounded-md w-9 font-black text-[0.6rem] uppercase tracking-tighter text-center",
         caption_label: "text-sm font-black uppercase tracking-[0.2em] text-foreground dark:text-white",
         day: "h-10 w-10 p-0 m-0 flex items-center justify-center relative",
-        day_button: "text-foreground/80 dark:text-white/60 hover:bg-muted dark:hover:bg-black hover:text-foreground dark:hover:text-white hover:border hover:border-primary/30 dark:hover:border-brand-green/30 hover:shadow-sm dark:hover:shadow-[0_0_15px_rgba(172,229,4,0.4)] rounded-xl h-10 w-10 flex items-center justify-center p-0 font-black transition-all cursor-pointer relative z-10",
-        selected: "!bg-transparent border-2 border-primary dark:border-brand-green text-primary dark:text-brand-green shadow-sm dark:shadow-[0_0_15px_rgba(172,229,4,0.2)] hover:!bg-muted dark:hover:!bg-black hover:!text-foreground dark:hover:!text-white rounded-xl",
+        day_button: "text-foreground/80 dark:text-white/60 hover:bg-muted dark:hover:bg-black hover:text-foreground dark:hover:text-white hover:border hover:border-primary/30 dark:hover:border-brand-orange/30 hover:shadow-sm dark:hover:shadow-[0_0_15px_rgba(172,229,4,0.4)] rounded-xl h-10 w-10 flex items-center justify-center p-0 font-black transition-all cursor-pointer relative z-10",
+        selected: "!bg-transparent border-2 border-primary dark:border-brand-orange text-primary dark:text-brand-orange shadow-sm dark:shadow-[0_0_15px_rgba(172,229,4,0.2)] hover:!bg-muted dark:hover:!bg-black hover:!text-foreground dark:hover:!text-white rounded-xl",
         today: "bg-muted/50 dark:bg-white/5 text-foreground/50 dark:text-white/40 rounded-xl",
-        button_previous: "hover:bg-primary/10 dark:hover:bg-brand-green/10 hover:text-primary dark:hover:text-brand-green rounded-lg transition-colors p-1 text-foreground/50 dark:text-white/50",
-        button_next: "hover:bg-primary/10 dark:hover:bg-brand-green/10 hover:text-primary dark:hover:text-brand-green rounded-lg transition-colors p-1 text-foreground/50 dark:text-white/50",
+        button_previous: "hover:bg-primary/10 dark:hover:bg-brand-orange/10 hover:text-primary dark:hover:text-brand-orange rounded-lg transition-colors p-1 text-foreground/50 dark:text-white/50",
+        button_next: "hover:bg-primary/10 dark:hover:bg-brand-orange/10 hover:text-primary dark:hover:text-brand-orange rounded-lg transition-colors p-1 text-foreground/50 dark:text-white/50",
     };
 
     const allInjuries = players.flatMap(p => 
@@ -74,10 +74,10 @@ export function InjuryFormDialog({
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="sm:max-w-[500px] rounded-[28px] bg-card dark:bg-black border border-primary/30 dark:border-brand-green/30 shadow-xl dark:shadow-[0_0_25px_rgba(172,229,4,0.15)] p-6 overflow-hidden">
+            <DialogContent className="sm:max-w-[500px] rounded-[28px] bg-card dark:bg-black border border-primary/30 dark:border-brand-orange/30 shadow-xl dark:shadow-[0_0_25px_rgba(172,229,4,0.15)] p-6 overflow-hidden">
                 <DialogHeader className="space-y-1">
-                    <div className="mx-auto bg-primary/10 dark:bg-brand-green/10 p-3 rounded-full mb-2 border border-primary/20 dark:border-brand-green/20">
-                        <Hospital className="h-6 w-6 text-primary dark:text-brand-green" />
+                    <div className="mx-auto bg-primary/10 dark:bg-brand-orange/10 p-3 rounded-full mb-2 border border-primary/20 dark:border-brand-orange/20">
+                        <Hospital className="h-6 w-6 text-primary dark:text-brand-orange" />
                     </div>
                     <DialogTitle className="text-foreground dark:text-white font-black uppercase text-xl md:text-2xl tracking-tight text-center">
                         Infermeria
@@ -88,25 +88,25 @@ export function InjuryFormDialog({
                 </DialogHeader>
 
                 <Tabs defaultValue="infortuni" className="w-full mt-4">
-                    <TabsList className="grid w-full grid-cols-2 bg-muted/50 dark:bg-black/40 rounded-xl p-1 mb-4 h-auto border border-border dark:border-brand-green/10">
-                        <TabsTrigger value="infortuni" className="text-xs font-black uppercase rounded-lg h-10 data-[state=active]:bg-primary dark:data-[state=active]:bg-brand-green data-[state=active]:text-white dark:data-[state=active]:text-black transition-all">Infortuni</TabsTrigger>
-                        <TabsTrigger value="aggiungi" className="text-xs font-black uppercase rounded-lg h-10 data-[state=active]:bg-primary dark:data-[state=active]:bg-brand-green data-[state=active]:text-white dark:data-[state=active]:text-black transition-all">Aggiungi</TabsTrigger>
+                    <TabsList className="grid w-full grid-cols-2 bg-muted/50 dark:bg-black/40 rounded-xl p-1 mb-4 h-auto border border-border dark:border-brand-orange/10">
+                        <TabsTrigger value="infortuni" className="text-xs font-black uppercase rounded-lg h-10 data-[state=active]:bg-primary dark:data-[state=active]:bg-brand-orange data-[state=active]:text-white dark:data-[state=active]:text-black transition-all">Infortuni</TabsTrigger>
+                        <TabsTrigger value="aggiungi" className="text-xs font-black uppercase rounded-lg h-10 data-[state=active]:bg-primary dark:data-[state=active]:bg-brand-orange data-[state=active]:text-white dark:data-[state=active]:text-black transition-all">Aggiungi</TabsTrigger>
                     </TabsList>
 
                     <TabsContent value="infortuni" className="max-h-[50vh] overflow-y-auto pr-2 space-y-4 mt-0">
                         {allInjuries.length === 0 ? (
-                            <div className="text-center py-10 text-muted-foreground text-xs font-bold uppercase tracking-widest border-2 border-dashed border-border dark:border-brand-green/20 rounded-2xl">
+                            <div className="text-center py-10 text-muted-foreground text-xs font-bold uppercase tracking-widest border-2 border-dashed border-border dark:border-brand-orange/20 rounded-2xl">
                                 Nessun Infortunio Registrato
                             </div>
                         ) : (
                             <div className="space-y-2">
-                                <div className="grid grid-cols-12 gap-2 px-3 pb-2 border-b border-border dark:border-brand-green/20 text-[9px] font-black uppercase tracking-widest text-foreground dark:text-white/70">
+                                <div className="grid grid-cols-12 gap-2 px-3 pb-2 border-b border-border dark:border-brand-orange/20 text-[9px] font-black uppercase tracking-widest text-foreground dark:text-white/70">
                                     <div className="col-span-5">Giocatore</div>
                                     <div className="col-span-3">Da</div>
                                     <div className="col-span-4">A</div>
                                 </div>
                                 {allInjuries.map(injury => (
-                                    <div key={injury.id} className="grid grid-cols-12 gap-2 px-3 py-3.5 bg-muted/50 dark:bg-black/60 rounded-xl items-center text-[10px] font-bold uppercase relative group border border-border/50 dark:border-brand-green/10 hover:border-primary/30 dark:hover:border-brand-green/30 transition-colors">
+                                    <div key={injury.id} className="grid grid-cols-12 gap-2 px-3 py-3.5 bg-muted/50 dark:bg-black/60 rounded-xl items-center text-[10px] font-bold uppercase relative group border border-border/50 dark:border-brand-orange/10 hover:border-primary/30 dark:hover:border-brand-orange/30 transition-colors">
                                         <div className="col-span-5 truncate text-foreground dark:text-white pr-2">{displayPlayerName(injury.player)}</div>
                                         <div className="col-span-3 text-foreground dark:text-white/80">{format(new Date(injury.startDate), 'dd MMM yyyy', {locale: it})}</div>
                                         <div className="col-span-4 text-foreground dark:text-white flex justify-between items-center">
@@ -138,9 +138,9 @@ export function InjuryFormDialog({
 
                     <TabsContent value="aggiungi" className="space-y-5 mt-0">
                         <div className="space-y-2">
-                            <label className="text-[9px] font-black uppercase tracking-[0.2em] text-primary dark:text-brand-green/80 ml-1">Seleziona Giocatore</label>
+                            <label className="text-[9px] font-black uppercase tracking-[0.2em] text-primary dark:text-brand-orange/80 ml-1">Seleziona Giocatore</label>
                             <Select value={selectedPlayerId} onValueChange={setSelectedPlayerId}>
-                                <SelectTrigger className="h-11 text-xs font-black uppercase rounded-xl bg-background dark:bg-black border border-border dark:border-brand-green/20 focus:ring-1 focus:ring-primary dark:focus:ring-brand-green transition-all">
+                                <SelectTrigger className="h-11 text-xs font-black uppercase rounded-xl bg-background dark:bg-black border border-border dark:border-brand-orange/20 focus:ring-1 focus:ring-primary dark:focus:ring-brand-orange transition-all">
                                     <SelectValue placeholder="Scegli..." />
                                 </SelectTrigger>
                                 <SelectContent className="rounded-xl border-border bg-card">
@@ -155,21 +155,21 @@ export function InjuryFormDialog({
 
                         <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-2">
-                                <label className="text-[9px] font-black uppercase tracking-[0.2em] text-primary dark:text-brand-green/80 ml-1">Data Inizio</label>
+                                <label className="text-[9px] font-black uppercase tracking-[0.2em] text-primary dark:text-brand-orange/80 ml-1">Data Inizio</label>
                                 <Popover open={startOpen} onOpenChange={setStartOpen} modal={true}>
                                     <PopoverTrigger asChild>
                                         <Button
                                             variant={"ghost"}
                                             className={cn(
-                                                "w-full h-11 justify-start text-left font-bold uppercase text-xs rounded-xl bg-background dark:bg-black border border-border dark:border-brand-green/20 focus:ring-1 focus:ring-primary dark:focus:ring-brand-green",
+                                                "w-full h-11 justify-start text-left font-bold uppercase text-xs rounded-xl bg-background dark:bg-black border border-border dark:border-brand-orange/20 focus:ring-1 focus:ring-primary dark:focus:ring-brand-orange",
                                                 !startDate && "text-muted-foreground"
                                             )}
                                         >
-                                            <CalendarIcon className="mr-2 h-3.5 w-3.5 text-primary dark:text-brand-green" />
+                                            <CalendarIcon className="mr-2 h-3.5 w-3.5 text-primary dark:text-brand-orange" />
                                             {startDate ? format(startDate, "dd MMM yyyy", { locale: it }) : <span>Inizio</span>}
                                         </Button>
                                     </PopoverTrigger>
-                                    <PopoverContent className="w-auto p-0 rounded-2xl bg-card dark:bg-background border-border dark:border-brand-green/30 shadow-xl z-[9999]" align="start">
+                                    <PopoverContent className="w-auto p-0 rounded-2xl bg-card dark:bg-background border-border dark:border-brand-orange/30 shadow-xl z-[9999]" align="start">
                                         <Calendar
                                             mode="single"
                                             selected={startDate}
@@ -186,21 +186,21 @@ export function InjuryFormDialog({
                                 </Popover>
                             </div>
                             <div className="space-y-2">
-                                <label className="text-[9px] font-black uppercase tracking-[0.2em] text-primary dark:text-brand-green/80 ml-1">Data Fine</label>
+                                <label className="text-[9px] font-black uppercase tracking-[0.2em] text-primary dark:text-brand-orange/80 ml-1">Data Fine</label>
                                 <Popover open={endOpen} onOpenChange={setEndOpen} modal={true}>
                                     <PopoverTrigger asChild>
                                         <Button
                                             variant={"ghost"}
                                             className={cn(
-                                                "w-full h-11 justify-start text-left font-bold uppercase text-xs rounded-xl bg-background dark:bg-black border border-border dark:border-brand-green/20 focus:ring-1 focus:ring-primary dark:focus:ring-brand-green",
+                                                "w-full h-11 justify-start text-left font-bold uppercase text-xs rounded-xl bg-background dark:bg-black border border-border dark:border-brand-orange/20 focus:ring-1 focus:ring-primary dark:focus:ring-brand-orange",
                                                 !endDate && "text-muted-foreground"
                                             )}
                                         >
-                                            <CalendarIcon className="mr-2 h-3.5 w-3.5 text-primary dark:text-brand-green" />
+                                            <CalendarIcon className="mr-2 h-3.5 w-3.5 text-primary dark:text-brand-orange" />
                                             {endDate ? format(endDate, "dd MMM yyyy", { locale: it }) : <span>Fine</span>}
                                         </Button>
                                     </PopoverTrigger>
-                                    <PopoverContent className="w-auto p-0 rounded-2xl bg-card dark:bg-background border-border dark:border-brand-green/30 shadow-xl z-[9999]" align="start">
+                                    <PopoverContent className="w-auto p-0 rounded-2xl bg-card dark:bg-background border-border dark:border-brand-orange/30 shadow-xl z-[9999]" align="start">
                                         <Calendar
                                             mode="single"
                                             selected={endDate}
@@ -231,7 +231,7 @@ export function InjuryFormDialog({
                                 type="button" 
                                 onClick={handleSave}
                                 disabled={!selectedPlayerId || !startDate || !endDate}
-                                className="flex-1 bg-primary dark:bg-black border border-primary dark:border-brand-green text-white dark:text-brand-green font-black uppercase text-[10px] tracking-widest h-12 shadow-sm dark:shadow-[0_0_15px_rgba(172,229,4,0.3)] hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50"
+                                className="flex-1 bg-primary dark:bg-black border border-primary dark:border-brand-orange text-white dark:text-brand-orange font-black uppercase text-[10px] tracking-widest h-12 shadow-sm dark:shadow-[0_0_15px_rgba(172,229,4,0.3)] hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50"
                             >
                                 Registra
                             </Button>

@@ -235,7 +235,7 @@ export default function LoginPage() {
           </span>
           <button 
             type="button"
-            className="text-primary dark:text-brand-green font-bold hover:underline"
+            className="text-primary dark:text-brand-orange font-bold hover:underline"
             onClick={() => {
               setIsLoginMode(!isLoginMode);
               setUsernameOrEmail('');

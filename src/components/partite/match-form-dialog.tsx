@@ -135,7 +135,7 @@ export function MatchFormDialog({ open, onOpenChange, onSave, match }: MatchForm
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-              <DialogContent className="sm:max-w-[425px] max-h-[90vh] overflow-y-auto rounded-3xl bg-card dark:bg-background border border-primary/30 dark:border-brand-green/30 shadow-[0_0_25px_rgba(172,229,4,0.15)]">
+              <DialogContent className="sm:max-w-[425px] max-h-[90vh] overflow-y-auto rounded-3xl bg-card dark:bg-background border border-primary/30 dark:border-brand-orange/30 shadow-[0_0_25px_rgba(172,229,4,0.15)]">
         <DialogHeader>
           <DialogTitle className="font-black uppercase text-foreground">
             {match ? "Modifica Gara" : "Nuova Gara"}
@@ -153,9 +153,9 @@ export function MatchFormDialog({ open, onOpenChange, onSave, match }: MatchForm
               name="opponent"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-[10px] font-black uppercase tracking-widest text-primary dark:text-brand-green">Avversario</FormLabel>
+                  <FormLabel className="text-[10px] font-black uppercase tracking-widest text-primary dark:text-brand-orange">Avversario</FormLabel>
                   <FormControl>
-                    <Input placeholder="Es: Real Isola" {...field} className="h-11 rounded-xl font-bold uppercase text-xs bg-background dark:bg-black border border-primary/50 dark:border-brand-green/50 focus-visible:ring-1 focus-visible:ring-primary dark:focus-visible:ring-brand-green text-foreground dark:text-white" />
+                    <Input placeholder="Es: Real Isola" {...field} className="h-11 rounded-xl font-bold uppercase text-xs bg-background dark:bg-black border border-primary/50 dark:border-brand-orange/50 focus-visible:ring-1 focus-visible:ring-primary dark:focus-visible:ring-brand-orange text-foreground dark:text-white" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -168,14 +168,14 @@ export function MatchFormDialog({ open, onOpenChange, onSave, match }: MatchForm
                 name="type"
                 render={({ field }) => (
                     <FormItem>
-                    <FormLabel className="text-[10px] font-black uppercase tracking-widest text-primary dark:text-brand-green">Tipo Gara</FormLabel>
+                    <FormLabel className="text-[10px] font-black uppercase tracking-widest text-primary dark:text-brand-orange">Tipo Gara</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                         <FormControl>
-                            <SelectTrigger className="h-11 rounded-xl text-xs font-bold uppercase bg-background dark:bg-black border border-primary/50 dark:border-brand-green/50 focus:ring-1 focus:ring-primary dark:focus:ring-brand-green text-foreground dark:text-white">
+                            <SelectTrigger className="h-11 rounded-xl text-xs font-bold uppercase bg-background dark:bg-black border border-primary/50 dark:border-brand-orange/50 focus:ring-1 focus:ring-primary dark:focus:ring-brand-orange text-foreground dark:text-white">
                                 <SelectValue placeholder="Tipo" />
                             </SelectTrigger>
                         </FormControl>
-                        <SelectContent className="bg-card border border-primary/30 dark:border-brand-green/30 text-foreground">
+                        <SelectContent className="bg-card border border-primary/30 dark:border-brand-orange/30 text-foreground">
                             {MATCH_TYPES.map(t => (
                               <SelectItem key={t} value={t} className="text-xs font-bold uppercase">{t}</SelectItem>
                             ))}
@@ -192,9 +192,9 @@ export function MatchFormDialog({ open, onOpenChange, onSave, match }: MatchForm
                   name="tournamentName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-[10px] font-black uppercase tracking-widest text-primary dark:text-brand-green">Nome Torneo</FormLabel>
+                      <FormLabel className="text-[10px] font-black uppercase tracking-widest text-primary dark:text-brand-orange">Nome Torneo</FormLabel>
                       <FormControl>
-                        <Input placeholder="Es: Torneo Estivo" {...field} className="h-11 rounded-xl font-bold uppercase text-xs bg-background dark:bg-black border border-primary/50 dark:border-brand-green/50 focus-visible:ring-1 focus-visible:ring-primary dark:focus-visible:ring-brand-green text-foreground dark:text-white" />
+                        <Input placeholder="Es: Torneo Estivo" {...field} className="h-11 rounded-xl font-bold uppercase text-xs bg-background dark:bg-black border border-primary/50 dark:border-brand-orange/50 focus-visible:ring-1 focus-visible:ring-primary dark:focus-visible:ring-brand-orange text-foreground dark:text-white" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -208,14 +208,14 @@ export function MatchFormDialog({ open, onOpenChange, onSave, match }: MatchForm
                 name="duration"
                 render={({ field }) => (
                     <FormItem>
-                    <FormLabel className="text-[10px] font-black uppercase tracking-widest text-primary dark:text-brand-green">Durata (Min)</FormLabel>
+                    <FormLabel className="text-[10px] font-black uppercase tracking-widest text-primary dark:text-brand-orange">Durata (Min)</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value.toString()}>
                         <FormControl>
-                            <SelectTrigger className="h-11 rounded-xl text-xs font-bold uppercase bg-background dark:bg-black border border-primary/50 dark:border-brand-green/50 focus:ring-1 focus:ring-primary dark:focus:ring-brand-green text-foreground dark:text-white">
+                            <SelectTrigger className="h-11 rounded-xl text-xs font-bold uppercase bg-background dark:bg-black border border-primary/50 dark:border-brand-orange/50 focus:ring-1 focus:ring-primary dark:focus:ring-brand-orange text-foreground dark:text-white">
                                 <SelectValue placeholder="Durata" />
                             </SelectTrigger>
                         </FormControl>
-                        <SelectContent className="bg-card border border-primary/30 dark:border-brand-green/30 text-foreground">
+                        <SelectContent className="bg-card border border-primary/30 dark:border-brand-orange/30 text-foreground">
                             <SelectItem value="40" className="text-xs font-bold uppercase">40 min</SelectItem>
                             <SelectItem value="50" className="text-xs font-bold uppercase">50 min</SelectItem>
                             <SelectItem value="60" className="text-xs font-bold uppercase">60 min</SelectItem>
@@ -231,14 +231,14 @@ export function MatchFormDialog({ open, onOpenChange, onSave, match }: MatchForm
               name="date"
               render={({ field }) => (
                   <FormItem>
-                  <FormLabel className="text-[10px] font-black uppercase tracking-widest text-primary dark:text-brand-green">Data della Gara</FormLabel>
+                  <FormLabel className="text-[10px] font-black uppercase tracking-widest text-primary dark:text-brand-orange">Data della Gara</FormLabel>
                   <FormControl>
                       <Input
                       type="date"
                       min={min}
                       max={max}
                       {...field}
-                      className="h-11 rounded-xl font-bold uppercase text-xs bg-background dark:bg-black border border-primary/50 dark:border-brand-green/50 focus-visible:ring-1 focus-visible:ring-primary dark:focus-visible:ring-brand-green text-foreground dark:text-white"
+                      className="h-11 rounded-xl font-bold uppercase text-xs bg-background dark:bg-black border border-primary/50 dark:border-brand-orange/50 focus-visible:ring-1 focus-visible:ring-primary dark:focus-visible:ring-brand-orange text-foreground dark:text-white"
                       />
                   </FormControl>
                   <FormMessage />
@@ -253,11 +253,11 @@ export function MatchFormDialog({ open, onOpenChange, onSave, match }: MatchForm
                         <FormItem className="flex-1">
                         <Select onValueChange={field.onChange} value={field.value}>
                             <FormControl>
-                            <SelectTrigger className="h-12 rounded-xl text-xs font-bold uppercase bg-background dark:bg-black border border-primary/50 dark:border-brand-green/50 focus:ring-1 focus:ring-primary dark:focus:ring-brand-green text-foreground dark:text-white">
+                            <SelectTrigger className="h-12 rounded-xl text-xs font-bold uppercase bg-background dark:bg-black border border-primary/50 dark:border-brand-orange/50 focus:ring-1 focus:ring-primary dark:focus:ring-brand-orange text-foreground dark:text-white">
                                 <SelectValue placeholder="Stato" />
                             </SelectTrigger>
                             </FormControl>
-                            <SelectContent className="bg-card border border-primary/30 dark:border-brand-green/30 text-foreground">
+                            <SelectContent className="bg-card border border-primary/30 dark:border-brand-orange/30 text-foreground">
                                 <SelectItem value="scheduled" className="text-xs font-bold uppercase">Programmata</SelectItem>
                                 <SelectItem value="completed" className="text-xs font-bold uppercase">Finita</SelectItem>
                                 <SelectItem value="canceled" className="text-xs font-bold uppercase">Annullata</SelectItem>
@@ -272,7 +272,7 @@ export function MatchFormDialog({ open, onOpenChange, onSave, match }: MatchForm
               <Button 
                 type="button" 
                 disabled={isSaving}
-                className="flex-1 h-12 rounded-xl font-black uppercase text-xs bg-muted dark:bg-black/40 border border-border dark:border-brand-green/30 text-foreground dark:text-white hover:bg-muted/80 dark:hover:bg-black/60 transition-all" 
+                className="flex-1 h-12 rounded-xl font-black uppercase text-xs bg-muted dark:bg-black/40 border border-border dark:border-brand-orange/30 text-foreground dark:text-white hover:bg-muted/80 dark:hover:bg-black/60 transition-all" 
                 onClick={() => onOpenChange(false)}
               >
                 Annulla
@@ -280,7 +280,7 @@ export function MatchFormDialog({ open, onOpenChange, onSave, match }: MatchForm
               <Button 
                 type="submit" 
                 disabled={isSaving}
-                className="flex-1 h-12 rounded-xl bg-primary dark:bg-black border border-primary dark:border-brand-green text-white font-black uppercase text-xs shadow-[0_0_10px_rgba(172,229,4,0.2)] hover:opacity-90 dark:hover:bg-black/80 hover:scale-[1.02] transition-all"
+                className="flex-1 h-12 rounded-xl bg-primary dark:bg-black border border-primary dark:border-brand-orange text-white font-black uppercase text-xs shadow-[0_0_10px_rgba(172,229,4,0.2)] hover:opacity-90 dark:hover:bg-black/80 hover:scale-[1.02] transition-all"
               >
                 {isSaving ? (
                   <>

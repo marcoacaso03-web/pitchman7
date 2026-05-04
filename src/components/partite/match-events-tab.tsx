@@ -47,10 +47,10 @@ export function MatchEventsTab() {
 
   return (
     <div className="space-y-6 relative">
-      <Card className="bg-card dark:bg-black/40 border border-border dark:border-brand-green/30 rounded-3xl shadow-sm dark:shadow-[0_0_15px_rgba(172,229,4,0.08)] overflow-hidden">
+      <Card className="bg-card dark:bg-black/40 border border-border dark:border-brand-orange/30 rounded-3xl shadow-sm dark:shadow-[0_0_15px_rgba(172,229,4,0.08)] overflow-hidden">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <Button
-            className="rounded-full h-10 px-4 bg-background dark:bg-black border border-primary/20 dark:border-brand-green/20 text-primary dark:text-brand-green hover:bg-primary/5 dark:hover:bg-brand-green/5 shadow-sm font-black uppercase text-[11px] sm:text-xs transition-all hover:scale-105 active:scale-95"
+            className="rounded-full h-10 px-4 bg-background dark:bg-black border border-primary/20 dark:border-brand-orange/20 text-primary dark:text-brand-orange hover:bg-primary/5 dark:hover:bg-brand-orange/5 shadow-sm font-black uppercase text-[11px] sm:text-xs transition-all hover:scale-105 active:scale-95"
             onClick={handleAddNewEvent}
           >
             Aggiungi eventi <Plus className="h-4 w-4 ml-1" />
@@ -58,7 +58,7 @@ export function MatchEventsTab() {
           {events.length > 0 && (
             <Button
               onClick={() => setIsTrackerOpen(true)}
-              className="h-10 px-5 rounded-full bg-primary dark:bg-brand-green text-white dark:text-black font-black uppercase tracking-widest shadow-md dark:shadow-[0_0_15px_rgba(172,229,4,0.2)] hover:scale-105 active:scale-95 transition-all flex items-center gap-1.5"
+              className="h-10 px-5 rounded-full bg-primary dark:bg-brand-orange text-white dark:text-black font-black uppercase tracking-widest shadow-md dark:shadow-[0_0_15px_rgba(172,229,4,0.2)] hover:scale-105 active:scale-95 transition-all flex items-center gap-1.5"
             >
               <Zap className="h-4 w-4" /> LIVE
             </Button>
@@ -66,20 +66,20 @@ export function MatchEventsTab() {
         </CardHeader>
         <CardContent className="relative px-2 sm:px-6 pb-8">
           {events.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-12 text-center border-2 border-dashed border-border dark:border-brand-green/20 rounded-xl bg-muted/20 dark:bg-transparent">
-              <Info className="h-10 w-10 text-primary dark:text-brand-green mb-3 opacity-30" />
+            <div className="flex flex-col items-center justify-center py-12 text-center border-2 border-dashed border-border dark:border-brand-orange/20 rounded-xl bg-muted/20 dark:bg-transparent">
+              <Info className="h-10 w-10 text-primary dark:text-brand-orange mb-3 opacity-30" />
               <p className="text-xs font-black uppercase text-foreground/40 dark:text-muted-foreground">Nessun evento registrato</p>
               <p className="text-[10px] font-bold text-foreground/30 dark:text-muted-foreground mt-2 uppercase mb-6">Usa il + per aggiungere eventi alla partita.</p>
               <Button
                 onClick={() => setIsTrackerOpen(true)}
-                className="h-12 px-8 rounded-full bg-primary dark:bg-brand-green text-white dark:text-black font-black uppercase tracking-widest shadow-lg dark:shadow-[0_0_20px_rgba(172,229,4,0.3)] hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
+                className="h-12 px-8 rounded-full bg-primary dark:bg-brand-orange text-white dark:text-black font-black uppercase tracking-widest shadow-lg dark:shadow-[0_0_20px_rgba(172,229,4,0.3)] hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
               >
                 <Zap className="h-5 w-5" /> LIVE
               </Button>
             </div>
           ) : (
             <div className="relative pt-4">
-              <div className="absolute left-1/2 top-4 bottom-0 w-px bg-border dark:bg-brand-green/20 -translate-x-1/2 before:content-[''] before:absolute before:top-0 before:left-1/2 before:-translate-x-1/2 before:w-2 before:h-2 before:rounded-full before:bg-brand-green/30" />
+              <div className="absolute left-1/2 top-4 bottom-0 w-px bg-border dark:bg-brand-orange/20 -translate-x-1/2 before:content-[''] before:absolute before:top-0 before:left-1/2 before:-translate-x-1/2 before:w-2 before:h-2 before:rounded-full before:bg-brand-orange/30" />
 
               <div className="space-y-6">
                 {/* Cronaca Temporale */}
@@ -111,7 +111,7 @@ export function MatchEventsTab() {
                         <div key={event.id} className="space-y-3">
                           {isTransitionTo2T && (
                             <div className="relative flex items-center justify-center py-4">
-                              <div className="absolute left-0 right-0 h-px border-t border-dashed border-border dark:border-brand-green/20"></div>
+                              <div className="absolute left-0 right-0 h-px border-t border-dashed border-border dark:border-brand-orange/20"></div>
                               <span className="relative bg-card dark:bg-[#060a02] px-3 text-[9px] font-black uppercase tracking-[0.2em] text-muted-foreground/40 z-10">
                                 INT {halfTimeScore}
                               </span>
@@ -135,7 +135,7 @@ export function MatchEventsTab() {
                 {unTimedEvents.length > 0 && (
                   <div className="space-y-6 pt-8">
                     <div className="relative flex justify-center mb-8">
-                      <span className="bg-card dark:bg-background px-4 py-1 rounded-full border border-border dark:border-brand-green/30 text-[9px] font-black uppercase tracking-widest text-muted-foreground/60 z-10 shadow-sm">
+                      <span className="bg-card dark:bg-background px-4 py-1 rounded-full border border-border dark:border-brand-orange/30 text-[9px] font-black uppercase tracking-widest text-muted-foreground/60 z-10 shadow-sm">
                         Senza minutaggio
                       </span>
                     </div>
@@ -209,7 +209,7 @@ function TimelineEvent({ event, match, getEventIcon, getEventLabel, isHome, onOp
         {/* Minute tag (Side positioned) */}
         {(event.minute !== null && event.minute !== undefined) && (
           <div className={cn(
-            "absolute whitespace-nowrap bg-muted/80 dark:bg-black/80 px-2.5 py-1 rounded-full border border-border dark:border-brand-green/10 text-[11px] font-black tabular-nums shadow-sm z-20",
+            "absolute whitespace-nowrap bg-muted/80 dark:bg-black/80 px-2.5 py-1 rounded-full border border-border dark:border-brand-orange/10 text-[11px] font-black tabular-nums shadow-sm z-20",
             alignLeft ? "left-full ml-4" : "right-full mr-4"
           )}>
             {formatDisplayMinute(event.minute, event.period, match?.duration)}
@@ -222,7 +222,7 @@ function TimelineEvent({ event, match, getEventIcon, getEventLabel, isHome, onOp
             "h-9 w-9 rounded-xl flex items-center justify-center border-2 shadow-sm transition-all duration-300 hover:scale-110 active:scale-95 bg-card dark:bg-black",
             isCard 
               ? (event.type === 'yellow_card' ? "border-yellow-400/30 shadow-[0_0_10px_rgba(250,204,21,0.1)]" : "border-red-600/30 shadow-[0_0_10px_rgba(220,38,38,0.1)]")
-              : "border-border dark:border-brand-green/20"
+              : "border-border dark:border-brand-orange/20"
           )}
         >
           {getEventIcon(event, "h-4 w-4", !isCard)}
@@ -291,7 +291,7 @@ function EventOptionsDialog({ event, open, onOpenChange, onEdit, onDelete, getEv
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-[90vw] sm:max-w-xs bg-card dark:bg-black border border-border dark:border-brand-green/30 p-6 rounded-[28px] shadow-2xl">
+      <DialogContent className="max-w-[90vw] sm:max-w-xs bg-card dark:bg-black border border-border dark:border-brand-orange/30 p-6 rounded-[28px] shadow-2xl">
         <DialogHeader className="items-center text-center">
           <div className="p-4 rounded-full border border-border dark:border-white/10 bg-white dark:bg-black mb-3 shadow-sm">
             {getEventIcon(event, "h-8 w-8", true)}
@@ -308,7 +308,7 @@ function EventOptionsDialog({ event, open, onOpenChange, onEdit, onDelete, getEv
             className="w-full flex items-center justify-between p-4 bg-muted/20 dark:bg-white/5 hover:bg-muted/30 dark:hover:bg-white/10 rounded-2xl transition-all group"
           >
             <span className="text-xs font-black uppercase tracking-widest">Modifica Evento</span>
-            <Edit2 className="h-4 w-4 text-brand-green opacity-40 group-hover:opacity-100" />
+            <Edit2 className="h-4 w-4 text-brand-orange opacity-40 group-hover:opacity-100" />
           </button>
 
           <button
@@ -326,10 +326,10 @@ function EventOptionsDialog({ event, open, onOpenChange, onEdit, onDelete, getEv
                 <button
                   key={p.id}
                   onClick={() => router.push(`/membri/${p.id}`)}
-                  className="w-full flex items-center justify-between p-4 bg-primary/10 dark:bg-brand-green/10 hover:bg-primary/20 dark:hover:bg-brand-green/20 rounded-2xl transition-all group"
+                  className="w-full flex items-center justify-between p-4 bg-primary/10 dark:bg-brand-orange/10 hover:bg-primary/20 dark:hover:bg-brand-orange/20 rounded-2xl transition-all group"
                 >
                   <div className="flex items-center gap-3">
-                    <User className="h-4 w-4 text-primary dark:text-brand-green opacity-40" />
+                    <User className="h-4 w-4 text-primary dark:text-brand-orange opacity-40" />
                     <span className="text-xs font-black uppercase tracking-widest truncate max-w-[150px]">{p.name}</span>
                   </div>
                   <ExternalLink className="h-3 w-3 opacity-20 group-hover:opacity-100" />

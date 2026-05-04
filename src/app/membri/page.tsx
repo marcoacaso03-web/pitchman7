@@ -170,11 +170,11 @@ export default function RosaPage() {
           <div className="px-4">
             <div className="flex gap-3 items-center">
               <div className="relative flex-1">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-primary dark:text-brand-green" />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-primary dark:text-brand-orange" />
                 <Input
                   type="text"
                   placeholder="Cerca"
-                  className="w-full h-12 pl-12 pr-4 rounded-full bg-background dark:bg-black border border-primary/30 dark:border-brand-green/30 text-foreground placeholder:text-muted-foreground/50 font-medium text-lg focus-visible:ring-1 focus-visible:ring-primary dark:focus-visible:ring-brand-green shadow-sm dark:shadow-[0_0_10px_rgba(172,229,4,0.05)]"
+                  className="w-full h-12 pl-12 pr-4 rounded-full bg-background dark:bg-black border border-primary/30 dark:border-brand-orange/30 text-foreground placeholder:text-muted-foreground/50 font-medium text-lg focus-visible:ring-1 focus-visible:ring-primary dark:focus-visible:ring-brand-orange shadow-sm dark:shadow-[0_0_10px_rgba(172,229,4,0.05)]"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -185,7 +185,7 @@ export default function RosaPage() {
                     <Button
                       onClick={() => router.push('/scout')}
                       variant="ghost"
-                      className="h-12 w-12 rounded-full p-0 flex-shrink-0 bg-background dark:bg-black border border-primary/20 dark:border-brand-green/20 text-primary dark:text-brand-green shadow-sm hover:bg-primary/5 dark:hover:bg-brand-green/5 transition-all hover:scale-105 active:scale-95"
+                      className="h-12 w-12 rounded-full p-0 flex-shrink-0 bg-background dark:bg-black border border-primary/20 dark:border-brand-orange/20 text-primary dark:text-brand-orange shadow-sm hover:bg-primary/5 dark:hover:bg-brand-orange/5 transition-all hover:scale-105 active:scale-95"
                       title="Scout"
                     >
                       <FaUserSecret className="h-6 w-6" />
@@ -193,7 +193,7 @@ export default function RosaPage() {
                     <Button
                       onClick={() => setIsInjuryFormOpen(true)}
                       variant="ghost"
-                      className="h-12 w-12 rounded-full p-0 flex-shrink-0 bg-background dark:bg-black border border-primary/20 dark:border-brand-green/20 text-primary dark:text-brand-green shadow-sm hover:bg-primary/5 dark:hover:bg-brand-green/5 transition-all hover:scale-105 active:scale-95"
+                      className="h-12 w-12 rounded-full p-0 flex-shrink-0 bg-background dark:bg-black border border-primary/20 dark:border-brand-orange/20 text-primary dark:text-brand-orange shadow-sm hover:bg-primary/5 dark:hover:bg-brand-orange/5 transition-all hover:scale-105 active:scale-95"
                       title="Gestisci Infortuni"
                     >
                       <Hospital className="h-6 w-6" />
@@ -201,7 +201,7 @@ export default function RosaPage() {
                     <Button
                       onClick={() => handleOpenForm(null)}
                       variant="ghost"
-                      className="h-12 w-12 rounded-full p-0 flex-shrink-0 bg-background dark:bg-black border border-primary/20 dark:border-brand-green/20 text-primary dark:text-brand-green shadow-sm hover:bg-primary/5 dark:hover:bg-brand-green/5 transition-all hover:scale-105 active:scale-95"
+                      className="h-12 w-12 rounded-full p-0 flex-shrink-0 bg-background dark:bg-black border border-primary/20 dark:border-brand-orange/20 text-primary dark:text-brand-orange shadow-sm hover:bg-primary/5 dark:hover:bg-brand-orange/5 transition-all hover:scale-105 active:scale-95"
                       title="Aggiungi Giocatore"
                     >
                       <Plus className="h-7 w-7" />
@@ -209,7 +209,7 @@ export default function RosaPage() {
                     <Button
                       onClick={() => setIsEditMode(true)}
                       variant="ghost"
-                      className="h-12 w-12 rounded-full p-0 flex-shrink-0 bg-background dark:bg-black border border-primary/20 dark:border-brand-green/20 text-primary dark:text-brand-green shadow-sm hover:bg-primary/5 dark:hover:bg-brand-green/5 transition-all hover:scale-105 active:scale-95"
+                      className="h-12 w-12 rounded-full p-0 flex-shrink-0 bg-background dark:bg-black border border-primary/20 dark:border-brand-orange/20 text-primary dark:text-brand-orange shadow-sm hover:bg-primary/5 dark:hover:bg-brand-orange/5 transition-all hover:scale-105 active:scale-95"
                       title="Modalità Modifica"
                     >
                       <Edit className="h-5 w-5" />
@@ -220,7 +220,7 @@ export default function RosaPage() {
                     <Button
                       onClick={() => setIsEditMode(false)}
                       variant="ghost"
-                      className="h-12 w-12 rounded-full p-0 flex-shrink-0 bg-primary dark:bg-brand-green border border-primary/20 dark:border-brand-green/20 text-white dark:text-black shadow-sm hover:opacity-90 transition-all hover:scale-105 active:scale-95"
+                      className="h-12 w-12 rounded-full p-0 flex-shrink-0 bg-primary dark:bg-brand-orange border border-primary/20 dark:border-brand-orange/20 text-white dark:text-black shadow-sm hover:opacity-90 transition-all hover:scale-105 active:scale-95"
                       title="Salva"
                     >
                       <Save className="h-6 w-6" />
@@ -261,18 +261,18 @@ export default function RosaPage() {
                 if (playersInRole.length === 0 && searchTerm) return null; // Hide if searching and none found
 
                 return (
-                  <div key={roleKey} className="overflow-hidden bg-card dark:bg-black/40 border border-border dark:border-brand-green/20 rounded-2xl shadow-sm dark:shadow-[0_0_10px_rgba(172,229,4,0.05)]">
+                  <div key={roleKey} className="overflow-hidden bg-card dark:bg-black/40 border border-border dark:border-brand-orange/20 rounded-2xl shadow-sm dark:shadow-[0_0_10px_rgba(172,229,4,0.05)]">
                     {/* Accordion Header */}
                     <div
                       onClick={() => toggleRole(roleKey)}
                       className={cn(
-                        "flex items-center justify-between p-4 cursor-pointer select-none transition-all rounded-t-2xl border-b border-border dark:border-brand-green/20",
+                        "flex items-center justify-between p-4 cursor-pointer select-none transition-all rounded-t-2xl border-b border-border dark:border-brand-orange/20",
                         roleColors[roleKey]
                       )}
                     >
                       <span className="font-medium text-[17px] tracking-wide">{roleName}</span>
-                      <div className="bg-background dark:bg-black rounded-xl border border-primary/20 dark:border-brand-green/30 p-1 shadow-sm overflow-hidden transition-all hover:border-primary dark:hover:border-brand-green">
-                        {isOpen ? <ChevronUp className="h-5 w-5 text-primary dark:text-brand-green" /> : <ChevronDown className="h-5 w-5 text-primary dark:text-brand-green" />}
+                      <div className="bg-background dark:bg-black rounded-xl border border-primary/20 dark:border-brand-orange/30 p-1 shadow-sm overflow-hidden transition-all hover:border-primary dark:hover:border-brand-orange">
+                        {isOpen ? <ChevronUp className="h-5 w-5 text-primary dark:text-brand-orange" /> : <ChevronDown className="h-5 w-5 text-primary dark:text-brand-orange" />}
                       </div>
                     </div>
 
@@ -285,7 +285,7 @@ export default function RosaPage() {
                           playersInRole.map((player) => (
                             <div
                               key={player.id}
-                              className="flex items-center justify-between p-4 border-b border-border dark:border-brand-green/10 last:border-b-0 group hover:bg-muted dark:hover:bg-black/60 transition-colors cursor-pointer"
+                              className="flex items-center justify-between p-4 border-b border-border dark:border-brand-orange/10 last:border-b-0 group hover:bg-muted dark:hover:bg-black/60 transition-colors cursor-pointer"
                               onClick={() => router.push(`/membri/${player.id}`)}
                             >
                               <div className="flex flex-col">
@@ -330,7 +330,7 @@ export default function RosaPage() {
                                   <Button
                                     variant="ghost"
                                     size="icon"
-                                    className="h-8 w-8 text-muted-foreground dark:text-white/40 hover:text-primary dark:hover:text-brand-green hover:bg-primary/10 dark:hover:bg-brand-green/10 transition-all opacity-60 dark:opacity-40"
+                                    className="h-8 w-8 text-muted-foreground dark:text-white/40 hover:text-primary dark:hover:text-brand-orange hover:bg-primary/10 dark:hover:bg-brand-orange/10 transition-all opacity-60 dark:opacity-40"
                                     onClick={(e) => {
                                       e.stopPropagation();
                                       handleOpenForm(player);
@@ -374,15 +374,15 @@ export default function RosaPage() {
 
 
       <AlertDialog open={!!playerToDelete} onOpenChange={(open) => !open && setPlayerToDelete(null)}>
-        <AlertDialogContent className="max-w-[90vw] md:max-w-md rounded-3xl bg-card dark:bg-black border border-border dark:border-brand-green/30 text-foreground p-6 shadow-lg">
+        <AlertDialogContent className="max-w-[90vw] md:max-w-md rounded-3xl bg-card dark:bg-black border border-border dark:border-brand-orange/30 text-foreground p-6 shadow-lg">
           <AlertDialogHeader>
             <AlertDialogTitle className="text-foreground dark:text-white font-black uppercase text-lg tracking-tight">Rimuovi Giocatore</AlertDialogTitle>
             <AlertDialogDescription className="text-sm font-medium leading-relaxed text-muted-foreground">
-              Vuoi eliminare definitivamente <strong className="text-foreground dark:text-brand-green">{playerToDelete?.name}</strong> dalla rosa?
+              Vuoi eliminare definitivamente <strong className="text-foreground dark:text-brand-orange">{playerToDelete?.name}</strong> dalla rosa?
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter className="flex-row justify-end gap-3 mt-4">
-            <AlertDialogCancel className="mt-0 text-[11px] font-bold uppercase rounded-xl flex-1 h-11 border-border dark:border-brand-green/30 text-foreground dark:text-white hover:bg-muted dark:hover:bg-black/40">Annulla</AlertDialogCancel>
+            <AlertDialogCancel className="mt-0 text-[11px] font-bold uppercase rounded-xl flex-1 h-11 border-border dark:border-brand-orange/30 text-foreground dark:text-white hover:bg-muted dark:hover:bg-black/40">Annulla</AlertDialogCancel>
             <AlertDialogAction onClick={handleDeletePlayer} className="bg-destructive hover:bg-destructive/90 text-[11px] text-destructive-foreground font-bold uppercase rounded-xl flex-1 h-11 border-none shadow-sm dark:shadow-[0_0_15px_rgba(248,113,113,0.3)]">
               Elimina
             </AlertDialogAction>
@@ -391,7 +391,7 @@ export default function RosaPage() {
       </AlertDialog>
 
       <AlertDialog open={isDeleteAllOpen} onOpenChange={setIsDeleteAllOpen}>
-        <AlertDialogContent className="max-w-[90vw] md:max-w-md rounded-3xl bg-card dark:bg-black border border-border dark:border-brand-green/30 text-foreground p-6 shadow-lg">
+        <AlertDialogContent className="max-w-[90vw] md:max-w-md rounded-3xl bg-card dark:bg-black border border-border dark:border-brand-orange/30 text-foreground p-6 shadow-lg">
           <AlertDialogHeader>
             <AlertDialogTitle className="text-destructive font-black uppercase text-lg tracking-tight">Svuota Rosa</AlertDialogTitle>
             <AlertDialogDescription className="text-sm font-medium leading-relaxed text-muted-foreground">
@@ -399,7 +399,7 @@ export default function RosaPage() {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter className="flex-row justify-end gap-3 mt-4">
-            <AlertDialogCancel className="mt-0 text-[11px] font-bold uppercase rounded-xl flex-1 h-11 border-border dark:border-brand-green/30 text-foreground dark:text-white hover:bg-muted dark:hover:bg-black/40">Annulla</AlertDialogCancel>
+            <AlertDialogCancel className="mt-0 text-[11px] font-bold uppercase rounded-xl flex-1 h-11 border-border dark:border-brand-orange/30 text-foreground dark:text-white hover:bg-muted dark:hover:bg-black/40">Annulla</AlertDialogCancel>
             <AlertDialogAction onClick={handleDeleteAllPlayers} className="bg-destructive hover:bg-destructive/90 text-[11px] text-destructive-foreground font-bold uppercase rounded-xl flex-1 h-11 border-none shadow-sm dark:shadow-[0_0_15px_rgba(248,113,113,0.3)]">
               Elimina Tutto
             </AlertDialogAction>

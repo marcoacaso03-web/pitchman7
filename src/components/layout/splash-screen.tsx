@@ -2,15 +2,15 @@ export function SplashScreen() {
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background dark:bg-black overflow-hidden transition-colors duration-500">
       {/* Ambient glow di sfondo — adattivo */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,128,255,0.04)_0%,transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(172,229,4,0.06)_0%,transparent_70%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(37,150,190,0.04)_0%,transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(223,130,0,0.06)_0%,transparent_70%)] pointer-events-none" />
 
       <div className="flex flex-col items-center gap-6 animate-in fade-in zoom-in duration-500">
         <div className="relative">
           {/* Glow attorno al logo */}
-          <div className="absolute -inset-6 bg-primary/10 dark:bg-brand-green/10 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute -inset-2 bg-primary/5 dark:bg-brand-green/5 rounded-full blur-xl" />
-          <img src="/favicon-16x16_light.png" alt="App Logo" className="h-24 w-24 object-contain relative drop-shadow-[0_0_20px_rgba(0,128,255,0.3)] dark:hidden" />
-          <img src="/favicon-16x16.png" alt="App Logo" className="h-24 w-24 object-contain relative drop-shadow-[0_0_20px_rgba(172,229,4,0.5)] hidden dark:block" />
+          <div className="absolute -inset-6 bg-primary/10 dark:bg-brand-orange/10 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute -inset-2 bg-primary/5 dark:bg-brand-orange/5 rounded-full blur-xl" />
+          <img src="/favicon-16x16_light.png" alt="App Logo" className="h-24 w-24 object-contain relative drop-shadow-[0_0_20px_rgba(37,150,190,0.3)] dark:hidden" />
+          <img src="/favicon-16x16.png" alt="App Logo" className="h-24 w-24 object-contain relative drop-shadow-[0_0_20px_rgba(223,130,0,0.5)] hidden dark:block" />
         </div>
 
         <div className="flex flex-col items-center gap-2">
@@ -20,7 +20,7 @@ export function SplashScreen() {
 
         {/* Barra progresso adattiva */}
         <div className="w-48 h-[3px] bg-muted dark:bg-white/5 rounded-full overflow-hidden mt-4">
-          <div className="h-full bg-primary dark:bg-brand-green shadow-[0_0_8px_rgba(0,128,255,0.4)] dark:shadow-[0_0_8px_rgba(172,229,4,0.8)] animate-progress-loading w-full origin-left rounded-full" />
+          <div className="h-full bg-primary dark:bg-brand-orange shadow-[0_0_8px_rgba(37,150,190,0.4)] dark:shadow-[0_0_8px_rgba(223,130,0,0.8)] animate-progress-loading w-full origin-left rounded-full" />
         </div>
       </div>
 

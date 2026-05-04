@@ -117,7 +117,7 @@ export function PlayerFormDialog({ open, onOpenChange, onSave, player, onAIImpor
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent hideClose className="sm:max-w-[425px] rounded-[28px] bg-card dark:bg-black border border-border dark:border-brand-green/30 shadow-xl dark:shadow-[0_0_25px_rgba(172,229,4,0.05)] p-6 overflow-hidden">
+      <DialogContent hideClose className="sm:max-w-[425px] rounded-[28px] bg-card dark:bg-black border border-border dark:border-brand-orange/30 shadow-xl dark:shadow-[0_0_25px_rgba(172,229,4,0.05)] p-6 overflow-hidden">
         <DialogHeader className="flex-row items-start justify-between space-y-0">
           <div className="space-y-1 text-left">
             <DialogTitle className="text-foreground dark:text-white font-black uppercase text-xl md:text-2xl tracking-tight">
@@ -134,7 +134,7 @@ export function PlayerFormDialog({ open, onOpenChange, onSave, player, onAIImpor
                 variant="ghost"
                 size="icon"
                 disabled={isSaving}
-                className="h-10 w-10 rounded-full bg-primary/10 dark:bg-brand-green/10 text-primary dark:text-brand-green hover:bg-primary/20 dark:hover:bg-brand-green/20"
+                className="h-10 w-10 rounded-full bg-primary/10 dark:bg-brand-orange/10 text-primary dark:text-brand-orange hover:bg-primary/20 dark:hover:bg-brand-orange/20"
                 title="Importazione AI"
               >
                 <Sparkles className="h-5 w-5" />
@@ -157,7 +157,7 @@ export function PlayerFormDialog({ open, onOpenChange, onSave, player, onAIImpor
                         placeholder="Mario" 
                         {...field} 
                         disabled={isSaving}
-                        className="h-11 text-xs font-black uppercase rounded-xl bg-background dark:bg-black border border-border dark:border-brand-green/20 focus-visible:ring-1 focus-visible:ring-primary dark:focus-visible:ring-brand-green focus-visible:border-primary dark:focus-visible:border-brand-green transition-all" 
+                        className="h-11 text-xs font-black uppercase rounded-xl bg-background dark:bg-black border border-border dark:border-brand-orange/20 focus-visible:ring-1 focus-visible:ring-primary dark:focus-visible:ring-brand-orange focus-visible:border-primary dark:focus-visible:border-brand-orange transition-all" 
                       />
                     </FormControl>
                     <FormMessage className="text-[9px] font-bold uppercase" />
@@ -175,7 +175,7 @@ export function PlayerFormDialog({ open, onOpenChange, onSave, player, onAIImpor
                         placeholder="Rossi" 
                         {...field} 
                         disabled={isSaving}
-                        className="h-11 text-xs font-black uppercase rounded-xl bg-background dark:bg-black border border-border dark:border-brand-green/20 focus-visible:ring-1 focus-visible:ring-primary dark:focus-visible:ring-brand-green focus-visible:border-primary dark:focus-visible:border-brand-green transition-all" 
+                        className="h-11 text-xs font-black uppercase rounded-xl bg-background dark:bg-black border border-border dark:border-brand-orange/20 focus-visible:ring-1 focus-visible:ring-primary dark:focus-visible:ring-brand-orange focus-visible:border-primary dark:focus-visible:border-brand-orange transition-all" 
                       />
                     </FormControl>
                     <FormMessage className="text-[9px] font-bold uppercase" />
@@ -192,13 +192,13 @@ export function PlayerFormDialog({ open, onOpenChange, onSave, player, onAIImpor
                     <FormLabel className="text-[9px] font-black uppercase tracking-[0.2em] text-muted-foreground/80 ml-1">Ruolo Tecnico</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value} disabled={isSaving}>
                         <FormControl>
-                            <SelectTrigger className="h-11 text-xs font-black uppercase rounded-xl bg-background dark:bg-black border border-border dark:border-brand-green/20 focus:ring-1 focus:ring-primary dark:focus:ring-brand-green focus:border-primary dark:focus:border-brand-green transition-all">
+                            <SelectTrigger className="h-11 text-xs font-black uppercase rounded-xl bg-background dark:bg-black border border-border dark:border-brand-orange/20 focus:ring-1 focus:ring-primary dark:focus:ring-brand-orange focus:border-primary dark:focus:border-brand-orange transition-all">
                                 <SelectValue placeholder="Seleziona ruolo" />
                             </SelectTrigger>
                         </FormControl>
-                        <SelectContent className="rounded-xl border-border dark:border-brand-green/30 bg-card dark:bg-background">
+                        <SelectContent className="rounded-xl border-border dark:border-brand-orange/30 bg-card dark:bg-background">
                             {ROLES.map(role => (
-                                <SelectItem key={role} value={role} className="text-xs font-black uppercase focus:bg-primary/10 dark:focus:bg-brand-green/10 focus:text-primary dark:focus:text-brand-green transition-colors">
+                                <SelectItem key={role} value={role} className="text-xs font-black uppercase focus:bg-primary/10 dark:focus:bg-brand-orange/10 focus:text-primary dark:focus:text-brand-orange transition-colors">
                                   {role}
                                 </SelectItem>
                             ))}
@@ -249,7 +249,7 @@ export function PlayerFormDialog({ open, onOpenChange, onSave, player, onAIImpor
                                             )
                                           )
                                     }}
-                                    className="border-primary/30 dark:border-brand-green/30 data-[state=checked]:bg-primary dark:data-[state=checked]:bg-brand-green data-[state=checked]:text-white dark:data-[state=checked]:text-black"
+                                    className="border-primary/30 dark:border-brand-orange/30 data-[state=checked]:bg-primary dark:data-[state=checked]:bg-brand-orange data-[state=checked]:text-white dark:data-[state=checked]:text-black"
                                   />
                                 </FormControl>
                                 <FormLabel className="text-[10px] font-black uppercase tracking-tight text-foreground dark:text-white/80 cursor-pointer">
@@ -280,7 +280,7 @@ export function PlayerFormDialog({ open, onOpenChange, onSave, player, onAIImpor
               <Button 
                 type="submit" 
                 disabled={isSaving}
-                className="flex-1 bg-primary dark:bg-black border-2 border-primary dark:border-brand-green text-white dark:text-brand-green font-black uppercase text-[10px] tracking-widest h-12 shadow-sm dark:shadow-[0_0_15px_rgba(172,229,4,0.2)] hover:scale-[1.02] active:scale-95 transition-all"
+                className="flex-1 bg-primary dark:bg-black border-2 border-primary dark:border-brand-orange text-white dark:text-brand-orange font-black uppercase text-[10px] tracking-widest h-12 shadow-sm dark:shadow-[0_0_15px_rgba(172,229,4,0.2)] hover:scale-[1.02] active:scale-95 transition-all"
               >
                 {isSaving ? (
                   <>

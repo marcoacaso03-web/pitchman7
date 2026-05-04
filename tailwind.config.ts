@@ -18,9 +18,9 @@ export default {
       colors: {
         brand: {
           yellow: 'hsl(var(--brand-yellow))',
-          green: 'hsl(var(--brand-green))',
+          orange: 'hsl(var(--brand-orange))',
           lime: 'hsl(var(--brand-lime))',
-          cyan: 'hsl(var(--brand-cyan))',
+          blue: 'hsl(var(--brand-blue))',
           pink: 'hsl(var(--brand-pink))',
           win: 'hsl(var(--win))',
           loss: 'hsl(var(--loss))',

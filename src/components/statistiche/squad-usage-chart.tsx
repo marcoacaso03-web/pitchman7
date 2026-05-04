@@ -78,18 +78,18 @@ function CustomTooltip({
   const data = payload[0].payload;
 
   return (
-    <div className="bg-background dark:bg-black border border-border dark:border-brand-green/30 rounded-2xl p-3 shadow-xl dark:shadow-[0_0_20px_rgba(172,229,4,0.1)] text-xs">
+    <div className="bg-background dark:bg-black border border-border dark:border-brand-orange/30 rounded-2xl p-3 shadow-xl dark:shadow-[0_0_20px_rgba(172,229,4,0.1)] text-xs">
       <p className="font-black uppercase tracking-wider text-foreground dark:text-white mb-2">
         {data.name}
       </p>
       <div className="space-y-1">
         <div className="flex items-center justify-between gap-6">
           <span className="text-muted-foreground font-bold uppercase tracking-widest">Partite</span>
-          <span className="font-black text-primary dark:text-brand-green">{data.x}</span>
+          <span className="font-black text-primary dark:text-brand-orange">{data.x}</span>
         </div>
         <div className="flex items-center justify-between gap-6">
           <span className="text-muted-foreground font-bold uppercase tracking-widest">Minuti tot.</span>
-          <span className="font-black text-primary dark:text-brand-green">{data.y}&apos;</span>
+          <span className="font-black text-primary dark:text-brand-orange">{data.y}&apos;</span>
         </div>
         <div className="flex items-center justify-between gap-6">
           <span className="text-muted-foreground font-bold uppercase tracking-widest">Media/partita</span>
@@ -124,7 +124,7 @@ export function SquadUsageChart() {
 
   if (!chartData.length) {
     return (
-      <Card className="bg-card dark:bg-black/40 border-border dark:border-brand-green/30 rounded-3xl">
+      <Card className="bg-card dark:bg-black/40 border-border dark:border-brand-orange/30 rounded-3xl">
         <CardContent className="flex items-center justify-center py-24">
           <p className="text-sm text-muted-foreground text-center">
             Nessun dato disponibile. Registra qualche partita con statistiche giocatore.
@@ -138,7 +138,7 @@ export function SquadUsageChart() {
   const maxY = Math.max(...chartData.map((d) => d.y));
 
   return (
-    <Card className="bg-card dark:bg-black/40 border-border dark:border-brand-green/30 shadow-sm dark:shadow-[0_0_15px_rgba(172,229,4,0.05)] rounded-3xl overflow-hidden backdrop-blur-sm transition-colors">
+    <Card className="bg-card dark:bg-black/40 border-border dark:border-brand-orange/30 shadow-sm dark:shadow-[0_0_15px_rgba(172,229,4,0.05)] rounded-3xl overflow-hidden backdrop-blur-sm transition-colors">
       <CardContent className="pr-2 pt-6 pb-6">
         <ResponsiveContainer width="100%" height={420}>
           <ScatterChart

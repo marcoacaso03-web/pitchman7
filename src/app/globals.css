@@ -10,28 +10,28 @@
     --card-foreground: 0 0% 0%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 0%;
-    --primary: 210 100% 45%; /* Azzurro #0080FFish */
+    --primary: 196 67% 45%; /* New Blue #2596be */
     --primary-foreground: 0 0% 100%;
     --secondary: 210 10% 90%;
     --secondary-foreground: 0 0% 15%;
     --muted: 210 10% 95%;
     --muted-foreground: 210 10% 40%;
-    --accent: 74 96% 46%; /* Keep neon for context but primary is azzurro */
+    --accent: 35 100% 44%; /* New Orange neon #df8200 */
     --accent-foreground: 0 0% 0%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
     --border: 210 15% 90%;
     --input: 210 15% 90%;
-    --ring: 210 100% 45%;
+    --ring: 196 67% 45%;
     --radius: 0.75rem;
 
     /* Brand & Functional Colors */
     --brand-yellow: 59 100% 70%;
-    --brand-green: 74 96% 46%;
-    --brand-cyan: 192 100% 22%;
+    --brand-orange: 35 100% 44%;
+    --brand-blue: 196 67% 45%;
     --brand-pink: 340 73% 55%;
     
-    --win: 74 96% 46%;
+    --win: 35 100% 44%;
     --loss: 350 89% 60%;
     --draw: 210 10% 60%;
     
@@ -51,8 +51,8 @@
     --popover: 0 0% 5%;
     --popover-foreground: 0 0% 100%;
 
-    --primary: 74 96% 46%;
-    /* #4eeb00 Original Neon */
+    --primary: 35 100% 44%;
+    /* #df8200 New Orange Neon */
     --primary-foreground: 0 0% 100%;
     /* White text as requested */
 
@@ -62,8 +62,8 @@
     --muted: 220 25% 15%;
     --muted-foreground: 0 0% 70%;
 
-    --accent: 60 100% 70%;
-    /* Original Neon */
+    --accent: 35 100% 44%;
+    /* New Orange Neon */
     --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84.2% 60.2%;
@@ -71,14 +71,14 @@
 
     --border: 220 25% 20%;
     --input: 220 25% 20%;
-    --ring: 74 96% 46%;
+    --ring: 35 100% 44%;
     
     --brand-yellow: 59 100% 70%;
-    --brand-green: 74 96% 46%;
-    --brand-cyan: 192 100% 22%;
+    --brand-orange: 35 100% 44%;
+    --brand-blue: 196 67% 45%;
     --brand-pink: 340 73% 55%;
 
-    --win: 74 96% 46%;
+    --win: 35 100% 44%;
     --loss: 350 89% 60%;
     --draw: 210 10% 40%;
 
@@ -89,50 +89,50 @@
 
 @layer utilities {
   .text-neon-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[hsl(var(--brand-yellow))] via-[hsl(var(--brand-green))] to-[hsl(var(--brand-cyan))];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[hsl(var(--brand-yellow))] via-[hsl(var(--brand-orange))] to-[hsl(var(--brand-blue))];
   }
 
   .bg-neon-gradient {
-    @apply bg-gradient-to-r from-[hsl(var(--brand-yellow))] via-[hsl(var(--brand-green))] to-[hsl(var(--brand-cyan))];
+    @apply bg-gradient-to-r from-[hsl(var(--brand-yellow))] via-[hsl(var(--brand-orange))] to-[hsl(var(--brand-blue))];
   }
 
   .bg-cyan-gradient {
-    @apply bg-gradient-to-r from-[hsl(var(--brand-green))] to-[hsl(var(--brand-cyan))];
+    @apply bg-gradient-to-r from-[hsl(var(--brand-orange))] to-[hsl(var(--brand-blue))];
   }
 
   .border-neon-gradient {
     background: linear-gradient(hsl(var(--background)), hsl(var(--background))) padding-box,
-      linear-gradient(to right, hsl(var(--brand-yellow)), hsl(var(--brand-green)), hsl(var(--brand-cyan))) border-box;
+      linear-gradient(to right, hsl(var(--brand-yellow)), hsl(var(--brand-orange)), hsl(var(--brand-blue))) border-box;
     border: 2px solid transparent !important;
   }
 
   /* Nuovi stili Dashboard */
   .border-magenta-cyan {
     background: linear-gradient(hsl(var(--background)), hsl(var(--background))) padding-box,
-      linear-gradient(to bottom right, hsl(var(--brand-yellow)), hsl(var(--brand-green))) border-box;
+      linear-gradient(to bottom right, hsl(var(--brand-yellow)), hsl(var(--brand-orange))) border-box;
     border: 2px solid transparent !important;
   }
 
   .border-yellow-cyan {
     background: linear-gradient(hsl(var(--background)), hsl(var(--background))) padding-box,
-      linear-gradient(to bottom right, hsl(var(--brand-yellow)), hsl(var(--brand-cyan))) border-box;
+      linear-gradient(to bottom right, hsl(var(--brand-yellow)), hsl(var(--brand-blue))) border-box;
     border: 2px solid transparent !important;
   }
 
   .border-cyan-gradient {
     background: linear-gradient(hsl(var(--background)), hsl(var(--background))) padding-box,
-      linear-gradient(to right, hsl(var(--brand-green)), hsl(var(--brand-cyan))) border-box;
+      linear-gradient(to right, hsl(var(--brand-orange)), hsl(var(--brand-blue))) border-box;
     border: 2px solid transparent !important;
   }
 
   .border-green-cyan {
     background: linear-gradient(hsl(var(--background)), hsl(var(--background))) padding-box,
-      linear-gradient(to right, hsl(var(--brand-green)), hsl(var(--brand-cyan))) border-box;
+      linear-gradient(to right, hsl(var(--brand-orange)), hsl(var(--brand-blue))) border-box;
     border: 2px solid transparent !important;
   }
 
   .bg-green-cyan {
-    @apply bg-gradient-to-r from-[hsl(var(--brand-green))] to-[hsl(var(--brand-cyan))];
+    @apply bg-gradient-to-r from-[hsl(var(--brand-orange))] to-[hsl(var(--brand-blue))];
   }
 
   .glow-neon {
@@ -160,11 +160,11 @@
   }
 
   .glow-text-cyan {
-    text-shadow: 0 0 10px hsl(var(--brand-cyan));
+    text-shadow: 0 0 10px hsl(var(--brand-blue));
   }
 
   .glow-icon-green {
-    filter: drop-shadow(0 0 5px hsl(var(--brand-green)));
+    filter: drop-shadow(0 0 5px hsl(var(--brand-orange)));
   }
 }
 

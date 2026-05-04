@@ -29,18 +29,18 @@ function NavLink({ href, label, icon: Icon }: { href: string; label: string; ico
       href={href}
       className={cn(
         "flex flex-col items-center justify-center gap-1 p-2 transition-all w-full",
-        isActive ? "text-primary dark:text-brand-green" : "text-muted-foreground/50 dark:text-muted-foreground/30"
+        isActive ? "text-primary dark:text-brand-orange" : "text-muted-foreground/50 dark:text-muted-foreground/30"
       )}
     >
       <div className={cn(
         "transition-all duration-300 p-1.5 rounded-xl",
-        isActive && "text-primary dark:text-brand-green shadow-[0_0_15px_rgba(37,99,235,0.2)] dark:shadow-none dark:drop-shadow-[0_0_6px_rgba(172,229,4,0.8)] scale-110"
+        isActive && "text-primary dark:text-brand-orange shadow-[0_0_15px_rgba(37,99,235,0.2)] dark:shadow-none dark:drop-shadow-[0_0_6px_rgba(172,229,4,0.8)] scale-110"
       )}>
         <Icon className="h-6 w-6" />
       </div>
       <span className={cn(
         "text-[9px] font-black uppercase tracking-wider transition-colors",
-        isActive ? "text-foreground dark:text-brand-green" : "text-muted-foreground/40 dark:text-muted-foreground/30"
+        isActive ? "text-foreground dark:text-brand-orange" : "text-muted-foreground/40 dark:text-muted-foreground/30"
       )}>
         {label}
       </span>
@@ -63,7 +63,7 @@ export function BottomNav() {
   }
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-30 flex h-20 items-center justify-around bg-background dark:bg-black border-t border-border dark:border-brand-green/20 md:hidden px-4 pb-2 shadow-[0_-10px_30px_rgba(0,0,0,0.1)] dark:shadow-[0_-10px_30px_rgba(0,0,0,0.5)]">
+    <nav className="fixed bottom-0 left-0 right-0 z-30 flex h-20 items-center justify-around bg-background dark:bg-black border-t border-border dark:border-brand-orange/20 md:hidden px-4 pb-2 shadow-[0_-10px_30px_rgba(0,0,0,0.1)] dark:shadow-[0_-10px_30px_rgba(0,0,0,0.5)]">
       {navItems.map((item) => (
         <NavLink key={item.href} {...item} />
       ))}

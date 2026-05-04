@@ -16,7 +16,7 @@ export function PageHeader({ title, children, backAction, className }: PageHeade
     <div className={cn("flex items-center justify-between mb-6 md:mb-10", className)}>
       <div className="flex items-center gap-3">
         {backAction && (
-          <button onClick={backAction} className="text-primary dark:text-brand-green hover:opacity-70 transition-colors -ml-1 flex items-center justify-center p-1 rounded-full">
+          <button onClick={backAction} className="text-primary dark:text-brand-orange hover:opacity-70 transition-colors -ml-1 flex items-center justify-center p-1 rounded-full">
             <ChevronLeft className="h-8 w-8 sm:h-10 sm:w-10" />
           </button>
         )}

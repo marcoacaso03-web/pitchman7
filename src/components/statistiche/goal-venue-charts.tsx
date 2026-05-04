@@ -74,7 +74,7 @@ export function GoalVenueCharts() {
     );
 
     return (
-        <Card className="bg-card border border-primary/20 dark:border-brand-green/30 shadow-sm dark:shadow-[0_0_15px_rgba(172,229,4,0.05)] rounded-3xl overflow-hidden backdrop-blur-sm">
+        <Card className="bg-card border border-primary/20 dark:border-brand-orange/30 shadow-sm dark:shadow-[0_0_15px_rgba(172,229,4,0.05)] rounded-3xl overflow-hidden backdrop-blur-sm">
             <CardHeader className="pb-2">
                 <CardTitle className="font-black uppercase tracking-tight text-base dark:text-white flex items-center gap-2">
                     <GiSoccerBall className="h-4 w-4" />
@@ -90,7 +90,7 @@ export function GoalVenueCharts() {
                 {/* Legenda */}
                 <div className="flex justify-center gap-6 mt-6 border-t border-border pt-4">
                     <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded-full bg-brand-green dark:bg-primary" />
+                        <div className="w-3 h-3 rounded-full bg-brand-orange dark:bg-primary" />
                         <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/80">In Casa</span>
                     </div>
                     <div className="flex items-center gap-2">

@@ -50,7 +50,7 @@ const RoundBadge = ({ round }: { round?: number }) => {
   if (!round || round === 0) return null;
 
   return (
-    <div className="w-8 h-8 rounded-xl flex items-center justify-center border-2 border-primary dark:border-brand-green bg-primary/10 dark:bg-black text-primary dark:text-brand-green text-[10px] font-black shrink-0 shadow-sm dark:shadow-[0_0_10px_rgba(172,229,4,0.1)]">
+    <div className="w-8 h-8 rounded-xl flex items-center justify-center border-2 border-primary dark:border-brand-orange bg-primary/10 dark:bg-black text-primary dark:text-brand-orange text-[10px] font-black shrink-0 shadow-sm dark:shadow-[0_0_10px_rgba(172,229,4,0.1)]">
       {round}
     </div>
   );
@@ -137,7 +137,7 @@ export default function CalendarioPage() {
       let label = '-';
       let color = 'bg-muted text-muted-foreground';
 
-      if (isWin) { label = 'V'; color = 'bg-brand-green/20 text-brand-green border border-brand-green/30'; }
+      if (isWin) { label = 'V'; color = 'bg-brand-orange/20 text-brand-orange border border-brand-orange/30'; }
       else if (isLoss) { label = 'P'; color = 'bg-rose-500/20 text-rose-500 border border-rose-500/30'; }
       else if (isDraw) { label = 'N'; color = 'bg-amber-500/20 text-amber-500 border border-amber-500/30'; }
 
@@ -216,7 +216,7 @@ export default function CalendarioPage() {
             <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
               <span>Calendario</span>
               <span className="hidden sm:inline text-muted-foreground/30 font-light">|</span>
-              <span className="text-sm sm:text-lg font-bold text-primary dark:text-brand-green uppercase tracking-widest">{activeSeason?.name}</span>
+              <span className="text-sm sm:text-lg font-bold text-primary dark:text-brand-orange uppercase tracking-widest">{activeSeason?.name}</span>
             </div>
           }
         >
@@ -224,7 +224,7 @@ export default function CalendarioPage() {
 
             <Button
               variant="outline"
-              className="bg-primary/10 dark:bg-black border border-primary/30 dark:border-brand-green/30 text-primary dark:text-brand-green hover:opacity-90 dark:hover:bg-brand-green/10 hover:scale-105 transition-all h-8 sm:h-9 px-2 sm:px-3 rounded-xl shadow-md hidden sm:flex items-center"
+              className="bg-primary/10 dark:bg-black border border-primary/30 dark:border-brand-orange/30 text-primary dark:text-brand-orange hover:opacity-90 dark:hover:bg-brand-orange/10 hover:scale-105 transition-all h-8 sm:h-9 px-2 sm:px-3 rounded-xl shadow-md hidden sm:flex items-center"
               onClick={() => {
                 setMatchFormDefaultType('Torneo');
                 setIsMatchFormOpen(true);
@@ -237,7 +237,7 @@ export default function CalendarioPage() {
             
             <Button
               variant="outline"
-              className="bg-primary dark:bg-black border border-primary dark:border-brand-green text-white dark:text-brand-green hover:opacity-90 dark:hover:bg-black/80 hover:scale-105 transition-all h-8 sm:h-9 px-2 sm:px-3 rounded-xl shadow-md dark:shadow-[0_0_15px_rgba(172,229,4,0.15)] flex items-center"
+              className="bg-primary dark:bg-black border border-primary dark:border-brand-orange text-white dark:text-brand-orange hover:opacity-90 dark:hover:bg-black/80 hover:scale-105 transition-all h-8 sm:h-9 px-2 sm:px-3 rounded-xl shadow-md dark:shadow-[0_0_15px_rgba(172,229,4,0.15)] flex items-center"
               onClick={() => {
                 setMatchFormDefaultType('Campionato');
                 setIsMatchFormOpen(true);
@@ -255,13 +255,13 @@ export default function CalendarioPage() {
       {nextMatch && (
         <section className="space-y-3">
           <div className="flex items-center gap-2 px-1">
-            <CalendarIcon className="h-4 w-4 text-primary dark:text-brand-green" />
+            <CalendarIcon className="h-4 w-4 text-primary dark:text-brand-orange" />
             <h3 className="text-xs font-black uppercase tracking-widest text-foreground/70 dark:text-white/50">Prossimo Incontro</h3>
           </div>
 
           <Card
             onClick={() => router.push(`/calendario/${nextMatch.id}`)}
-            className="relative overflow-hidden border-2 border-primary/50 dark:border-brand-green bg-primary/10 dark:bg-brand-green/5 rounded-3xl cursor-pointer group hover:bg-primary/20 dark:hover:bg-brand-green/10 transition-all shadow-lg dark:shadow-[0_0_20px_rgba(172,229,4,0.1)]"
+            className="relative overflow-hidden border-2 border-primary/50 dark:border-brand-orange bg-primary/10 dark:bg-brand-orange/5 rounded-3xl cursor-pointer group hover:bg-primary/20 dark:hover:bg-brand-orange/10 transition-all shadow-lg dark:shadow-[0_0_20px_rgba(172,229,4,0.1)]"
           >
             <div className="absolute right-0 top-0 p-4 opacity-10 group-hover:scale-110 transition-transform">
               <Trophy className="w-16 h-16" />
@@ -270,11 +270,11 @@ export default function CalendarioPage() {
             <CardContent className="p-4 sm:p-5">
               <div className="flex items-center justify-between gap-4">
                 <div className="flex items-center gap-3 sm:gap-4">
-                  <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-xl bg-primary dark:bg-brand-green flex items-center justify-center text-white dark:text-black shadow-md shrink-0">
+                  <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-xl bg-primary dark:bg-brand-orange flex items-center justify-center text-white dark:text-black shadow-md shrink-0">
                     <GiWhistle className="h-5 w-5 sm:h-6 sm:w-6" />
                   </div>
                   <div className="min-w-0">
-                    <Badge className="bg-primary/20 dark:bg-brand-green/20 text-primary dark:text-brand-green border-none font-black text-[8px] sm:text-[9px] uppercase tracking-widest mb-0.5 px-2 py-0">
+                    <Badge className="bg-primary/20 dark:bg-brand-orange/20 text-primary dark:text-brand-orange border-none font-black text-[8px] sm:text-[9px] uppercase tracking-widest mb-0.5 px-2 py-0">
                       {nextMatch.type}
                     </Badge>
                     <h2 className="text-lg sm:text-2xl font-black uppercase tracking-tighter text-foreground dark:text-white truncate">
@@ -292,9 +292,9 @@ export default function CalendarioPage() {
                 <div className="flex items-center gap-3 shrink-0 relative z-10">
                   <div className="text-right hidden sm:block">
                     <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/40 leading-none mb-0.5">Status</p>
-                    <p className="text-xs font-black uppercase text-primary dark:text-brand-green">In Attesa</p>
+                    <p className="text-xs font-black uppercase text-primary dark:text-brand-orange">In Attesa</p>
                   </div>
-                  <ArrowRight className="h-5 w-5 sm:h-6 sm:w-6 text-primary dark:text-brand-green group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="h-5 w-5 sm:h-6 sm:w-6 text-primary dark:text-brand-orange group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
             </CardContent>
@@ -306,7 +306,7 @@ export default function CalendarioPage() {
       <section className="space-y-3">
         <div className="flex items-center justify-between gap-2 px-1">
           <div className="flex items-center gap-2">
-            <History className="h-4 w-4 text-primary dark:text-brand-green" />
+            <History className="h-4 w-4 text-primary dark:text-brand-orange" />
             <h3 className="text-xs font-black uppercase tracking-widest text-foreground/70 dark:text-white/50">Ultimi Incontri</h3>
           </div>
 
@@ -334,7 +334,7 @@ export default function CalendarioPage() {
         {lastMatch ? (
           <Card
             onClick={() => router.push(`/calendario/${lastMatch.id}`)}
-            className="bg-card dark:bg-black border border-border dark:border-white/10 rounded-3xl overflow-hidden cursor-pointer hover:border-primary dark:hover:border-brand-green/40 transition-all group"
+            className="bg-card dark:bg-black border border-border dark:border-white/10 rounded-3xl overflow-hidden cursor-pointer hover:border-primary dark:hover:border-brand-orange/40 transition-all group"
           >
             <CardContent className="p-5">
               <div className="flex items-center justify-between gap-4">
@@ -351,7 +351,7 @@ export default function CalendarioPage() {
                   <div className="flex items-center gap-2">
                     <span className={cn(
                       "text-2xl font-black",
-                      lastMatch.resultType === 'W' ? "text-brand-green" : lastMatch.resultType === 'L' ? "text-rose-500" : "text-foreground dark:text-white"
+                      lastMatch.resultType === 'W' ? "text-brand-orange" : lastMatch.resultType === 'L' ? "text-rose-500" : "text-foreground dark:text-white"
                     )}>
                       {lastMatch.teamGoals ?? (lastMatch.isHome ? lastMatch.result?.home : lastMatch.result?.away) ?? 0} - {lastMatch.opponentGoals ?? (lastMatch.isHome ? lastMatch.result?.away : lastMatch.result?.home) ?? 0}
                     </span>
@@ -372,7 +372,7 @@ export default function CalendarioPage() {
       <section className="space-y-4">
         <div className="flex items-center justify-between gap-4 px-1">
           <div className="flex items-center gap-2">
-            <CalendarIcon className="h-4 w-4 text-primary dark:text-brand-green" />
+            <CalendarIcon className="h-4 w-4 text-primary dark:text-brand-orange" />
             <h3 className="text-xs font-black uppercase tracking-widest text-foreground/70 dark:text-white/50">Tutte le Partite</h3>
           </div>
           {!isEditMode ? (
@@ -394,7 +394,7 @@ export default function CalendarioPage() {
             <div className="flex items-center gap-2">
               <Button
                 variant="outline"
-                className="h-7 px-3 text-[10px] font-black uppercase border-border dark:border-brand-green/50 text-foreground dark:text-white hover:bg-muted dark:hover:bg-brand-green/10 rounded-xl transition-all"
+                className="h-7 px-3 text-[10px] font-black uppercase border-border dark:border-brand-orange/50 text-foreground dark:text-white hover:bg-muted dark:hover:bg-brand-orange/10 rounded-xl transition-all"
                 onClick={handleCancelChanges}
               >
                 Annulla
@@ -414,7 +414,7 @@ export default function CalendarioPage() {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="h-7 w-7 bg-primary dark:bg-brand-green border-none text-white dark:text-black rounded-xl shadow-md hover:scale-105 transition-all"
+                  className="h-7 w-7 bg-primary dark:bg-brand-orange border-none text-white dark:text-black rounded-xl shadow-md hover:scale-105 transition-all"
                   onClick={handleSaveChanges}
                   title="Salva Modifiche"
                 >
@@ -436,10 +436,10 @@ export default function CalendarioPage() {
                 <Button
                   variant="ghost"
                   onClick={() => setExpandedTournaments(prev => ({ ...prev, [tournamentName]: !isExpanded }))}
-                  className="w-full h-auto p-4 flex items-center justify-between bg-primary/5 dark:bg-brand-green/5 border border-primary/20 dark:border-brand-green/20 rounded-2xl hover:bg-primary/10 dark:hover:bg-brand-green/10 transition-all group"
+                  className="w-full h-auto p-4 flex items-center justify-between bg-primary/5 dark:bg-brand-orange/5 border border-primary/20 dark:border-brand-orange/20 rounded-2xl hover:bg-primary/10 dark:hover:bg-brand-orange/10 transition-all group"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-xl bg-primary/20 dark:bg-brand-green/20 flex items-center justify-center text-primary dark:text-brand-green">
+                    <div className="h-10 w-10 rounded-xl bg-primary/20 dark:bg-brand-orange/20 flex items-center justify-center text-primary dark:text-brand-orange">
                       <Layers className="h-5 w-5" />
                     </div>
                     <div className="text-left">
@@ -455,7 +455,7 @@ export default function CalendarioPage() {
                 </Button>
 
                 {isExpanded && (
-                  <div className="space-y-2 ml-4 border-l-2 border-primary/10 dark:border-brand-green/10 pl-4 py-2 animate-in slide-in-from-top-2 duration-200">
+                  <div className="space-y-2 ml-4 border-l-2 border-primary/10 dark:border-brand-orange/10 pl-4 py-2 animate-in slide-in-from-top-2 duration-200">
                     {tourneyMatches.map((m) => (
                       <MatchCard 
                         key={m.id} 
@@ -516,7 +516,7 @@ export default function CalendarioPage() {
 
 
       <AlertDialog open={isDeleteAllOpen} onOpenChange={setIsDeleteAllOpen}>
-        <AlertDialogContent className="max-w-[90vw] rounded-3xl border border-border dark:border-brand-green/20 shadow-2xl p-8 bg-card dark:bg-black">
+        <AlertDialogContent className="max-w-[90vw] rounded-3xl border border-border dark:border-brand-orange/20 shadow-2xl p-8 bg-card dark:bg-black">
           <AlertDialogHeader>
             <AlertDialogTitle className="text-2xl font-black uppercase tracking-tight text-red-600">Svuota Calendario</AlertDialogTitle>
             <AlertDialogDescription className="text-sm font-bold text-muted-foreground uppercase tracking-wider">
@@ -543,7 +543,7 @@ function MatchCard({ match, isEditMode, onDelete, router, sortedMatches }: any) 
       onClick={() => router.push(`/calendario/${m.id}`)}
       className={cn(
         "bg-card dark:bg-black/40 border border-border dark:border-white/5 rounded-2xl cursor-pointer hover:bg-muted dark:hover:bg-white/5 transition-all group overflow-hidden",
-        m.status === 'scheduled' && "border-l-4 border-l-primary dark:border-l-brand-green"
+        m.status === 'scheduled' && "border-l-4 border-l-primary dark:border-l-brand-orange"
       )}
     >
       <CardContent className="p-4 pl-2 flex items-center justify-between gap-2">
@@ -558,14 +558,14 @@ function MatchCard({ match, isEditMode, onDelete, router, sortedMatches }: any) 
 
           <div className={cn(
             "w-12 h-12 rounded-xl flex flex-col items-center justify-center font-black shrink-0",
-            m.status === 'completed' ? "bg-muted dark:bg-zinc-900 text-muted-foreground" : "bg-primary/20 dark:bg-brand-green/20 text-primary dark:text-brand-green"
+            m.status === 'completed' ? "bg-muted dark:bg-zinc-900 text-muted-foreground" : "bg-primary/20 dark:bg-brand-orange/20 text-primary dark:text-brand-orange"
           )}>
             <span className="leading-none text-base">{format(parseISO(m.date), "dd")}</span>
             <span className="uppercase text-[9px] opacity-70 mt-0.5">{format(parseISO(m.date), "MMM", { locale: it })}</span>
           </div>
 
           <div className="min-w-0 flex-1">
-            <h5 className="text-sm font-black uppercase tracking-tight text-foreground dark:text-white group-hover:text-primary dark:group-hover:text-brand-green transition-colors truncate">
+            <h5 className="text-sm font-black uppercase tracking-tight text-foreground dark:text-white group-hover:text-primary dark:group-hover:text-brand-orange transition-colors truncate">
               {m.opponent}
             </h5>
             <div className="flex items-center gap-2 mt-0.5">
@@ -579,7 +579,7 @@ function MatchCard({ match, isEditMode, onDelete, router, sortedMatches }: any) 
             <div className="flex items-center gap-1.5 bg-muted/50 dark:bg-white/5 px-2.5 py-1 rounded-lg shrink-0 whitespace-nowrap">
               <span className={cn(
                 "text-xs font-black whitespace-nowrap",
-                m.resultType === 'W' ? "text-brand-green" : m.resultType === 'L' ? "text-rose-500" : "text-foreground dark:text-white"
+                m.resultType === 'W' ? "text-brand-orange" : m.resultType === 'L' ? "text-rose-500" : "text-foreground dark:text-white"
               )}>
                 {m.teamGoals ?? (m.isHome ? m.result?.home : m.result?.away) ?? 0} - {m.opponentGoals ?? (m.isHome ? m.result?.away : m.result?.home) ?? 0}
               </span>
@@ -587,7 +587,7 @@ function MatchCard({ match, isEditMode, onDelete, router, sortedMatches }: any) 
           ) : m.status === 'canceled' ? (
             <Badge variant="outline" className="text-[9px] uppercase font-black border-rose-500/50 text-rose-500">Annullata</Badge>
           ) : (
-            <Badge variant="outline" className="text-[9px] uppercase font-black border-primary/50 dark:border-brand-green/50 text-primary dark:text-brand-green animate-pulse">Programmata</Badge>
+            <Badge variant="outline" className="text-[9px] uppercase font-black border-primary/50 dark:border-brand-orange/50 text-primary dark:text-brand-orange animate-pulse">Programmata</Badge>
           )}
 
           {isEditMode ? (

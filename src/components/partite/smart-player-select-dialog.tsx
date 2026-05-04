@@ -92,7 +92,7 @@ export function SmartPlayerSelectDialog({
         <DialogHeader className="p-4 border-b border-border dark:border-white/10">
           <DialogTitle className="text-lg font-black uppercase tracking-tight flex items-center gap-2">
             Seleziona {acronym}
-            <span className="text-[10px] bg-primary/20 dark:bg-brand-green/20 text-primary dark:text-brand-green px-2 py-0.5 rounded-full font-bold">
+            <span className="text-[10px] bg-primary/20 dark:bg-brand-orange/20 text-primary dark:text-brand-orange px-2 py-0.5 rounded-full font-bold">
               {targetRole}
             </span>
           </DialogTitle>
@@ -100,7 +100,7 @@ export function SmartPlayerSelectDialog({
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <Input
               placeholder="Cerca giocatore..."
-              className="pl-10 h-10 bg-muted/50 dark:bg-white/5 border-none focus-visible:ring-1 focus-visible:ring-primary dark:focus-visible:ring-brand-green font-bold uppercase text-xs"
+              className="pl-10 h-10 bg-muted/50 dark:bg-white/5 border-none focus-visible:ring-1 focus-visible:ring-primary dark:focus-visible:ring-brand-orange font-bold uppercase text-xs"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
@@ -132,7 +132,7 @@ export function SmartPlayerSelectDialog({
                 className={cn(
                   "w-full justify-between h-14 px-3 rounded-xl border border-transparent transition-all",
                   isSelected 
-                    ? "bg-primary/10 dark:bg-brand-green/10 border-primary/20 dark:border-brand-green/20" 
+                    ? "bg-primary/10 dark:bg-brand-orange/10 border-primary/20 dark:border-brand-orange/20" 
                     : injured
                       ? "bg-red-500/5 hover:bg-red-500/10 border-red-500/20"
                       : "hover:bg-muted dark:hover:bg-white/5"
@@ -148,14 +148,14 @@ export function SmartPlayerSelectDialog({
                     injured
                       ? "bg-red-500/10 border-red-500"
                       : isMatch 
-                        ? "bg-primary/20 dark:bg-brand-green/20 border-primary dark:border-brand-green" 
+                        ? "bg-primary/20 dark:bg-brand-orange/20 border-primary dark:border-brand-orange" 
                         : isSecondary
                           ? "bg-amber-500/20 border-amber-500"
                           : "bg-muted dark:bg-white/5 border-border dark:border-white/10"
                   )}>
                     <User className={cn(
                       "w-5 h-5",
-                      injured ? "text-red-500" : isMatch ? "text-primary dark:text-brand-green" : isSecondary ? "text-amber-500" : "text-muted-foreground"
+                      injured ? "text-red-500" : isMatch ? "text-primary dark:text-brand-orange" : isSecondary ? "text-amber-500" : "text-muted-foreground"
                     )} />
                   </div>
                   <div className="text-left">
@@ -168,9 +168,9 @@ export function SmartPlayerSelectDialog({
                   </div>
                 </div>
                 {isSelected ? (
-                  <Check className="w-5 h-5 text-primary dark:text-brand-green" />
+                  <Check className="w-5 h-5 text-primary dark:text-brand-orange" />
                 ) : (isMatch || isSecondary) ? (
-                  <Star className={cn("w-4 h-4", isMatch ? "text-primary dark:text-brand-green fill-primary dark:fill-brand-green" : "text-amber-500")} />
+                  <Star className={cn("w-4 h-4", isMatch ? "text-primary dark:text-brand-orange fill-primary dark:fill-brand-orange" : "text-amber-500")} />
                 ) : null}
               </Button>
             );

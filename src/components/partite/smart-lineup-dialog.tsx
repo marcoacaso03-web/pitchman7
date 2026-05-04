@@ -81,10 +81,10 @@ export function SmartLineupDialog({ open, onOpenChange }: SmartLineupDialogProps
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-[95vw] md:max-w-xl rounded-3xl p-0 overflow-hidden border-none shadow-2xl flex flex-col max-h-[90vh] bg-background dark:bg-black">
-        <DialogHeader className="p-6 bg-card dark:bg-black border-b border-border dark:border-brand-green/30 text-foreground dark:text-white shrink-0 relative transition-colors">
+        <DialogHeader className="p-6 bg-card dark:bg-black border-b border-border dark:border-brand-orange/30 text-foreground dark:text-white shrink-0 relative transition-colors">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-muted dark:bg-white/5 border border-border dark:border-white/10 rounded-xl">
-              <Sparkles className="h-6 w-6 text-primary dark:text-brand-green" />
+              <Sparkles className="h-6 w-6 text-primary dark:text-brand-orange" />
             </div>
             <div>
               <DialogTitle className="uppercase font-black tracking-tight">AI Smart Lineup</DialogTitle>
@@ -101,10 +101,10 @@ export function SmartLineupDialog({ open, onOpenChange }: SmartLineupDialogProps
           </div>
           <div className="flex items-center gap-2">
             <Select value={modulo} onValueChange={setModulo}>
-              <SelectTrigger className="bg-background dark:bg-black text-foreground dark:text-white h-8 text-[11px] w-28 py-0 font-black border border-primary/50 dark:border-brand-green/50 shadow-sm uppercase focus:ring-1 focus:ring-primary dark:focus:ring-brand-green">
+              <SelectTrigger className="bg-background dark:bg-black text-foreground dark:text-white h-8 text-[11px] w-28 py-0 font-black border border-primary/50 dark:border-brand-orange/50 shadow-sm uppercase focus:ring-1 focus:ring-primary dark:focus:ring-brand-orange">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="bg-card dark:bg-black border-border dark:border-brand-green/50 text-foreground dark:text-white">
+              <SelectContent className="bg-card dark:bg-black border-border dark:border-brand-orange/50 text-foreground dark:text-white">
                 <SelectItem value="2-3-1" className="text-[11px] font-black">2-3-1</SelectItem>
                 <SelectItem value="3-2-1" className="text-[11px] font-black">3-2-1</SelectItem>
                 <SelectItem value="2-2-2" className="text-[11px] font-black">2-2-2</SelectItem>
@@ -117,7 +117,7 @@ export function SmartLineupDialog({ open, onOpenChange }: SmartLineupDialogProps
 
         <ScrollArea className="flex-1 bg-background dark:bg-black transition-colors">
           <div className="p-6 space-y-6">
-            <Alert className="bg-muted dark:bg-card/50 border-border dark:border-brand-green/30 rounded-2xl transition-colors">
+            <Alert className="bg-muted dark:bg-card/50 border-border dark:border-brand-orange/30 rounded-2xl transition-colors">
               <AlertCircle className="h-4 w-4 text-primary dark:text-white" />
               <AlertTitle className="text-[10px] font-black uppercase text-foreground dark:text-white mb-1">Attenzione</AlertTitle>
               <AlertDescription className="text-[11px] font-bold text-muted-foreground dark:text-white/40 uppercase leading-relaxed">
@@ -133,7 +133,7 @@ export function SmartLineupDialog({ open, onOpenChange }: SmartLineupDialogProps
                 value={rawList}
                 onChange={(e) => setRawList(e.target.value)}
                 disabled={isAnalyzing}
-                className="min-h-[200px] text-xs font-bold rounded-2xl bg-background dark:bg-black border-border dark:border-brand-green/30 focus-visible:ring-1 focus-visible:ring-primary dark:focus-visible:ring-brand-green text-foreground dark:text-white placeholder:text-muted-foreground/30 dark:placeholder:text-white/10"
+                className="min-h-[200px] text-xs font-bold rounded-2xl bg-background dark:bg-black border-border dark:border-brand-orange/30 focus-visible:ring-1 focus-visible:ring-primary dark:focus-visible:ring-brand-orange text-foreground dark:text-white placeholder:text-muted-foreground/30 dark:placeholder:text-white/10"
               />
             </div>
 
@@ -155,7 +155,7 @@ export function SmartLineupDialog({ open, onOpenChange }: SmartLineupDialogProps
           </Button>
           <Button 
             onClick={handleSmartAnalyze} 
-            className="flex-1 bg-primary dark:bg-black border border-primary dark:border-brand-green text-white dark:text-white hover:opacity-90 dark:hover:bg-brand-green/10 rounded-2xl font-black uppercase text-[10px] h-12 shadow-md dark:shadow-[0_0_15px_rgba(172,229,4,0.1)] transition-all" 
+            className="flex-1 bg-primary dark:bg-black border border-primary dark:border-brand-orange text-white dark:text-white hover:opacity-90 dark:hover:bg-brand-orange/10 rounded-2xl font-black uppercase text-[10px] h-12 shadow-md dark:shadow-[0_0_15px_rgba(172,229,4,0.1)] transition-all" 
             disabled={isAnalyzing || !rawList.trim()}
           >
             {isAnalyzing ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : "Inserisci Formazione"}

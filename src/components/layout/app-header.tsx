@@ -21,10 +21,10 @@ export function AppHeader() {
   const pathname = usePathname();
   
   return (
-    <header className="sticky top-0 z-40 flex h-16 items-center justify-between bg-background dark:bg-black border-b border-border dark:border-brand-green/20 px-4 md:px-8 shadow-sm dark:shadow-[0_1px_20px_rgba(172,229,4,0.05)] transition-all duration-300">
+    <header className="sticky top-0 z-40 flex h-16 items-center justify-between bg-background dark:bg-black border-b border-border dark:border-brand-orange/20 px-4 md:px-8 shadow-sm dark:shadow-[0_1px_20px_rgba(172,229,4,0.05)] transition-all duration-300">
       <div className="flex items-center gap-10">
         <Link href="/" className="flex items-center gap-2.5 hover:opacity-90 transition-opacity">
-          <div className="p-1.5 bg-muted dark:bg-black border border-border dark:border-brand-green/20 rounded-xl transition-colors">
+          <div className="p-1.5 bg-muted dark:bg-black border border-border dark:border-brand-orange/20 rounded-xl transition-colors">
             <img src="/favicon-16x16_light.png" alt="App Logo" className="h-7 w-7 object-contain drop-shadow dark:hidden" />
             <img src="/favicon-16x16.png" alt="App Logo" className="h-7 w-7 object-contain drop-shadow hidden dark:block" />
           </div>
@@ -45,7 +45,7 @@ export function AppHeader() {
                 className={cn(
                   "px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all border",
                   isActive 
-                    ? "bg-primary/5 dark:bg-black text-primary dark:text-brand-green border-primary/50 dark:border-brand-green shadow-sm dark:shadow-[0_0_12px_rgba(172,229,4,0.25)]" 
+                    ? "bg-primary/5 dark:bg-black text-primary dark:text-brand-orange border-primary/50 dark:border-brand-orange shadow-sm dark:shadow-[0_0_12px_rgba(172,229,4,0.25)]" 
                     : "text-muted-foreground dark:text-white/40 border-transparent hover:text-foreground dark:hover:text-white hover:bg-muted dark:hover:bg-white/5"
                 )}
               >
@@ -65,11 +65,11 @@ export function AppHeader() {
             <span className="text-[10px] font-black text-foreground dark:text-white uppercase leading-none">
               {user.username}
             </span>
-            <span className="text-[8px] font-bold text-primary dark:text-brand-green uppercase tracking-tighter mt-1">
+            <span className="text-[8px] font-bold text-primary dark:text-brand-orange uppercase tracking-tighter mt-1">
               Online
             </span>
           </div>
-          <div className="h-9 w-9 rounded-xl bg-muted dark:bg-black border border-border dark:border-brand-green/30 flex items-center justify-center text-foreground dark:text-white font-black text-xs shadow-sm dark:shadow-[0_0_8px_rgba(172,229,4,0.1)]">
+          <div className="h-9 w-9 rounded-xl bg-muted dark:bg-black border border-border dark:border-brand-orange/30 flex items-center justify-center text-foreground dark:text-white font-black text-xs shadow-sm dark:shadow-[0_0_8px_rgba(172,229,4,0.1)]">
             {user.username.charAt(0).toUpperCase()}
           </div>
         </div>

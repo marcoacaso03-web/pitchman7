@@ -22,7 +22,7 @@ export function GoalsIntervalChart() {
 
     if (!hasData) {
         return (
-            <Card className="bg-card border border-primary/20 dark:border-brand-green/30 shadow-sm dark:shadow-[0_0_15px_rgba(172,229,4,0.05)] rounded-3xl overflow-hidden backdrop-blur-sm">
+            <Card className="bg-card border border-primary/20 dark:border-brand-orange/30 shadow-sm dark:shadow-[0_0_15px_rgba(172,229,4,0.05)] rounded-3xl overflow-hidden backdrop-blur-sm">
                 <CardHeader>
                     <CardTitle className="text-base font-black uppercase tracking-tight text-primary">Distribuzione Gol</CardTitle>
                 </CardHeader>
@@ -40,7 +40,7 @@ export function GoalsIntervalChart() {
         : [DesignTokens.charts.primary(false), "rgba(0, 120, 255, 0.6)", "rgba(0, 120, 255, 0.3)"];
 
     return (
-        <Card className="bg-card border border-primary/20 dark:border-brand-green/30 shadow-sm dark:shadow-[0_0_15px_rgba(172,229,4,0.05)] rounded-3xl overflow-hidden backdrop-blur-sm">
+        <Card className="bg-card border border-primary/20 dark:border-brand-orange/30 shadow-sm dark:shadow-[0_0_15px_rgba(172,229,4,0.05)] rounded-3xl overflow-hidden backdrop-blur-sm">
             <CardHeader className="pb-2">
                 <CardTitle className="text-base font-black uppercase tracking-tight text-primary dark:text-white">Gol per Intervallo</CardTitle>
                 <CardDescription className="text-[10px] font-black uppercase text-muted-foreground/60 tracking-wider">Distribuzione dei gol segnati nei diversi momenti della gara.</CardDescription>

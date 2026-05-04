@@ -120,7 +120,7 @@ export function FullCalendarDialog({ open, onOpenChange }: FullCalendarDialogPro
 
   const StatusBadge = ({ status }: { status: MatchStatus }) => {
     switch (status) {
-      case 'completed': return <div className="h-1.5 w-1.5 rounded-full bg-primary dark:bg-brand-green" />;
+      case 'completed': return <div className="h-1.5 w-1.5 rounded-full bg-primary dark:bg-brand-orange" />;
       case 'scheduled': return <div className="h-1.5 w-1.5 rounded-full bg-muted-foreground/40 dark:bg-white/20" />;
       case 'canceled': return <div className="h-1.5 w-1.5 rounded-full bg-destructive shadow-sm dark:shadow-[0_0_6px_rgba(239,68,68,0.5)]" />;
       default: return null;
@@ -131,7 +131,7 @@ export function FullCalendarDialog({ open, onOpenChange }: FullCalendarDialogPro
     if (!round || round === 0) return null;
 
     return (
-      <div className="w-8 h-8 rounded-xl flex items-center justify-center border-2 border-primary dark:border-brand-green bg-primary/10 dark:bg-black text-primary dark:text-brand-green text-xs font-black shrink-0">
+      <div className="w-8 h-8 rounded-xl flex items-center justify-center border-2 border-primary dark:border-brand-orange bg-primary/10 dark:bg-black text-primary dark:text-brand-orange text-xs font-black shrink-0">
         {round}
       </div>
     );
@@ -153,20 +153,20 @@ export function FullCalendarDialog({ open, onOpenChange }: FullCalendarDialogPro
                 <div>
                   <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mt-0.5">Stagione {activeSeason?.name}</p>
                 </div>
-                {isProcessing && <Loader2 className="h-3 w-3 animate-spin text-primary dark:text-brand-green" />}
+                {isProcessing && <Loader2 className="h-3 w-3 animate-spin text-primary dark:text-brand-orange" />}
               </div>
             </div>
             <div className="flex gap-1 md:gap-1.5 shrink-0 items-center">
 
               <Button
                 variant="outline"
-                className="bg-muted dark:bg-black/80 border-border dark:border-brand-green text-foreground dark:text-white hover:bg-muted/80 dark:hover:bg-black hover:scale-105 transition-all h-8 w-8 rounded-xl shadow-sm p-0"
+                className="bg-muted dark:bg-black/80 border-border dark:border-brand-orange text-foreground dark:text-white hover:bg-muted/80 dark:hover:bg-black hover:scale-105 transition-all h-8 w-8 rounded-xl shadow-sm p-0"
                 size="icon"
                 onClick={() => setIsFormOpen(true)}
                 disabled={isProcessing}
                 title="Nuova Partita"
               >
-                <PlusCircle className="h-4 w-4 text-primary dark:text-brand-green" />
+                <PlusCircle className="h-4 w-4 text-primary dark:text-brand-orange" />
               </Button>
               {matches.length > 0 && (
                 <Button
@@ -190,7 +190,7 @@ export function FullCalendarDialog({ open, onOpenChange }: FullCalendarDialogPro
               </div>
             ) : matches.length === 0 ? (
               <div className="text-center py-20 text-muted-foreground">
-                <Calendar className="h-12 w-12 mx-auto opacity-20 mb-4 text-primary dark:text-brand-green" />
+                <Calendar className="h-12 w-12 mx-auto opacity-20 mb-4 text-primary dark:text-brand-orange" />
                 <p className="font-black text-xs uppercase tracking-widest">Nessuna partita registrata</p>
               </div>
             ) : (
@@ -218,7 +218,7 @@ export function FullCalendarDialog({ open, onOpenChange }: FullCalendarDialogPro
                               <span className="text-[9px] font-bold text-muted-foreground">{month}</span>
                             </div>
                             <div className="p-1.5 bg-background dark:bg-muted/30 border border-border dark:border-transparent rounded-lg shadow-sm dark:shadow-none">
-                              {match.isHome ? <Home className="h-3.5 w-3.5 text-primary dark:text-brand-green" /> : <Plane className="h-3.5 w-3.5 text-sky-500 dark:text-brand-cyan" />}
+                              {match.isHome ? <Home className="h-3.5 w-3.5 text-primary dark:text-brand-orange" /> : <Plane className="h-3.5 w-3.5 text-sky-500 dark:text-brand-blue" />}
                             </div>
                             <div className="flex-1 flex items-center justify-between gap-2">
                               <div className="flex flex-col">

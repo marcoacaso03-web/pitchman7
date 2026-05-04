@@ -158,7 +158,7 @@ export function MatchLineupTab() {
           {!isEditing ? (
             <Button
               onClick={() => setIsEditing(true)}
-              className="h-10 px-6 bg-primary dark:bg-brand-green text-white dark:text-black rounded-2xl font-black uppercase text-xs shadow-lg dark:shadow-[0_0_15px_rgba(172,229,4,0.2)] hover:scale-105 active:scale-95 transition-all"
+              className="h-10 px-6 bg-primary dark:bg-brand-orange text-white dark:text-black rounded-2xl font-black uppercase text-xs shadow-lg dark:shadow-[0_0_15px_rgba(172,229,4,0.2)] hover:scale-105 active:scale-95 transition-all"
             >
               <Settings2 className="mr-2 h-4 w-4" />
               Modifica Formazione
@@ -174,7 +174,7 @@ export function MatchLineupTab() {
               </Button>
               <Button
                 onClick={handleSave}
-                className="h-10 px-6 bg-primary dark:bg-brand-green text-white dark:text-black rounded-2xl font-black uppercase text-[10px] shadow-lg dark:shadow-[0_0_15px_rgba(172,229,4,0.2)] animate-in fade-in slide-in-from-left-4"
+                className="h-10 px-6 bg-primary dark:bg-brand-orange text-white dark:text-black rounded-2xl font-black uppercase text-[10px] shadow-lg dark:shadow-[0_0_15px_rgba(172,229,4,0.2)] animate-in fade-in slide-in-from-left-4"
               >
                 <Save className="mr-2 h-4 w-4" />
                 Salva
@@ -191,10 +191,10 @@ export function MatchLineupTab() {
                 value={modulo}
                 onValueChange={(val) => { setModulo(val); setIsDirty(true); }}
               >
-                <SelectTrigger className="bg-background dark:bg-black text-primary dark:text-brand-green h-9 text-xs w-28 font-black border-none shadow-none uppercase focus:ring-0 rounded-xl">
+                <SelectTrigger className="bg-background dark:bg-black text-primary dark:text-brand-orange h-9 text-xs w-28 font-black border-none shadow-none uppercase focus:ring-0 rounded-xl">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-card dark:bg-black border-border dark:border-brand-green/50 text-foreground dark:text-white rounded-xl">
+                <SelectContent className="bg-card dark:bg-black border-border dark:border-brand-orange/50 text-foreground dark:text-white rounded-xl">
                   {["2-3-1", "3-2-1", "2-2-2", "3-1-2", "1-3-2"].map(f => (
                     <SelectItem key={f} value={f} className="text-xs font-black uppercase">{f}</SelectItem>
                   ))}
@@ -205,7 +205,7 @@ export function MatchLineupTab() {
             <Button
               variant="outline"
               onClick={() => setIsSmartOpen(true)}
-              className="h-10 px-4 rounded-2xl border-primary/30 dark:border-brand-green/30 text-primary dark:text-brand-green font-black uppercase text-[10px] hover:bg-primary/5 dark:hover:bg-brand-green/5 transition-all"
+              className="h-10 px-4 rounded-2xl border-primary/30 dark:border-brand-orange/30 text-primary dark:text-brand-orange font-black uppercase text-[10px] hover:bg-primary/5 dark:hover:bg-brand-orange/5 transition-all"
             >
               <Sparkles className="mr-2 h-4 w-4" />
               AI Smart Mode
@@ -217,7 +217,7 @@ export function MatchLineupTab() {
         {/* Campo Area */}
         <div className="space-y-4">
           <div className="flex items-center gap-2 px-2">
-            <LayoutGrid className="w-4 h-4 text-primary dark:text-brand-green" />
+            <LayoutGrid className="w-4 h-4 text-primary dark:text-brand-orange" />
             <h4 className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Titolari in Campo</h4>
           </div>
           <div className="animate-in fade-in zoom-in-95 duration-500">
@@ -234,7 +234,7 @@ export function MatchLineupTab() {
         {/* Panchina Area */}
         <div className="space-y-4">
           <div className="flex items-center gap-2 px-2">
-            <Users className="w-4 h-4 text-primary dark:text-brand-green" />
+            <Users className="w-4 h-4 text-primary dark:text-brand-orange" />
             <h4 className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Panchina ({substitutes.filter(s => s).length})</h4>
           </div>
           <Card className="bg-card dark:bg-black/40 border-border dark:border-white/5 rounded-3xl overflow-hidden shadow-sm">
@@ -251,7 +251,7 @@ export function MatchLineupTab() {
                   const availablePlayers = allPlayers.filter(p => !allSelectedIds.includes(p.id) || p.id === s);
 
                   return (
-                    <div key={i} className="flex items-center gap-3 p-2 bg-muted/30 dark:bg-white/5 rounded-xl border border-transparent hover:border-primary/20 dark:hover:border-brand-green/20 transition-all">
+                    <div key={i} className="flex items-center gap-3 p-2 bg-muted/30 dark:bg-white/5 rounded-xl border border-transparent hover:border-primary/20 dark:hover:border-brand-orange/20 transition-all">
                       <div className="w-7 h-7 rounded-full bg-background dark:bg-black flex items-center justify-center text-[9px] font-black text-muted-foreground border border-border dark:border-white/10 shrink-0">
                         R{i + 1}
                       </div>
@@ -270,7 +270,7 @@ export function MatchLineupTab() {
                             )}
                             <SelectValue placeholder="-- SELEZIONA --" />
                           </SelectTrigger>
-                          <SelectContent className="bg-card dark:bg-black border-border dark:border-brand-green/50">
+                          <SelectContent className="bg-card dark:bg-black border-border dark:border-brand-orange/50">
                             <SelectItem value="none" className="text-[10px] font-bold uppercase text-muted-foreground">-- Nessuno --</SelectItem>
                             {availablePlayers.map(p => (
                               <SelectItem key={p.id} value={p.id} className="text-[11px] font-black uppercase">{displayPlayerName(p)}</SelectItem>

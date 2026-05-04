@@ -111,9 +111,9 @@ export function SquadFormationView() {
 
   if (loading) {
     return (
-      <Card className="bg-card dark:bg-black/40 border-border dark:border-brand-green/30 rounded-3xl">
+      <Card className="bg-card dark:bg-black/40 border-border dark:border-brand-orange/30 rounded-3xl">
         <CardContent className="flex flex-col items-center justify-center py-24 gap-4">
-          <Loader2 className="h-8 w-8 text-primary dark:text-brand-green animate-spin" />
+          <Loader2 className="h-8 w-8 text-primary dark:text-brand-orange animate-spin" />
           <p className="text-sm text-muted-foreground uppercase font-black tracking-widest">Analisi dati in corso...</p>
         </CardContent>
       </Card>
@@ -122,7 +122,7 @@ export function SquadFormationView() {
 
   if (error || !bestLineup) {
     return (
-      <Card className="bg-card dark:bg-black/40 border-border dark:border-brand-green/30 rounded-3xl">
+      <Card className="bg-card dark:bg-black/40 border-border dark:border-brand-orange/30 rounded-3xl">
         <CardContent className="flex flex-col items-center justify-center py-16 text-center gap-4">
           <AlertCircle className="h-12 w-12 text-muted-foreground opacity-20" />
           <div>
@@ -140,11 +140,11 @@ export function SquadFormationView() {
 
   return (
     <div className="space-y-4">
-      <Card className="bg-card dark:bg-black/40 border-border dark:border-brand-green/30 shadow-sm dark:shadow-[0_0_15px_rgba(172,229,4,0.05)] rounded-3xl overflow-hidden backdrop-blur-sm transition-colors">
+      <Card className="bg-card dark:bg-black/40 border-border dark:border-brand-orange/30 shadow-sm dark:shadow-[0_0_15px_rgba(172,229,4,0.05)] rounded-3xl overflow-hidden backdrop-blur-sm transition-colors">
         <CardContent className="pt-6 pb-8 px-4 sm:px-6">
           <div className="flex items-center justify-center gap-4 mb-8">
-            <div className="px-4 py-2 rounded-2xl bg-primary/10 dark:bg-brand-green/10 border border-primary/20 dark:border-brand-green/20">
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary dark:text-brand-green">Modulo: {bestLineup.formation}</span>
+            <div className="px-4 py-2 rounded-2xl bg-primary/10 dark:bg-brand-orange/10 border border-primary/20 dark:border-brand-orange/20">
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary dark:text-brand-orange">Modulo: {bestLineup.formation}</span>
             </div>
             <div className="px-4 py-2 rounded-2xl bg-muted/50 dark:bg-white/5 border border-border dark:border-white/10">
               <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">{bestLineup.apps} {bestLineup.apps === 1 ? 'Partita' : 'Partite'}</span>
@@ -174,7 +174,7 @@ export function SquadFormationView() {
                           "w-9 h-9 sm:w-11 sm:h-11 md:w-14 md:h-14 shrink-0 rounded-full flex items-center justify-center border-2 md:border-2 shadow-xl transition-transform hover:scale-110",
                           isPOR
                             ? "bg-amber-600 border-amber-400 text-black shadow-[0_0_15px_rgba(245,158,11,0.4)]"
-                            : "bg-primary/90 dark:bg-brand-green/90 border-primary dark:border-brand-green text-white dark:text-black shadow-[0_0_15px_rgba(172,229,4,0.3)]"
+                            : "bg-primary/90 dark:bg-brand-orange/90 border-primary dark:border-brand-orange text-white dark:text-black shadow-[0_0_15px_rgba(172,229,4,0.3)]"
                         )}>
                           <span className="text-[8px] md:text-[11px] font-black uppercase text-center leading-none">
                             {getPositionAcronym(bestLineup.formation, starterIdx)}
