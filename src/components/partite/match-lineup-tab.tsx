@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
+import { motion } from "framer-motion";
 import { useMatchDetailStore } from "@/store/useMatchDetailStore";
 import { Button } from "@/components/ui/button";
 import {
@@ -146,6 +147,27 @@ export function MatchLineupTab() {
     setIsDirty(true);
   };
 
+  const handleSwap = (source: {type: 'starter'|'sub', index: number}, target: {type: 'starter'|'sub', index: number}) => {
+    if (!isEditing) return;
+    if (source.type === target.type && source.index === target.index) return;
+
+    const newStarters = [...starters];
+    const newSubs = [...substitutes];
+
+    const sourceVal = source.type === 'starter' ? newStarters[source.index] : newSubs[source.index];
+    const targetVal = target.type === 'starter' ? newStarters[target.index] : newSubs[target.index];
+
+    if (source.type === 'starter') newStarters[source.index] = targetVal;
+    else newSubs[source.index] = targetVal;
+
+    if (target.type === 'starter') newStarters[target.index] = sourceVal;
+    else newSubs[target.index] = sourceVal;
+
+    setStarters(newStarters);
+    setSubstitutes(newSubs);
+    setIsDirty(true);
+  };
+
   if (loading && !lineup) {
     return <div className="py-20 text-center text-muted-foreground animate-pulse font-black uppercase text-xs tracking-widest">Caricamento Formazione...</div>;
   }
@@ -226,6 +248,8 @@ export function MatchLineupTab() {
               starters={starters}
               allPlayers={allPlayers}
               matchDate={match?.date}
+              isEditing={isEditing}
+              onSwap={handleSwap}
               onSlotClick={(idx) => isEditing && setEditingSlot(idx)}
             />
           </div>
@@ -251,10 +275,44 @@ export function MatchLineupTab() {
                   const availablePlayers = allPlayers.filter(p => !allSelectedIds.includes(p.id) || p.id === s);
 
                   return (
-                    <div key={i} className="flex items-center gap-3 p-2 bg-muted/30 dark:bg-white/5 rounded-xl border border-transparent hover:border-primary/20 dark:hover:border-brand-orange/20 transition-all">
-                      <div className="w-7 h-7 rounded-full bg-background dark:bg-black flex items-center justify-center text-[9px] font-black text-muted-foreground border border-border dark:border-white/10 shrink-0">
-                        R{i + 1}
-                      </div>
+                    <div 
+                      key={i} 
+                      data-slot-type="sub"
+                      data-slot-index={i}
+                      className="flex items-center gap-3 p-2 bg-muted/30 dark:bg-white/5 rounded-xl border border-transparent hover:border-primary/20 dark:hover:border-brand-orange/20 transition-all"
+                    >
+                      <motion.div
+                        data-draggable="true"
+                        drag={isEditing ? true : false}
+                        dragSnapToOrigin
+                        whileDrag={{ scale: 1.5, zIndex: 50 }}
+                        onDragEnd={(e, info) => {
+                          if (!isEditing) return;
+                          const el = e.target as HTMLElement;
+                          const dragContainer = el.closest('[data-draggable="true"]') as HTMLElement;
+                          if (dragContainer) {
+                            dragContainer.style.pointerEvents = 'none';
+                            dragContainer.style.visibility = 'hidden';
+                          }
+                          const targetEl = document.elementFromPoint(info.point.x, info.point.y);
+                          if (dragContainer) {
+                            dragContainer.style.pointerEvents = '';
+                            dragContainer.style.visibility = '';
+                          }
+                          const dropZone = targetEl?.closest('[data-slot-type]');
+                          if (dropZone) {
+                            const targetType = dropZone.getAttribute('data-slot-type') as 'starter' | 'sub';
+                            const targetIndex = parseInt(dropZone.getAttribute('data-slot-index') || '0', 10);
+                            handleSwap({ type: 'sub', index: i }, { type: targetType, index: targetIndex });
+                          }
+                        }}
+                        className={cn(
+                          "w-7 h-7 rounded-full flex items-center justify-center text-[9px] font-black border shrink-0 transition-all",
+                          isEditing && s ? "bg-primary/20 text-primary dark:text-brand-orange border-primary/50 dark:border-brand-orange/50 shadow-md cursor-grab active:cursor-grabbing" : "bg-background dark:bg-black text-muted-foreground border-border dark:border-white/10"
+                        )}
+                      >
+                        {player && s ? (player.lastName?.charAt(0) || player.firstName?.charAt(0) || 'R') : `R${i + 1}`}
+                      </motion.div>
                       <div className="flex-1 min-w-0">
                         <Select
                           value={s || "none"}

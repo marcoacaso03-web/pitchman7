@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { motion } from "framer-motion";
 import { cn, displayPlayerName } from "@/lib/utils";
 import { getPositionAcronym, getPositionCoordinates } from "@/lib/lineup-mapping";
 import { Plus, User, Activity } from "lucide-react";
@@ -12,6 +13,8 @@ interface TacticalPitchEditorProps {
   allPlayers: Player[];
   onSlotClick: (index: number) => void;
   matchDate?: string;
+  isEditing?: boolean;
+  onSwap?: (source: { type: 'starter' | 'sub', index: number }, target: { type: 'starter' | 'sub', index: number }) => void;
 }
 
 export function TacticalPitchEditor({
@@ -20,6 +23,8 @@ export function TacticalPitchEditor({
   allPlayers,
   onSlotClick,
   matchDate,
+  isEditing,
+  onSwap,
 }: TacticalPitchEditorProps) {
   const isPlayerInjured = (player: Player) => {
     if (!matchDate || !player.injuries || player.injuries.length === 0) return false;
@@ -57,8 +62,34 @@ export function TacticalPitchEditor({
               className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-1 w-16 sm:w-20 transition-all duration-300"
               style={{ top: `${coords.top}%`, left: `${coords.left}%` }}
               onClick={() => onSlotClick(index)}
+              data-slot-type="starter"
+              data-slot-index={index}
             >
-              <div
+              <motion.div
+                data-draggable="true"
+                drag={isEditing ? true : false}
+                dragSnapToOrigin
+                whileDrag={{ scale: 1.3, zIndex: 50 }}
+                onDragEnd={(e, info) => {
+                  if (!isEditing || !onSwap) return;
+                  const el = e.target as HTMLElement;
+                  const dragContainer = el.closest('[data-draggable="true"]') as HTMLElement;
+                  if (dragContainer) {
+                    dragContainer.style.pointerEvents = 'none';
+                    dragContainer.style.visibility = 'hidden';
+                  }
+                  const targetEl = document.elementFromPoint(info.point.x, info.point.y);
+                  if (dragContainer) {
+                    dragContainer.style.pointerEvents = '';
+                    dragContainer.style.visibility = '';
+                  }
+                  const dropZone = targetEl?.closest('[data-slot-type]');
+                  if (dropZone) {
+                    const targetType = dropZone.getAttribute('data-slot-type') as 'starter' | 'sub';
+                    const targetIndex = parseInt(dropZone.getAttribute('data-slot-index') || '0', 10);
+                    onSwap({ type: 'starter', index }, { type: targetType, index: targetIndex });
+                  }
+                }}
                 className={cn(
                   "w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center border-2 shadow-lg transition-all cursor-pointer active:scale-90",
                   player
@@ -73,7 +104,7 @@ export function TacticalPitchEditor({
                 ) : (
                   <Plus className="w-5 h-5" />
                 )}
-              </div>
+              </motion.div>
               <div className="w-full bg-black/60 backdrop-blur-sm px-1 py-0.5 rounded border border-white/10 text-center overflow-hidden min-h-[1.2rem] flex items-center justify-center gap-1">
                 {player && isPlayerInjured(player) && (
                   <Activity className="w-2 h-2 text-red-500 shrink-0" />
