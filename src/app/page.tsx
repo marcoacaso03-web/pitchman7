@@ -250,21 +250,7 @@ export default function HomePage() {
           )}
         </div>
 
-        {/* Fedelissimo */}
-        <div className="bg-card dark:bg-black border border-border dark:border-green-500/30 rounded-2xl p-3 flex gap-3 items-center shadow-sm relative overflow-hidden">
-          <div className="bg-green-500/10 dark:bg-green-500/20 p-2.5 rounded-xl text-green-600 dark:text-green-400 shrink-0">
-            <Star className="h-4 w-4" />
-          </div>
-          <div className="flex-1 truncate">
-            <p className="text-[9px] font-black uppercase tracking-widest text-muted-foreground dark:text-white/40">Fedelissimo</p>
-            <p className="text-sm font-black uppercase truncate text-foreground dark:text-white">{topPlayers.fedele ? topPlayers.fedele.name : "Nessuno"}</p>
-          </div>
-          {topPlayers.fedele && (
-            <div className="text-right shrink-0">
-              <span className="text-lg font-black text-foreground dark:text-green-400">{topPlayers.fedele.stats.appearances}</span>
-            </div>
-          )}
-        </div>
+
       </div>
 
       <MatchFormDialog

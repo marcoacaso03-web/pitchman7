@@ -18,6 +18,7 @@ const PRESET_COLORS = [
   "#005A71", // Brand Cyan
   "#f87171", // Soft Red
   "#fb923c", // Orange
+  "#E08700", // Neon Orange
   "#c084fc", // Purple
   "#2dd4bf", // Teal
   "#94a3b8", // Slate
@@ -33,14 +34,14 @@ export function ScoutCategoryDialog({ open, onOpenChange, categories }: ScoutCat
   const { user } = useUser();
   const firestore = useFirestore();
   const { mutate } = useSWRConfig();
-  
+
   const [loading, setLoading] = useState(false);
   const [newCatName, setNewCatName] = useState("");
   const [selectedColor, setSelectedColor] = useState(PRESET_COLORS[0]);
 
   const handleAddCategory = async () => {
     if (!user || !firestore || !newCatName.trim()) return;
-    
+
     setLoading(true);
     try {
       const id = `CAT-${Math.random().toString(36).substring(2, 7).toUpperCase()}`;
@@ -80,14 +81,14 @@ export function ScoutCategoryDialog({ open, onOpenChange, categories }: ScoutCat
             <div className="space-y-1.5">
               <Label className="text-[10px] font-black uppercase tracking-widest text-primary dark:text-brand-orange ml-1">Nuova Etichetta</Label>
               <div className="flex gap-2">
-                <Input 
-                  value={newCatName} 
+                <Input
+                  value={newCatName}
                   onChange={e => setNewCatName(e.target.value)}
                   placeholder="Es: Piede Sinistro"
                   className="h-10 rounded-xl font-bold uppercase text-xs bg-background dark:bg-black border border-primary/50 dark:border-brand-orange/50 focus-visible:ring-1 focus-visible:ring-primary dark:focus-visible:ring-brand-orange text-foreground dark:text-white shadow-sm"
                 />
-                <Button 
-                  size="sm" 
+                <Button
+                  size="sm"
                   className="bg-primary border border-primary text-white hover:bg-primary/90 hover:text-white dark:bg-black dark:border-brand-orange dark:text-brand-orange dark:hover:bg-brand-orange dark:hover:text-black shadow-sm dark:shadow-[0_0_10px_rgba(172,229,4,0.15)] h-10 rounded-xl font-black uppercase px-4 transition-all"
                   onClick={handleAddCategory}
                   disabled={loading || !newCatName.trim()}
@@ -96,12 +97,12 @@ export function ScoutCategoryDialog({ open, onOpenChange, categories }: ScoutCat
                 </Button>
               </div>
             </div>
-            
+
             <div className="space-y-1.5">
               <Label className="text-[10px] font-black uppercase tracking-widest text-primary dark:text-brand-orange ml-1">Scegli Colore</Label>
               <div className="flex flex-wrap gap-2">
                 {PRESET_COLORS.map(color => (
-                  <div 
+                  <div
                     key={color}
                     onClick={() => setSelectedColor(color)}
                     className="h-6 w-6 rounded-full cursor-pointer transition-transform hover:scale-110 flex items-center justify-center border-2 border-white"
@@ -128,9 +129,9 @@ export function ScoutCategoryDialog({ open, onOpenChange, categories }: ScoutCat
                         <div className="h-3 w-3 rounded-full" style={{ backgroundColor: cat.colorHex }} />
                         <span className="text-[10px] font-black uppercase tracking-tight text-foreground dark:text-white">{cat.name}</span>
                       </div>
-                      <Button 
-                        variant="ghost" 
-                        size="icon" 
+                      <Button
+                        variant="ghost"
+                        size="icon"
                         className="h-7 w-7 text-muted-foreground hover:text-destructive hover:bg-destructive/10 dark:hover:text-red-500 dark:hover:bg-red-500/10 transition-all"
                         onClick={() => handleDeleteCategory(cat.id)}
                       >

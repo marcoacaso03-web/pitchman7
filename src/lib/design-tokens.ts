@@ -10,6 +10,7 @@ export const COLORS = {
     green: "#ACE504",  // hsl(74 96% 46%)
     cyan: "#005A71",   // hsl(192 100% 22%)
     pink: "#EC4899",   // hsl(340 73% 55%)
+    orange: '#E08700',
   },
   functional: {
     win: "#ACE504",
@@ -43,7 +44,7 @@ export function useChartColors() {
     return () => observer.disconnect();
   }, []);
 
-  const dotColor = isDark ? COLORS.brand.green : "#2563eb"; // Blue for light, Neon Green for dark
+  const dotColor = isDark ? COLORS.brand.orange : "#2563eb"; // Blue for light, Neon orange for dark
   const glowColor = isDark ? "rgba(172,229,4,0.4)" : "rgba(37,99,235,0.3)";
   const textColor = isDark ? "#ffffff" : "#000000";
 

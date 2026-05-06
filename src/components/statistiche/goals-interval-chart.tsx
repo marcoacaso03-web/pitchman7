@@ -36,7 +36,7 @@ export function GoalsIntervalChart() {
     const chartConfig = { value: { label: "Gol" } };
 
     const INTERVAL_COLORS = isDark
-        ? [DesignTokens.brand.green, "rgba(223, 130, 0, 0.7)", "rgba(223, 130, 0, 0.4)"]
+        ? [DesignTokens.brand.orange, "rgba(223, 130, 0, 0.7)", "rgba(223, 130, 0, 0.4)"]
         : [DesignTokens.charts.primary(false), "rgba(0, 120, 255, 0.6)", "rgba(0, 120, 255, 0.3)"];
 
     return (
