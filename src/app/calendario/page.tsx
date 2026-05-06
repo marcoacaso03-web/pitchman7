@@ -33,6 +33,7 @@ import { format, isAfter, parseISO, startOfDay } from "date-fns";
 import { it } from "date-fns/locale";
 import { cn } from '@/lib/utils';
 import { MatchFormDialog } from '@/components/partite/match-form-dialog';
+import { TOURNAMENT_PHASES } from '@/lib/types';
 
 import { useStatsStore } from "@/store/useStatsStore";
 import {
@@ -66,7 +67,7 @@ export default function CalendarioPage() {
   const [isEditMode, setIsEditMode] = useState(false);
   const [pendingDeletions, setPendingDeletions] = useState<string[]>([]);
   const [expandedTournaments, setExpandedTournaments] = useState<Record<string, boolean>>({});
-  const [matchFormDefaultType, setMatchFormDefaultType] = useState<'Campionato' | 'Torneo' | 'Amichevole'>('Campionato');
+  const [matchFormDefaultType, setMatchFormDefaultType] = useState<'Campionato' | 'Torneo' | 'Amichevole'>('Torneo');
 
   const { activeSeason, fetchAll: fetchSeasons } = useSeasonsStore();
   const { matches, fetchAll: fetchMatches, add: addMatch, remove: removeMatch, removeAll: removeAllMatches, loading } = useMatchesStore();
@@ -188,6 +189,7 @@ export default function CalendarioPage() {
   };
 
   const { groupedTournaments, standaloneMatches } = useMemo(() => {
+    const PHASE_ORDER = Object.fromEntries(TOURNAMENT_PHASES.map((p, i) => [p, i]));
     const tourneys: Record<string, typeof UI_Matches> = {};
     const others: typeof UI_Matches = [];
 
@@ -198,6 +200,16 @@ export default function CalendarioPage() {
       } else {
         others.push(m);
       }
+    });
+
+    // Sort each tournament's matches by phase order, then by date
+    Object.keys(tourneys).forEach(name => {
+      tourneys[name].sort((a, b) => {
+        const phaseA = a.tournamentPhase ? (PHASE_ORDER[a.tournamentPhase] ?? 999) : 999;
+        const phaseB = b.tournamentPhase ? (PHASE_ORDER[b.tournamentPhase] ?? 999) : 999;
+        if (phaseA !== phaseB) return phaseA - phaseB;
+        return parseISO(a.date).getTime() - parseISO(b.date).getTime();
+      });
     });
 
     return { 
@@ -239,7 +251,7 @@ export default function CalendarioPage() {
               variant="outline"
               className="bg-primary dark:bg-black border border-primary dark:border-brand-orange text-white dark:text-brand-orange hover:opacity-90 dark:hover:bg-black/80 hover:scale-105 transition-all h-8 sm:h-9 px-2 sm:px-3 rounded-xl shadow-md dark:shadow-[0_0_15px_rgba(172,229,4,0.15)] flex items-center"
               onClick={() => {
-                setMatchFormDefaultType('Campionato');
+                setMatchFormDefaultType('Torneo');
                 setIsMatchFormOpen(true);
               }}
               title="Nuova Partita"
@@ -449,6 +461,24 @@ export default function CalendarioPage() {
                       <p className="text-[10px] font-bold uppercase text-muted-foreground/60">
                         {tourneyMatches.length} Gare • {completedCount} Concluse
                       </p>
+                      {/* Phase preview badges */}
+                      {(() => {
+                        const phases = [...new Set(
+                          tourneyMatches
+                            .filter(m => m.tournamentPhase)
+                            .map(m => m.tournamentPhase!)
+                        )].sort((a, b) => TOURNAMENT_PHASES.indexOf(a) - TOURNAMENT_PHASES.indexOf(b));
+                        if (phases.length === 0) return null;
+                        return (
+                          <div className="flex flex-wrap gap-1 mt-1.5">
+                            {phases.map(phase => (
+                              <span key={phase} className="text-[8px] font-black uppercase tracking-widest px-1.5 py-0.5 rounded-md bg-primary/10 dark:bg-brand-orange/10 text-primary dark:text-brand-orange border border-primary/20 dark:border-brand-orange/20">
+                                {phase}
+                              </span>
+                            ))}
+                          </div>
+                        );
+                      })()}
                     </div>
                   </div>
                   {isExpanded ? <ChevronUp className="h-5 w-5 text-muted-foreground" /> : <ChevronDown className="h-5 w-5 text-muted-foreground" />}
@@ -570,6 +600,11 @@ function MatchCard({ match, isEditMode, onDelete, router, sortedMatches }: any) 
             </h5>
             <div className="flex items-center gap-2 mt-0.5">
               <span className="text-[9px] font-bold uppercase text-muted-foreground/60">{m.type}</span>
+              {m.tournamentPhase && (
+                <span className="text-[8px] font-black uppercase tracking-widest px-1.5 py-0.5 rounded-md bg-primary/10 dark:bg-brand-orange/10 text-primary dark:text-brand-orange border border-primary/20 dark:border-brand-orange/20">
+                  {m.tournamentPhase}
+                </span>
+              )}
             </div>
           </div>
         </div>

@@ -48,6 +48,9 @@ export type Player = {
 export const MATCH_TYPES = ['Campionato', 'Torneo', 'Amichevole'] as const;
 export type MatchType = typeof MATCH_TYPES[number];
 
+export const TOURNAMENT_PHASES = ['Gironi', 'Sedicesimi', 'Ottavi', 'Quarti', 'Semifinale', 'Finale'] as const;
+export type TournamentPhase = typeof TOURNAMENT_PHASES[number];
+
 export type MatchResult = {
   home: number;
   away: number;
@@ -73,6 +76,7 @@ export type Match = {
   status: MatchStatus;
   round?: number;
   tournamentName?: string;
+  tournamentPhase?: TournamentPhase;
   notes?: string;
   createdAt?: string;
   updatedAt?: string;

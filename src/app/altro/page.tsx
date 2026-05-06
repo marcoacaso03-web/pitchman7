@@ -73,7 +73,7 @@ export default function AltroPage() {
   } = useSettingsStore();
 
   const [localTeamName, setLocalTeamName] = useState('');
-  const [localDefaultDuration, setLocalDefaultDuration] = useState(90);
+  const [localDefaultDuration, setLocalDefaultDuration] = useState(40);
   const [localMatchNotificationEnabled, setLocalMatchNotificationEnabled] = useState(false);
   const [localMatchNotificationTime, setLocalMatchNotificationTime] = useState('20:00');
 
@@ -448,9 +448,9 @@ export default function AltroPage() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent className="bg-popover border-border dark:border-white/10 text-foreground">
-                    <SelectItem value="70">70 min</SelectItem>
-                    <SelectItem value="80">80 min</SelectItem>
-                    <SelectItem value="90">90 min</SelectItem>
+                    <SelectItem value="40">40 min</SelectItem>
+                    <SelectItem value="50">50 min</SelectItem>
+                    <SelectItem value="60">60 min</SelectItem>
                   </SelectContent>
                 </Select>
               </div>

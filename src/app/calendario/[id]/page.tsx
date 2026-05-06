@@ -144,6 +144,11 @@ function MatchDetailContent() {
                   <span className="truncate uppercase tracking-wider text-foreground dark:text-white">
                     {match.type === 'Torneo' && match.tournamentName ? match.tournamentName : match.type}
                   </span>
+                  {match.type === 'Torneo' && match.tournamentPhase && (
+                    <span className="text-[8px] font-black uppercase tracking-widest px-1.5 py-0.5 rounded-md bg-primary/10 dark:bg-brand-orange/10 text-primary dark:text-brand-orange border border-primary/20 dark:border-brand-orange/20 ml-1">
+                      {match.tournamentPhase}
+                    </span>
+                  )}
                 </div>
               </div>
 

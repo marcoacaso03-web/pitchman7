@@ -36,6 +36,7 @@ export const PlayerSchema = z.object({
 });
 
 export const MatchTypeSchema = z.enum(['Campionato', 'Torneo', 'Amichevole']);
+export const TournamentPhaseSchema = z.enum(['Gironi', 'Sedicesimi', 'Ottavi', 'Quarti', 'Semifinale', 'Finale']);
 
 export const MatchResultSchema = z.object({
   home: z.number().default(0),
@@ -62,6 +63,7 @@ export const MatchSchema = z.object({
   status: MatchStatusSchema.default('scheduled'),
   round: z.number().optional().default(0),
   tournamentName: z.string().optional().default(''),
+  tournamentPhase: TournamentPhaseSchema.optional(),
   notes: z.string().optional().default(''),
   createdAt: z.string().optional(),
   updatedAt: z.string().optional(),

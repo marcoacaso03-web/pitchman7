@@ -21,7 +21,7 @@ const MatchSchema = z.object({
   opponent: z.string().describe('Il nome della squadra avversaria.'),
   date: z.string().describe('La data e ora della partita in formato ISO o stringa leggibile (es. YYYY-MM-DDTHH:mm). Se manca l\'orario usa 15:00.'),
   isHome: z.boolean().describe('Vero se la squadra dell\'utente gioca in casa.'),
-  type: z.enum(['Campionato', 'Torneo', 'Amichevole']).default('Campionato'),
+  type: z.enum(['Campionato', 'Torneo', 'Amichevole']).default('Torneo'),
 });
 
 const ImportMatchesOutputSchema = z.object({

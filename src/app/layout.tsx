@@ -44,6 +44,7 @@ export const metadata: Metadata = {
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import { FloatingMatchTimer } from '@/components/partite/floating-match-timer';
+import { InstallPWA } from '@/components/layout/InstallPWA';
 
 export default function RootLayout({
   children,
@@ -63,6 +64,7 @@ export default function RootLayout({
                     {children}
                 </main>
                 <BottomNavWrapper />
+                <InstallPWA />
                 <FloatingMatchTimer />
               </div>
             </AuthGuard>

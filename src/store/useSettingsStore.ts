@@ -5,7 +5,7 @@ import { persist } from 'zustand/middleware';
 import { settingsRepository, UserSettings } from '@/lib/repositories/settings-repository';
 
 const DEFAULT_SETTINGS: UserSettings = {
-  defaultDuration: 90,
+  defaultDuration: 40,
   teamName: '',
   matchNotificationEnabled: false,
   matchNotificationTime: '20:00',

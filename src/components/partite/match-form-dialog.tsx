@@ -24,7 +24,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Match, MATCH_TYPES } from "@/lib/types";
+import { Match, MATCH_TYPES, TOURNAMENT_PHASES, TournamentPhase } from "@/lib/types";
 import {
   Dialog,
   DialogContent,
@@ -60,6 +60,7 @@ const formSchema = z.object({
   status: z.enum(['scheduled', 'completed', 'canceled']),
   round: z.coerce.number().int().optional().or(z.literal(0)),
   tournamentName: z.string().optional(),
+  tournamentPhase: z.enum(TOURNAMENT_PHASES).optional(),
 });
 
 type MatchFormValues = z.infer<typeof formSchema>;
@@ -81,11 +82,12 @@ export function MatchFormDialog({ open, onOpenChange, onSave, match }: MatchForm
       opponent: "",
       date: "",
       isHome: true,
-      type: 'Campionato',
+      type: 'Torneo',
       duration: defaultDuration,
       status: 'completed',
       round: 0,
       tournamentName: "",
+      tournamentPhase: undefined,
     },
   });
 
@@ -96,11 +98,12 @@ export function MatchFormDialog({ open, onOpenChange, onSave, match }: MatchForm
         opponent: match?.opponent || "",
         date: initialDate,
         isHome: match?.isHome ?? true,
-        type: match?.type || 'Campionato',
+        type: match?.type || 'Torneo',
         duration: match?.duration || defaultDuration,
         status: match?.status || 'completed',
         round: match?.round || 0,
         tournamentName: match?.tournamentName || "",
+        tournamentPhase: match?.tournamentPhase || undefined,
       });
     }
   }, [open, match, form, defaultDuration]);
@@ -187,19 +190,43 @@ export function MatchFormDialog({ open, onOpenChange, onSave, match }: MatchForm
               />
 
               {form.watch("type") === "Torneo" && (
-                <FormField
-                  control={form.control}
-                  name="tournamentName"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-[10px] font-black uppercase tracking-widest text-primary dark:text-brand-orange">Nome Torneo</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Es: Torneo Estivo" {...field} className="h-11 rounded-xl font-bold uppercase text-xs bg-background dark:bg-black border border-primary/50 dark:border-brand-orange/50 focus-visible:ring-1 focus-visible:ring-primary dark:focus-visible:ring-brand-orange text-foreground dark:text-white" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                <>
+                  <FormField
+                    control={form.control}
+                    name="tournamentName"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-[10px] font-black uppercase tracking-widest text-primary dark:text-brand-orange">Nome Torneo</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Es: Torneo Estivo" {...field} className="h-11 rounded-xl font-bold uppercase text-xs bg-background dark:bg-black border border-primary/50 dark:border-brand-orange/50 focus-visible:ring-1 focus-visible:ring-primary dark:focus-visible:ring-brand-orange text-foreground dark:text-white" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="tournamentPhase"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-[10px] font-black uppercase tracking-widest text-primary dark:text-brand-orange">Fase Torneo</FormLabel>
+                        <Select onValueChange={field.onChange} value={field.value || ""}>
+                          <FormControl>
+                            <SelectTrigger className="h-11 rounded-xl text-xs font-bold uppercase bg-background dark:bg-black border border-primary/50 dark:border-brand-orange/50 focus:ring-1 focus:ring-primary dark:focus:ring-brand-orange text-foreground dark:text-white">
+                              <SelectValue placeholder="Seleziona fase..." />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent className="bg-card border border-primary/30 dark:border-brand-orange/30 text-foreground">
+                            {TOURNAMENT_PHASES.map(phase => (
+                              <SelectItem key={phase} value={phase} className="text-xs font-bold uppercase">{phase}</SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </>
               )}
             </div>
 
